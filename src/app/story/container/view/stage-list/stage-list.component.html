@@ -1,0 +1,13 @@
+<div class="panel">
+	<h2>Add new story stage</h2>
+	<xes-stage-form (onSubmitSignal)="onStoryStageAdd($event)"></xes-stage-form>
+</div>
+<div class="panel">
+	<h2>Story stages:</h2>
+	<ul>
+		<li *ngFor="let stage of stages | async">
+			<h3>{{ stage.title }}</h3>
+			<p>{{ stage.content }}</p>
+		</li>
+	</ul>
+</div>

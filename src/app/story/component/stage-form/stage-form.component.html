@@ -1,0 +1,7 @@
+<p>
+  Title: <input class="form-control" [formControl]="title"/>
+</p>
+<p>
+  Content: <textarea class="form-control" [formControl]="content"></textarea>
+</p>
+<a class="btn btn-primary" (click)="onSubmit($event)">Add</a>
