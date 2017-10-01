@@ -7,9 +7,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/of';
 
-import { AddStoryStageAction } from '../../../actions/stage';
+import { AddStoryStageAction, RemoveStoryStageAction } from '../../../actions/stage';
 import StoryStage from '../../../model/story-stage';
-import * as fromStage from '../../../reducers/stages';
+import { StoryModuleState, selectFeatureStages } from '../../../reducers';
 
 @Component({
 	selector: 'xes-stage-list',
@@ -20,11 +20,15 @@ export class StageListComponent {
 
 	stages: Observable<StoryStage[]>;
 
-	constructor(private store: Store<fromStage.State>) {
-		this.stages = store.select(fromStage.getStates);
+	constructor(private store: Store<StoryModuleState>) {
+		this.stages = store.select(selectFeatureStages);
 	}
 
 	onStoryStageAdd({ title, content }) {
 		this.store.dispatch(new AddStoryStageAction(title, content));
+	}
+
+	onStoryStageRemove(index: number) {
+		this.store.dispatch(new RemoveStoryStageAction(index));
 	}
 }

@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { StageListComponent } from './container/view/stage-list/stage-list.component';
 
-const routes: Routes = [
+export const routes: Routes = [
+	{ path: '', redirectTo: 'stages', pathMatch: 'full' },
 	{ path: 'stages', component: StageListComponent },
 ];
 

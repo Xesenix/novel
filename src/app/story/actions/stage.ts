@@ -8,4 +8,11 @@ export class AddStoryStageAction implements Action {
 		public content: string = null) {}
 }
 
-export type Actions = AddStoryStageAction;
+export const REMOVE_STAGE = 'STORY_REMOVE_STAGE';
+
+export class RemoveStoryStageAction implements Action {
+	readonly type = REMOVE_STAGE;
+	constructor(public index: number) {}
+}
+
+export type Actions = AddStoryStageAction | RemoveStoryStageAction;

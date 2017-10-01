@@ -1,14 +1,18 @@
 import StoryStage from '../model/story-stage';
-import * as stage from '../actions/stage';
+import * as actions from '../actions/stage';
 
-export type State = StoryStage[];
+export type StageState = StoryStage[];
 
-const initialState: State = [];
+const initialState: StageState = [];
 
-export function reducer(state: State = initialState, action: stage.Actions): State {
+export function reducer(state: StageState = initialState, action: actions.Actions): StageState {
 	switch (action.type) {
-		case stage.ADD_STAGE: {
+		case actions.ADD_STAGE: {
 			return [...state, new StoryStage(action.title, action.content)];
+		}
+
+		case actions.REMOVE_STAGE: {
+			return state.filter((el, index) => index !== action.index);
 		}
 
 		default:
@@ -16,5 +20,3 @@ export function reducer(state: State = initialState, action: stage.Actions): Sta
 	}
 	return state;
 }
-
-export const getStates = (state) => state.stages;

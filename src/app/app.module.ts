@@ -8,8 +8,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { CharactersModule } from './characters/characters.module';
 import { StoryModule } from './story/story.module';
 import { AppComponent } from './app.component';
-import { reducer } from './story/reducers';
-import StoryStage from './story/model/story-stage';
+import { reducer } from './reducers';
 
 @NgModule({
 	declarations: [
@@ -19,19 +18,13 @@ import StoryStage from './story/model/story-stage';
 		BrowserModule,
 		AppRoutingModule,
 		CharactersModule,
-		StoreModule.forRoot(reducer, {
-			initialState: {
-				stages: [
-					new StoryStage('Brave new world', 'Darkness was lighted by volcanos spewing yellow glowing sulfur.'),
-					new StoryStage('Creatures of darkness', 'In shadows of caves lurked creatures born from darkness.'),
-				]
-			}
-		}),
+		StoryModule,
+		StoreModule.forRoot(reducer),
+		// do not use with @ngrx/router-store (performance issue)
 		StoreDevtoolsModule.instrument({
 		 	maxAge: 25
 		}),
 		// EffectsModule.forRoot([]),
-		StoryModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

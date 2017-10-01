@@ -4,8 +4,10 @@ import { Store, StoreModule } from '@ngrx/store';
 
 import { StageListComponent } from './stage-list.component';
 import { AddStoryStageAction } from '../../../actions/stage';
-import { reducer, State } from '../../../reducers';
 import StoryStage from '../../../model/story-stage';
+import { provideInitialState } from '../../../story.module';
+// FIXME: need to decouple module from global state
+import { reducer as rootReducer, AppState } from '../../../../reducers';
 
 describe('StageListComponent', () => {
 	let component: StageListComponent;
@@ -16,14 +18,7 @@ describe('StageListComponent', () => {
 			declarations: [ StageListComponent ],
 			schemas: [ NO_ERRORS_SCHEMA ],
 			imports: [
-				StoreModule.forRoot(reducer, {
-					initialState: {
-						stages: [
-							new StoryStage('Brave new world', 'Darkness was lighted by volcanos spewing yellow glowing sulfur.'),
-							new StoryStage('Creatures of darkness', 'In shadows of caves lurked creatures born from darkness.'),
-						]
-					}
-				}),
+				StoreModule.forRoot(rootReducer, { initialState: { story: {} } }),
 			],
 		})
 		.compileComponents();
@@ -40,7 +35,7 @@ describe('StageListComponent', () => {
 	});
 
 	describe('onStoryStageAdd', () => {
-		it('should dispatch AddStoryStageAction', inject([Store], (store: Store<State>) => {
+		it('should dispatch AddStoryStageAction', inject([Store], (store: Store<AppState>) => {
 			const title = 'title';
 			const content = 'content';
 			spyOn(store, 'dispatch');
