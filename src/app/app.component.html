@@ -1,7 +1,7 @@
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-inverse">
 	<div class="container">
-		<h1>Novel</h1>
+		<a class="navbar-brand">Novel</a>
 		<ul class="nav navbar-nav">
 			<li routerLinkActive="active" ><a class="" routerLink="/story">Story</a></li>
 			<li routerLinkActive="active" ><a class="" routerLink="/characters">Characters</a></li>
@@ -12,3 +12,5 @@
 <div class="container">
 	<router-outlet></router-outlet>
 </div>
+
+<xes-canvas [ngStyle]="{ position: 'fixed', left: 0, right: 0, top: 0, bottom: 0, 'z-index': -1 }"></xes-canvas>

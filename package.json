@@ -24,7 +24,10 @@
 		"@ngrx/effects": "^4.0.5",
 		"@ngrx/store": "^4.0.3",
 		"@ngrx/store-devtools": "^4.0.0",
+		"@pixi/filter-bulge-pinch": "^2.0.2",
+		"@types/pixi.js": "^4.5.5",
 		"core-js": "^2.4.1",
+		"pixi.js": "^4.5.6",
 		"rxjs": "^5.4.2",
 		"zone.js": "^0.8.14"
 	},
