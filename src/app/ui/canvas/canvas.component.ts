@@ -1,8 +1,8 @@
+import { animationFrame } from 'rxjs/scheduler/animationFrame';
+import { TweenObservable } from '../../observable/tween';
 import 'pixi.js';
 import { AfterViewInit, Component, ElementRef, HostListener } from '@angular/core';
 import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
-import { AnimationFrameScheduler } from 'rxjs/scheduler/AnimationFrameScheduler';
-import { IScheduler } from 'rxjs/Scheduler';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -19,56 +19,28 @@ export class CanvasComponent implements AfterViewInit {
 
 	private bulgeFilter: any;
 
-	private tween = null;
+	private tweenSubscription = null;
 
 	private easing = (delta: number) => Math.sin(delta * Math.PI);
 
-	@HostListener('document:mousemove', ['$event'])
-	onMouseMove(event: MouseEvent) {
-		this.light.position.x = event.x;
-		this.light.position.y = event.y;
-		this.bulgeFilter.center.x = event.x / window.innerWidth;
-		this.bulgeFilter.center.y = event.y / window.innerHeight;
-	}
-
-	@HostListener('document:mousedown', ['$event'])
-	onMouseDown(event: MouseEvent) {
-		const duration = 500;
-		const startTime = (new Date()).getTime();
-
-		const tween = (observer) => {
-			const delta = Math.min((new Date()).getTime() - startTime, duration);
-
-			observer.next(delta / duration);
-			this.onAnimationFrame();
-
-			if (delta < duration) {
-				requestAnimationFrame(() => tween(observer));
-			} else {
-
-				observer.finish();
-			}
-		};
-
-		if (this.tween !== null) {
-			this.tween.unsubscribe();
-		}
-		this.tween = Observable.create(tween).subscribe((v) => {
-			const d = this.easing(v);
-			this.bulgeFilter.strength = 0.5 + 0.5 * d;
-			this.bulgeFilter.radius = 128 - 64 * d;
-			this.light.scale.set(1 - 0.5 * d);
-		}, () => {
-
-		}, () => {
-
-		});
-	}
-
 	constructor(private host: ElementRef) {
-		Observable.fromEvent(document, 'mousemove').throttleTime(50).subscribe(() => {
-			// TODO: use AnimationFrameScheduler - cant setup AnimationFrameScheduler for some reason
-			requestAnimationFrame(this.onAnimationFrame);
+		Observable.fromEvent(document, 'mousedown')
+		.switchMap(() => TweenObservable.create(1000))// schedule to requestAnimationFrame
+		.map(this.easing)
+		.subscribe((v) => {
+			this.bulgeFilter.strength = 0.5 + 0.5 * v;
+			this.bulgeFilter.radius = 128 + 128 * v;
+			this.light.scale.set(1 + v);
+			this.onAnimationFrame();
+		});
+		Observable.fromEvent(document, 'mousemove').throttleTime(16)
+		.switchMap((ev) => Observable.of(ev, animationFrame))// schedule to requestAnimationFrame
+		.subscribe((event: MouseEvent) => {
+			this.light.position.x = event.x;
+			this.light.position.y = event.y;
+			this.bulgeFilter.center.x = event.x / window.innerWidth;
+			this.bulgeFilter.center.y = event.y / window.innerHeight;
+			this.onAnimationFrame();
 		});
 	}
 
@@ -88,33 +60,29 @@ export class CanvasComponent implements AfterViewInit {
 
 		this.host.nativeElement.appendChild(this.renderer.view);
 		this.stage = new PIXI.Container();
-
-		PIXI.utils.sayHello('canvas');
-		console.log('initPixi', this.renderer, this.stage);
 	}
 
 	initScene() {
 		const bg = PIXI.extras.TilingSprite.fromImage('assets/bg-00.png');
+		bg.x = -10;
+		bg.y = -10;
 		bg.width = window.innerWidth + 20;
 		bg.height = window.innerHeight + 20;
-		bg.x = -10;
 		this.stage.addChild(bg);
 
 		this.light = PIXI.Sprite.fromImage('assets/light-00.png');
-		this.light.blendMode = PIXI.BLEND_MODES.LIGHTEN;
-		this.light.alpha = 0.2;
+		this.light.blendMode = PIXI.BLEND_MODES.SOFT_LIGHT;
+		this.light.alpha = 0.125;
 		this.light.anchor.set(0.5);
-
 		this.stage.addChild(this.light);
 
-		// const displacmentFilter = new PIXI.filters.DisplacementFilter(this.light);
 		this.bulgeFilter = new BulgePinchFilter();
 		this.bulgeFilter.radius = 128;
 		this.bulgeFilter.strength = 1;
 
 		this.stage.filters = [this.bulgeFilter];
 
-		requestAnimationFrame(this.onAnimationFrame);
+		this.onAnimationFrame();
 	}
 
 	onAnimationFrame = () => {
