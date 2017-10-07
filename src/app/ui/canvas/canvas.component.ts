@@ -1,5 +1,5 @@
 import { animationFrame } from 'rxjs/scheduler/animationFrame';
-import { TweenObservable } from '../../observable/tween';
+import { TweenObservable } from 'xes-rx-tween';
 import 'pixi.js';
 import { AfterViewInit, Component, ElementRef, HostListener } from '@angular/core';
 import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
