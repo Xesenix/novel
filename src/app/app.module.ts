@@ -1,15 +1,15 @@
-import { UiModule } from './ui/ui.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 // import { EffectsModule  } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { CharactersModule } from './characters/characters.module';
-import { StoryModule } from './story/story.module';
-import { AppComponent } from './app.component';
 import { reducer } from './reducers';
+import { StoryModule } from './story/story.module';
+import { UiModule } from './ui/ui.module';
 
 @NgModule({
 	declarations: [
