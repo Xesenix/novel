@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, ElementRef, HostListener } from '@angular/core';
+import 'pixi.js';
 import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
 import { Observable } from 'rxjs/Rx';
 import { animationFrame } from 'rxjs/scheduler/animationFrame';
 import { TweenObservable } from 'xes-rx-tween';
-import 'pixi.js';
 
 @Component({
 	selector: 'xes-canvas',
@@ -21,6 +21,15 @@ export class CanvasComponent implements AfterViewInit {
 
 	private bg: PIXI.Sprite;
 
+	/**
+	 * Something like:
+	 *     _
+	 *    / \
+	 * \ /   \ /
+	 *  v     v
+	 * @private
+	 * @memberof CanvasComponent
+	 */
 	private easing = (delta: number) => 0.5 * Math.sin(delta * Math.PI) * (1 - 1 * Math.pow(3 * (delta - 0.5), 4));
 
 	constructor(private host: ElementRef) { }
@@ -49,13 +58,12 @@ export class CanvasComponent implements AfterViewInit {
 
 		// preload assets
 		PIXI.loader
-			.add('bg', 'assets/bg-00.png')
-			.add('light', 'assets/light-00.png')
+			.add('assets/ui.json')// sprite sheet
 			.load(this.initScene.bind(this));
 	}
 
 	/**
-	 * Initialize stage contend and animations.
+	 * Initialize stage content and animations.
 	 *
 	 * @memberof CanvasComponent
 	 */
@@ -64,7 +72,7 @@ export class CanvasComponent implements AfterViewInit {
 		this.stage = new PIXI.Container();
 
 		// prepare background
-		this.bg = PIXI.extras.TilingSprite.fromImage('bg');
+		this.bg = PIXI.extras.TilingSprite.fromImage('bg-00');
 		this.bg.x = -10;
 		this.bg.y = -10;
 		this.bg.width = window.innerWidth + 20;
@@ -72,7 +80,7 @@ export class CanvasComponent implements AfterViewInit {
 		this.stage.addChild(this.bg);
 
 		// prepare cursor light and shadow
-		this.light = PIXI.Sprite.fromImage('light');
+		this.light = PIXI.Sprite.fromImage('light-00');
 		this.light.blendMode = PIXI.BLEND_MODES.SOFT_LIGHT;
 		this.light.alpha = 0.125;
 		this.light.anchor.set(0.5);
