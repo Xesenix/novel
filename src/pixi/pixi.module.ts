@@ -10,4 +10,4 @@ import { CanvasComponent } from './canvas/canvas.component';
 	declarations: [CanvasComponent],
 	exports: [CanvasComponent],
 })
-export class UiModule { }
+export class PixiModule { }
