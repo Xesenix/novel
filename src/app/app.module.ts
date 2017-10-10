@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { CharactersModule } from './characters/characters.module';
 import { reducer } from './reducers';
 import { StoryModule } from './story/story.module';
-import { PixiModule } from '../pixi/pixi.module';
+import { PixiModule } from './pixi/pixi.module';
 
 @NgModule({
 	declarations: [
