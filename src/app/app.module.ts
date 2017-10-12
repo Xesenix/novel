@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { CharactersModule } from './characters/characters.module';
 import { reducer } from './reducers';
 import { StoryModule } from './story/story.module';
-import { PixiModule } from './pixi/pixi.module';
+import { WebglModule } from './webgl/webgl.module';
 
 @NgModule({
 	declarations: [
@@ -17,7 +17,7 @@ import { PixiModule } from './pixi/pixi.module';
 	],
 	imports: [
 		BrowserModule,
-		PixiModule,
+		WebglModule,
 		AppRoutingModule,
 		CharactersModule,
 		StoryModule,
