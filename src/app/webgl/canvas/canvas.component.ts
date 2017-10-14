@@ -3,7 +3,7 @@ import { animationFrame } from 'rxjs/scheduler/animationFrame';
 import { Observable } from 'rxjs/Rx';
 import { ElementRef, ViewChild } from '@angular/core';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { mat4 } from 'gl-matrix';
+import { mat4 } from '@mapbox/gl-matrix';
 
 @Component({
 	selector: 'xes-canvas',

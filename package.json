@@ -26,6 +26,7 @@
 		"@angular/platform-browser": "^4.2.4",
 		"@angular/platform-browser-dynamic": "^4.2.4",
 		"@angular/router": "^4.2.4",
+		"@mapbox/gl-matrix": "0.0.1",
 		"@ngrx/effects": "^4.0.5",
 		"@ngrx/store": "^4.0.3",
 		"@pixi/filter-bulge-pinch": "^2.0.2",
