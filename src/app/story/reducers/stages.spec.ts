@@ -3,7 +3,7 @@ import { AddStoryStageAction, RemoveStoryStageAction } from '../actions/stage';
 import * as fromStages from './stages';
 
 describe('reducers.stages', () => {
-	it('should reduce ADD_STAGE actions', () => {
+	it('should reduce AddStoryStageAction', () => {
 		const title = 'title';
 		const content = 'content';
 		const action = new AddStoryStageAction(title, content);
@@ -14,7 +14,7 @@ describe('reducers.stages', () => {
 		expect(resultState).toEqual([new StoryStage(title, content)]);
 	});
 
-	it('should reduce REMOVE_STAGE actions', () => {
+	it('should reduce RemoveStoryStageAction', () => {
 		const index = 1;
 		const action = new RemoveStoryStageAction(index);
 		const store: fromStages.StageState = [

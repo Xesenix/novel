@@ -1,4 +1,4 @@
-import { ADD_STAGE, AddStoryStageAction, REMOVE_STAGE, RemoveStoryStageAction } from './stage';
+import { LIST_ADD, AddStoryStageAction, LIST_REMOVE, RemoveStoryStageAction } from './stage';
 
 describe('actions.stage', () => {
 	it('should create AddStoryStageAction action with filled properties', () => {
@@ -7,7 +7,7 @@ describe('actions.stage', () => {
 
 		const action = new AddStoryStageAction(title, content);
 
-		expect(action.type).toEqual(ADD_STAGE);
+		expect(action.type).toEqual(LIST_ADD);
 		expect(action.title).toEqual(title);
 		expect(action.content).toEqual(content);
 	});
@@ -17,7 +17,7 @@ describe('actions.stage', () => {
 
 		const action = new RemoveStoryStageAction(index);
 
-		expect(action.type).toEqual(REMOVE_STAGE);
+		expect(action.type).toEqual(LIST_REMOVE);
 		expect(action.index).toEqual(index);
 	});
 });
