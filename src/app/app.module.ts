@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing.module';
+import { AppRoutingModule } from './routing/app-routing.module';
 import { CharactersModule } from './characters/characters.module';
 import { reducer } from './reducers';
 import { StoryModule } from './story/story.module';

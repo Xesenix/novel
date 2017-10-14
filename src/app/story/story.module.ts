@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { StageFormComponent } from './component/stage-form/stage-form.component';
 import { StageListComponent } from './container/view/stage-list/stage-list.component';
-import { StoryRoutingModule } from './story.routing.module';
+import { StoryRoutingModule } from './routing/story-routing.module';
 import StoryStage from './model/story-stage';
 import { reducer } from './reducers';
 
