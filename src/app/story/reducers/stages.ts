@@ -1,11 +1,15 @@
-import { listReducerFactory } from '../../reducers/list';
+import { combineReducers } from '@ngrx/store';
+import { listReducerFactory, sortableListReducerFactory } from '../../reducers/list';
 import StoryStage from '../model/story-stage';
 import * as actions from '../actions/stage';
 
 export type StageState = StoryStage[];
 
 const listReducer = listReducerFactory<StoryStage>(({ title, content }) => new StoryStage(title, content), actions);
+const sortableReducer = sortableListReducerFactory(actions);
 
 export function reducer(state, action): StageState {
-	return listReducer(state, action);
+	state = listReducer(state, action);
+	state = sortableReducer(state, action);
+	return state;
 }

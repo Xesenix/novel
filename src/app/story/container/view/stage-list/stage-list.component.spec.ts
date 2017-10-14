@@ -3,7 +3,7 @@ import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing'
 import { Store, StoreModule } from '@ngrx/store';
 
 import { StageListComponent } from './stage-list.component';
-import { AddStoryStageAction } from '../../../actions/stage';
+import { AddStoryStageAction, RemoveStoryStageAction } from '../../../actions/stage';
 import StoryStage from '../../../model/story-stage';
 import { provideInitialState } from '../../../story.module';
 // FIXME: need to decouple module from global state
@@ -39,9 +39,21 @@ describe('StageListComponent', () => {
 			const title = 'title';
 			const content = 'content';
 			spyOn(store, 'dispatch');
+
 			component.onStoryStageAdd({ title, content });
 
 			expect(store.dispatch).toHaveBeenCalledWith(new AddStoryStageAction(title, content));
+		}));
+	});
+
+	describe('onStoryStageRemove', () => {
+		it('should dispatch RemoveStoryStageAction', inject([Store], (store: Store<AppState>) => {
+			const index = 0;
+			spyOn(store, 'dispatch');
+
+			component.onStoryStageRemove(index);
+
+			expect(store.dispatch).toHaveBeenCalledWith(new RemoveStoryStageAction(index));
 		}));
 	});
 });

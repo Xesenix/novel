@@ -1,4 +1,4 @@
-import { listReducerFactory } from './list';
+import { listReducerFactory, sortableListReducerFactory } from './list';
 
 describe('listReducerFactory', () => {
 	[{
@@ -68,6 +68,105 @@ describe('listReducerFactory', () => {
 					expect(result).toEqual(expected);
 				});
 			});
+		});
+	});
+});
+
+describe('sortableListReducerFactory', () => {
+	const LIST_ITEM_MOVE = 'move';
+	const reducer = sortableListReducerFactory({ LIST_ITEM_MOVE });
+	[{
+		from: 0,
+		to: 0,
+		state: ['a', 'b'],
+		expected: ['a', 'b'],
+	}, {
+		from: 1,
+		to: 1,
+		state: ['a', 'b'],
+		expected: ['a', 'b'],
+	}, {
+		from: 0,
+		to: 1,
+		state: ['a', 'b'],
+		expected: ['b', 'a'],
+	}, {
+		from: 0,
+		to: 1,
+		state: ['a', 'b', 'c'],
+		expected: ['b', 'a', 'c'],
+	}, {
+		from: 0,
+		to: 2,
+		state: ['a', 'b', 'c'],
+		expected: ['b', 'c', 'a'],
+	}, {
+		from: 1,
+		to: 2,
+		state: ['a', 'b', 'c'],
+		expected: ['a', 'c', 'b'],
+	}, {
+		from: 1,
+		to: 2,
+		state: ['a', 'b', 'c', 'd'],
+		expected: ['a', 'c', 'b', 'd'],
+	}, {
+		from: 1,
+		to: 3,
+		state: ['a', 'b', 'c', 'd'],
+		expected: ['a', 'c', 'd', 'b'],
+	}, {
+		from: 2,
+		to: 5,
+		state: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+		expected: ['a', 'b', 'd', 'e', 'f', 'c', 'g'],
+	}, {
+		from: 1,
+		to: 0,
+		state: ['a', 'b'],
+		expected: ['b', 'a'],
+	}, {
+		from: 1,
+		to: 0,
+		state: ['a', 'b', 'c'],
+		expected: ['b', 'a', 'c'],
+	}, {
+		from: 2,
+		to: 0,
+		state: ['a', 'b', 'c'],
+		expected: ['c', 'a', 'b'],
+	}, {
+		from: 2,
+		to: 1,
+		state: ['a', 'b', 'c'],
+		expected: ['a', 'c', 'b'],
+	}, {
+		from: 2,
+		to: 1,
+		state: ['a', 'b', 'c', 'd'],
+		expected: ['a', 'c', 'b', 'd'],
+	}, {
+		from: 3,
+		to: 1,
+		state: ['a', 'b', 'c', 'd'],
+		expected: ['a', 'd', 'b', 'c'],
+	}, {
+		from: 5,
+		to: 2,
+		state: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+		expected: ['a', 'b', 'f', 'c', 'd', 'e', 'g'],
+	}].forEach(({ from, to, state, expected}) => {
+		it(`should sort: [${state.join(', ')}] ${from} => ${to}`, () => {
+			const action = {
+				type: LIST_ITEM_MOVE,
+				from,
+				to
+			};
+
+			const result = reducer(state, action);
+
+			expect(result.length).toEqual(expected.length);
+			expect(result).toEqual(expected);
 		});
 	});
 });

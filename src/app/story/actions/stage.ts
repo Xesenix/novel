@@ -15,4 +15,11 @@ export class RemoveStoryStageAction implements Action {
 	constructor(public index: number) {}
 }
 
+export const LIST_ITEM_MOVE = 'STORY_MOVE_STAGE';
+
+export class MoveStoryStageAction implements Action {
+	readonly type = LIST_ITEM_MOVE;
+	constructor(public from: number, public to: number) {}
+}
+
 export type Actions = AddStoryStageAction | RemoveStoryStageAction;
