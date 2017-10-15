@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default navbar-inverse">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
 	<div class="container">
 		<a class="navbar-brand">Novel</a>
 		<ul class="nav navbar-nav">
@@ -10,7 +10,14 @@
 </nav>
 
 <div class="container">
-	<router-outlet></router-outlet>
+	<div class="row">
+		<div class="col-lg-8">
+			<router-outlet></router-outlet>
+		</div>
+		<div class="col-lg-4">
+			<xes-stage-list></xes-stage-list>
+		</div>
+	</div>
 </div>
 
 <xes-canvas [ngStyle]="{ position: 'fixed', left: 0, right: 0, top: 0, bottom: 0, 'z-index': -1, 'background': '#000 url(assets/bg-00.png) repeat -10px -10px' }"></xes-canvas>
