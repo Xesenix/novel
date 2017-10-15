@@ -22,4 +22,4 @@ export class MoveStoryStageAction implements Action {
 	constructor(public from: number, public to: number) {}
 }
 
-export type Actions = AddStoryStageAction | RemoveStoryStageAction;
+export type Actions = AddStoryStageAction | RemoveStoryStageAction | MoveStoryStageAction;

@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, ElementRef, HostListener } from '@angular/core';
 import 'pixi.js';
-import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
 import { Observable } from 'rxjs/Rx';
 import { animationFrame } from 'rxjs/scheduler/animationFrame';
+import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
 import { TweenObservable } from 'xes-rx-tween';
+
+import { PixiService } from '../pixi.service';
 
 @Component({
 	selector: 'xes-canvas',
@@ -32,7 +34,7 @@ export class CanvasComponent implements AfterViewInit {
 	 */
 	private easing = (delta: number) => 0.5 * Math.sin(delta * Math.PI) * (1 - 1 * Math.pow(3 * (delta - 0.5), 4));
 
-	constructor(private host: ElementRef) { }
+	constructor(private host: ElementRef, private pixi: PixiService) { }
 
 	ngAfterViewInit() {
 		this.initPixi();
@@ -57,9 +59,7 @@ export class CanvasComponent implements AfterViewInit {
 		this.host.nativeElement.appendChild(this.renderer.view);
 
 		// preload assets
-		PIXI.loader
-			.add('assets/ui.json')// sprite sheet
-			.load(this.initScene.bind(this));
+		this.pixi.addAsset('assets/ui.json').load().then(this.initScene.bind(this));
 	}
 
 	/**

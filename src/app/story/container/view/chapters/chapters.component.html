@@ -1,0 +1,26 @@
+<xes-primary-layout>
+	<xes-menu slot="side-bar"></xes-menu>
+	<ng-container slot="content">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2>Add new story chapter</h2>
+			</div>
+			<div class="panel-body">
+				<xes-chapter-form (onSubmitSignal)="onStoryChapterAdd($event)"></xes-chapter-form>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2>Story chapters:</h2>
+			</div>
+			<div class="panel-body">
+			</div>
+			<ul class="list-group sortable" [dragula]="'chapters'" data-label="drag&drop">
+				<li class="list-group-item" *ngFor="let chapter of chapters | async; let $index = index">
+					<h3>{{ chapter.title }}</h3>
+					<a class="btn btn-default" (click)="onStoryChapterRemove($index)">Remove</a>
+				</li>
+			</ul>
+		</div>
+	</ng-container>
+</xes-primary-layout>

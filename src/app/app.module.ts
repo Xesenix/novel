@@ -13,7 +13,7 @@ import { PixiModule } from './pixi/pixi.module';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -29,6 +29,6 @@ import { PixiModule } from './pixi/pixi.module';
 		// EffectsModule.forRoot([]),
 	],
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
 export class AppModule { }

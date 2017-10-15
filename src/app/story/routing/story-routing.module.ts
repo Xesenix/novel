@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { ChaptersComponent } from '../container/view/chapters/chapters.component';
 import { StageListComponent } from '../container/view/stage-list/stage-list.component';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'stages', pathMatch: 'full' },
+	{ path: 'chapters', component: ChaptersComponent },
 	{ path: 'stages', component: StageListComponent },
 ];
 

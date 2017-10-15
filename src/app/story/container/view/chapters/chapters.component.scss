@@ -1,0 +1,22 @@
+$drop-zone-height: 60px;
+
+.sortable {
+	padding-bottom: $drop-zone-height;
+	position: relative;
+
+	&::after {
+		content: attr(data-label);
+		display: block;
+		height: $drop-zone-height;
+		background-color: #ddd;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		font-size: $drop-zone-height / 2;
+		line-height: $drop-zone-height;
+		text-align: center;
+		color: #ccc;
+		text-shadow: 1px 1px #fff;
+	}
+}

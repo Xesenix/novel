@@ -1,4 +1,3 @@
-import { combineReducers } from '@ngrx/store';
 import { listReducerFactory, sortableListReducerFactory } from '../../reducers/list';
 import StoryStage from '../model/story-stage';
 import * as actions from '../actions/stage';

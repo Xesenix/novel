@@ -2,21 +2,18 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-	selector: 'xes-stage-form',
-	templateUrl: './stage-form.component.html',
-	styleUrls: ['./stage-form.component.scss']
+	selector: 'xes-chapter-form',
+	templateUrl: './chapter-form.component.html',
+	styleUrls: ['./chapter-form.component.scss']
 })
-export class StageFormComponent {
+export class ChapterFormComponent {
 	@Output() onSubmitSignal: EventEmitter<any> = new EventEmitter<any>();
 
 	title = new FormControl();
 
-	content = new FormControl();
-
 	onSubmit(event: Event) {
 		this.onSubmitSignal.emit({
 			title: this.title.value,
-			content: this.content.value,
 		});
 	}
 }

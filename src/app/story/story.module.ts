@@ -1,4 +1,4 @@
-
+import { LayoutModule } from '../layout/layout.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -10,6 +10,10 @@ import { StageListComponent } from './container/view/stage-list/stage-list.compo
 import { StoryRoutingModule } from './routing/story-routing.module';
 import StoryStage from './model/story-stage';
 import { reducer } from './reducers';
+import { ChapterComponent } from './container/view/chapter/chapter.component';
+import { ChaptersComponent } from './container/view/chapters/chapters.component';
+import { ChapterFormComponent } from './component/chapter-form/chapter-form.component';
+import { MenuComponent } from './container/menu/menu.component';
 
 export function provideInitialState() {
 	return {
@@ -22,8 +26,9 @@ export function provideInitialState() {
 @NgModule({
 	imports: [
 		CommonModule,
-		DragulaModule,
 		StoryRoutingModule,
+		LayoutModule,
+		DragulaModule,
 		ReactiveFormsModule,
 		StoreModule.forFeature('story', reducer, {
 			initialState: provideInitialState
@@ -31,7 +36,11 @@ export function provideInitialState() {
 	],
 	declarations: [
 		StageListComponent,
-		StageFormComponent
+		StageFormComponent,
+		ChapterComponent,
+		ChaptersComponent,
+		ChapterFormComponent,
+		MenuComponent,
 	],
 	exports: [StageListComponent]
 })
