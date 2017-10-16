@@ -1,10 +1,10 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import { StageFormComponent } from '../../stage-form/stage-form.component';
 import { StoreModule } from '@ngrx/store';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListItemComponent } from './list-item.component';
+import { StageFormComponent } from '../../stage-form/stage-form.component';
 import { reducer as rootReducer, AppState } from '../../../../reducers';
 
 describe('ListItemComponent', () => {
@@ -13,12 +13,8 @@ describe('ListItemComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ListItemComponent, StageFormComponent],
+			declarations: [ListItemComponent],
 			schemas: [NO_ERRORS_SCHEMA],
-			imports: [
-				ReactiveFormsModule,
-				StoreModule.forRoot(rootReducer, { initialState: { story: {} } }),
-			],
 		})
 			.compileComponents();
 	}));

@@ -1,7 +1,9 @@
+import { StoreModule } from '@ngrx/store';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StageFormComponent } from './stage-form.component';
+import { reducer as rootReducer, AppState } from '../../../reducers';
 
 describe('StageFormComponent', () => {
 	let component: StageFormComponent;
@@ -9,8 +11,11 @@ describe('StageFormComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ StageFormComponent ],
-			schemas: [ NO_ERRORS_SCHEMA ],
+			declarations: [StageFormComponent],
+			schemas: [NO_ERRORS_SCHEMA],
+			imports: [
+				StoreModule.forRoot(rootReducer, { initialState: { story: {} } }),
+			],
 			providers: [],
 		})
 		.compileComponents();

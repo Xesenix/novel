@@ -8,12 +8,12 @@ import { StoryStage } from '../../../model/story-stage';
 	styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent {
-	@Input() stage: StoryStage;
+	@Input() stage: StoryStage = null;
 
 	@Output() updateSignal: EventEmitter<any> = new EventEmitter<any>();
-	@Output() removeSignal: EventEmitter<any> = new EventEmitter<any>();
+	@Output() removeSignal: EventEmitter<void> = new EventEmitter<void>();
 
-	private edit = false;
+	edit = false;
 
 	onUpdate({ title, content, chapter }) {
 		this.updateSignal.emit({ title, content, chapter });
