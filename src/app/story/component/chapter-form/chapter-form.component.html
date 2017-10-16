@@ -1,4 +1,7 @@
 <p>
 	Title: <input class="form-control" [formControl]="title"/>
 </p>
+<p>
+	Id: <input class="form-control" [formControl]="id" required/>
+</p>
 <a class="btn btn-primary" (click)="onSubmit($event)">Add</a>

@@ -17,9 +17,11 @@
 			</div>
 			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop">
 				<li class="list-group-item" *ngFor="let stage of stages | async; let $index = index">
-					<h3>{{ stage.title }}</h3>
-					<p>{{ stage.content }}</p>
-					<a class="btn btn-default" (click)="onStoryStageRemove($index)">Remove</a>
+					<xes-stage-list-item
+						[stage]="stage"
+						(updateSignal)="onStoryStageUpdate($index, $event)"
+						(removeSignal)="onStoryStageRemove($index)"
+					></xes-stage-list-item>
 				</li>
 			</ul>
 		</div>

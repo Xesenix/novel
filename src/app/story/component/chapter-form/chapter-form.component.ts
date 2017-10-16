@@ -10,10 +10,12 @@ export class ChapterFormComponent {
 	@Output() onSubmitSignal: EventEmitter<any> = new EventEmitter<any>();
 
 	title = new FormControl();
+	id = new FormControl();
 
 	onSubmit(event: Event) {
 		this.onSubmitSignal.emit({
 			title: this.title.value,
+			id: this.id.value,
 		});
 	}
 }

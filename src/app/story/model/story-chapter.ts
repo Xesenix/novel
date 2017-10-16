@@ -1,3 +1,3 @@
-export default class StoryChapter {
-	constructor(public title: string, public stages: number[]) {}
+export class StoryChapter {
+	constructor(public id: string, public title: string) {}
 }

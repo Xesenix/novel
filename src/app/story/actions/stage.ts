@@ -4,8 +4,7 @@ export const LIST_ADD = 'STORY_ADD_STAGE';
 
 export class AddStoryStageAction implements Action {
 	readonly type = LIST_ADD;
-	constructor(public title: string = null,
-		public content: string = null) {}
+	constructor(public title: string = null, public content: string = null, public chapter: string = null) {}
 }
 
 export const LIST_REMOVE = 'STORY_REMOVE_STAGE';
@@ -22,4 +21,10 @@ export class MoveStoryStageAction implements Action {
 	constructor(public from: number, public to: number) {}
 }
 
-export type Actions = AddStoryStageAction | RemoveStoryStageAction | MoveStoryStageAction;
+export const LIST_ITEM_UPDATE = 'STORY_UPDATE_STAGE';
+export class UpdateStoryStageAction implements Action {
+	readonly type = LIST_ITEM_UPDATE;
+	constructor(public index: number, public title: string = null, public content: string = null, public chapter: string = null) {}
+}
+
+export type Actions = AddStoryStageAction | RemoveStoryStageAction | MoveStoryStageAction | UpdateStoryStageAction;

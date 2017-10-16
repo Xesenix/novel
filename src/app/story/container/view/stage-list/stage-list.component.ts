@@ -7,8 +7,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
-import { AddStoryStageAction, MoveStoryStageAction, RemoveStoryStageAction } from '../../../actions/stage';
-import StoryStage from '../../../model/story-stage';
+import {
+	AddStoryStageAction,
+	MoveStoryStageAction,
+	RemoveStoryStageAction,
+	UpdateStoryStageAction,
+} from '../../../actions/stage';
+import { StoryStage } from '../../../model/story-stage';
 import { StoryModuleState, selectFeatureStages } from '../../../reducers';
 
 @Component({
@@ -40,8 +45,12 @@ export class StageListComponent implements OnDestroy {
 			});
 	}
 
-	onStoryStageAdd({ title, content }) {
-		this.store.dispatch(new AddStoryStageAction(title, content));
+	onStoryStageAdd({ title, content, chapter }) {
+		this.store.dispatch(new AddStoryStageAction(title, content, chapter));
+	}
+
+	onStoryStageUpdate(index, { title, content, chapter }) {
+		this.store.dispatch(new UpdateStoryStageAction(index, title, content, chapter));
 	}
 
 	onStoryStageRemove(index: number) {

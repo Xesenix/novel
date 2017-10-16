@@ -17,7 +17,7 @@
 			</div>
 			<ul class="list-group sortable" [dragula]="'chapters'" data-label="drag&drop">
 				<li class="list-group-item" *ngFor="let chapter of chapters | async; let $index = index">
-					<h3>{{ chapter.title }}</h3>
+					<h3>{{ chapter.title }}<small>{{ chapter.id }}</small></h3>
 					<a class="btn btn-default" (click)="onStoryChapterRemove($index)">Remove</a>
 				</li>
 			</ul>

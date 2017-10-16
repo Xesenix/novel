@@ -1,4 +1,4 @@
-import StoryStage from '../model/story-stage';
+import { StoryStage } from '../model/story-stage';
 import { AddStoryStageAction, RemoveStoryStageAction } from '../actions/stage';
 import * as fromStages from './stages';
 

@@ -1,7 +1,13 @@
 <p>
-  Title: <input class="form-control" [formControl]="title"/>
+	Title: <input class="form-control" [formControl]="title"/>
 </p>
 <p>
-  Content: <textarea class="form-control" [formControl]="content"></textarea>
+	Content: <textarea class="form-control" [formControl]="content"></textarea>
+</p>
+<p>
+	Chapter:
+	<select class="form-control" [formControl]="chapter">
+		<option *ngFor="let chapter of chapters | async" [ngValue]="chapter.id">{{ chapter.title }}</option>
+	</select>
 </p>
 <a class="btn btn-primary" (click)="onSubmit($event)">Add</a>

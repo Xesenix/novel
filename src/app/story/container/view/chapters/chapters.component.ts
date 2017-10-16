@@ -7,7 +7,7 @@ import 'rxjs/add/operator/filter';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 
 import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction } from '../../../actions/chapter';
-import StoryChapter from '../../../model/story-chapter';
+import { StoryChapter } from '../../../model/story-chapter';
 import { selectFeatureChapters, StoryModuleState } from '../../../reducers/index';
 
 @Component({
@@ -38,8 +38,8 @@ export class ChaptersComponent implements OnDestroy {
 			});
 	}
 
-	onStoryChapterAdd({ title, content }) {
-		this.store.dispatch(new AddStoryChapterAction(title, content));
+	onStoryChapterAdd({ title, id }) {
+		this.store.dispatch(new AddStoryChapterAction(id, title));
 	}
 
 	onStoryChapterRemove(index: number) {

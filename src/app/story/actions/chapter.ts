@@ -4,8 +4,8 @@ export const LIST_ADD = 'STORY_ADD_CHAPTER';
 
 export class AddStoryChapterAction implements Action {
 	readonly type = LIST_ADD;
-	constructor(public title: string = null,
-		public content: string = null) {}
+	constructor(public id: string,
+				public title: string = null) {}
 }
 
 export const LIST_REMOVE = 'STORY_REMOVE_CHAPTER';
