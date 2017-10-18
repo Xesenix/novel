@@ -1,7 +1,29 @@
-# Novel
+# About Novel
+
+Novel is application helping in writing stories.
+
+You can check live app at [Novel App Demo](http://novel.xesenix.pl/).
+
+# TODO
+
+* stages editor
+* characters editor:
+	* description
+	* motivations
+* world editor:
+	* description
+	* politics
+	* places
+* inventory editor:
+	* description
+* grouping stages into chapters
+* placing characters in world and time
+* assigning items to characters and time
+* saving work
+
+# Development
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
