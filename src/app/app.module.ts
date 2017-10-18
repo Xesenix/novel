@@ -24,11 +24,19 @@ import { PixiModule } from './pixi/pixi.module';
 		StoreModule.forRoot(reducer),
 		// do not use with @ngrx/router-store (performance issue)
 		StoreDevtoolsModule.instrument({
-		 	maxAge: 25
+			maxAge: 25
 		}),
 		// EffectsModule.forRoot([]),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
+	exports: [
+		BrowserModule,
+		AppRoutingModule,
+		CharactersModule,
+		StoryModule,
+		StoreModule,
+		PixiModule,
+	]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@
 	},
 	"apps": [
 		{
+			"name": "base",
 			"root": "src",
 			"outDir": "dist",
 			"assets": [
@@ -12,7 +13,33 @@
 				"favicon.ico"
 			],
 			"index": "index.html",
-			"main": "main.ts",
+			"main": "app/main.ts",
+			"polyfills": "polyfills.ts",
+			"test": "test.ts",
+			"tsconfig": "tsconfig.app.json",
+			"testTsconfig": "tsconfig.spec.json",
+			"prefix": "xes",
+			"styles": [
+				"../node_modules/dragula/dist/dragula.css",
+				"styles.scss"
+			],
+			"scripts": [],
+			"environmentSource": "environments/environment.ts",
+			"environments": {
+				"dev": "environments/environment.ts",
+				"prod": "environments/environment.prod.ts"
+			}
+		},
+		{
+			"name": "xes",
+			"root": "src",
+			"outDir": "dist/xes",
+			"assets": [
+				"assets",
+				"favicon.ico"
+			],
+			"index": "index.html",
+			"main": "xes/main.ts",
 			"polyfills": "polyfills.ts",
 			"test": "test.ts",
 			"tsconfig": "tsconfig.app.json",

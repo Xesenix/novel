@@ -28,6 +28,16 @@ export function provideInitialState() {
 		]
 	};
 }
+
+export const components = [
+	StageListComponent,
+	StageFormComponent,
+	ChapterComponent,
+	ChaptersComponent,
+	ChapterFormComponent,
+	MenuComponent,
+	ListItemComponent,
+];
 @NgModule({
 	imports: [
 		CommonModule,
@@ -40,14 +50,9 @@ export function provideInitialState() {
 		}),
 	],
 	declarations: [
-		StageListComponent,
-		StageFormComponent,
-		ChapterComponent,
-		ChaptersComponent,
-		ChapterFormComponent,
-		MenuComponent,
-		ListItemComponent,
+		components
 	],
-	exports: [StageListComponent]
+	exports: [
+	]
 })
 export class StoryModule { }
