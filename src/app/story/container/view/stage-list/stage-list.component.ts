@@ -41,14 +41,12 @@ export class StageListComponent implements OnDestroy {
 		this.subscriptionDragAndDrop = this.dragulaService.drag
 			.filter(([container]) => container === 'stages')
 			.map(([container, dragElement, source]): number => Array.prototype.indexOf.call(source.children, dragElement))
-			.combineLatest(
+			.zip(
 				this.dragulaService.drop
 					.filter(([container]) => container === 'stages')
 					.map(([container, dropElement, target, source]): number => Array.prototype.indexOf.call(target.children, dropElement))
 			)
-			.subscribe(([dragIndex, dropIndex]) => {
-				this.store.dispatch(new MoveStoryStageAction(dragIndex, dropIndex));
-			});
+			.subscribe(([dragIndex, dropIndex]) => this.store.dispatch(new MoveStoryStageAction(dragIndex, dropIndex)));
 	}
 
 	add() {

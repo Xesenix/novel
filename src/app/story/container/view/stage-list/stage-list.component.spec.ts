@@ -59,4 +59,6 @@ describe('StageListComponent', () => {
 			expect(store.dispatch).toHaveBeenCalledWith(new RemoveStoryStageAction(index));
 		}));
 	});
+
+	// TODO: test that after start dragging after drop no action is dispatched
 });

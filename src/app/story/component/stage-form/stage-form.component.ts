@@ -26,9 +26,9 @@ export class StageFormComponent implements OnChanges {
 		this.chapters = store.select(selectFeatureChapters);
 
 		Observable.combineLatest(
-			this.title.valueChanges,
-			this.content.valueChanges,
-			this.chapter.valueChanges,
+			this.title.valueChanges.startWith(''),
+			this.content.valueChanges.startWith(''),
+			this.chapter.valueChanges.startWith(''),
 			(title, content, chapter) => new StoryStage(title, content, chapter)
 		).subscribe((stage) => this.valueChange.next(stage));
 	}
