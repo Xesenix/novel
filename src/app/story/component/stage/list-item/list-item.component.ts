@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/Rx';
+import { ViewChild, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { StageFormComponent } from '../../stage-form/stage-form.component';
 import { StoryStage } from '../../../model/story-stage';
 
 @Component({
@@ -13,13 +15,23 @@ export class ListItemComponent {
 	@Output() updateSignal: EventEmitter<any> = new EventEmitter<any>();
 	@Output() removeSignal: EventEmitter<void> = new EventEmitter<void>();
 
-	edit = false;
+	@ViewChild('form') form: StageFormComponent;
 
-	onUpdate({ title, content, chapter }) {
-		this.updateSignal.emit({ title, content, chapter });
+	isEdited = false;
+
+	edit() {
+		this.isEdited = true;
 	}
 
-	onRemove() {
+	cancel() {
+		this.isEdited = false;
+	}
+
+	update() {
+		this.updateSignal.emit(this.form.valueChange.getValue());
+	}
+
+	remove() {
 		this.removeSignal.emit();
 	}
 }

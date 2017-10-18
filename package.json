@@ -6,7 +6,7 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
-		"build": "ng build --aot --no-sourcemap --prod",
+		"build": "ng build --aot --no-sourcemap --prod --stats-json",
 		"analyze": "webpack-bundle-analyzer dist/stats.json",
 		"test": "ng test --code-coverage",
 		"lint": "ng lint",

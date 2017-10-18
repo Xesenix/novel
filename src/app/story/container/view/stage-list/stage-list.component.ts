@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber, Subscription } from 'rxjs/Rx';
 import 'rxjs/add/operator/combineLatest';
@@ -13,6 +13,7 @@ import {
 	RemoveStoryStageAction,
 	UpdateStoryStageAction,
 } from '../../../actions/stage';
+import { StageFormComponent } from '../../../component/stage-form/stage-form.component';
 import { StoryStage } from '../../../model/story-stage';
 import { StoryModuleState, selectFeatureStages } from '../../../reducers';
 
@@ -23,6 +24,7 @@ import { StoryModuleState, selectFeatureStages } from '../../../reducers';
 	providers: [DragulaService],
 })
 export class StageListComponent implements OnDestroy {
+	@ViewChild('addForm') addForm: StageFormComponent;
 
 	stages: Observable<StoryStage[]>;
 
@@ -31,6 +33,10 @@ export class StageListComponent implements OnDestroy {
 	constructor(private store: Store<StoryModuleState>,
 		private dragulaService: DragulaService) {
 		this.stages = store.select(selectFeatureStages);
+
+		this.dragulaService.setOptions('stages', {
+			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0
+		});
 
 		this.subscriptionDragAndDrop = this.dragulaService.drag
 			.filter(([container]) => container === 'stages')
@@ -43,6 +49,10 @@ export class StageListComponent implements OnDestroy {
 			.subscribe(([dragIndex, dropIndex]) => {
 				this.store.dispatch(new MoveStoryStageAction(dragIndex, dropIndex));
 			});
+	}
+
+	add() {
+		this.onStoryStageAdd(this.addForm.valueChange.getValue());
 	}
 
 	onStoryStageAdd({ title, content, chapter }) {

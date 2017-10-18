@@ -10,4 +10,3 @@
 		<option *ngFor="let chapter of chapters | async" [ngValue]="chapter.id">{{ chapter.title }}</option>
 	</select>
 </p>
-<a class="btn btn-primary" (click)="onSubmit($event)">Add</a>

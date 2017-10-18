@@ -6,7 +6,9 @@
 				<h2>Add new story stage</h2>
 			</div>
 			<div class="panel-body">
-				<xes-stage-form (onSubmitSignal)="onStoryStageAdd($event)"></xes-stage-form>
+				<xes-stage-form #addForm></xes-stage-form>
+
+				<a class="btn btn-primary" (click)="add()">Add</a>
 			</div>
 		</div>
 		<div class="panel panel-default">
@@ -22,6 +24,7 @@
 						(updateSignal)="onStoryStageUpdate($index, $event)"
 						(removeSignal)="onStoryStageRemove($index)"
 					></xes-stage-list-item>
+					<a class="handle glyphicon glyphicon-move"></a>
 				</li>
 			</ul>
 		</div>

@@ -1,12 +1,13 @@
-<ng-container *ngIf="!edit">
-	<h3>{{ stage?.title }}</h3>
+<h3>{{ stage?.title }}</h3>
+<ng-container *ngIf="!isEdited">
 	<p>{{ stage?.content }}</p>
-	<a class="btn btn-default" (click)="edit = true;">Edit</a>
+	<a class="btn btn-default" (click)="edit()">Edit</a>
 </ng-container>
 <xes-stage-form
-	*ngIf="edit"
+	#form
+	*ngIf="isEdited"
 	[data]="stage"
-	(onSubmitSignal)="onUpdate($event);"
 ></xes-stage-form>
-<a *ngIf="edit" class="btn btn-default" (click)="edit = false;">Cancel</a>
-<a class="btn btn-danger" (click)="onRemove()">Remove</a>
+<a class="btn btn-primary" (click)="update()" *ngIf="isEdited">Save</a>
+<a class="btn btn-default" (click)="cancel()" *ngIf="isEdited">Cancel</a>
+<a class="btn btn-danger" (click)="remove()">Remove</a>

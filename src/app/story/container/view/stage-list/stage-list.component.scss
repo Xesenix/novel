@@ -1,14 +1,30 @@
 $drop-zone-height: 60px;
 
 .sortable {
+	padding-top: $drop-zone-height;
 	padding-bottom: $drop-zone-height;
 	position: relative;
+	background-color: #ddd;
+
+	&::before {
+		content: attr(data-label);
+		display: block;
+		height: $drop-zone-height;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		font-size: $drop-zone-height / 2;
+		line-height: $drop-zone-height;
+		text-align: center;
+		color: #ccc;
+		text-shadow: 1px 1px #fff;
+	}
 
 	&::after {
 		content: attr(data-label);
 		display: block;
 		height: $drop-zone-height;
-		background-color: #ddd;
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -19,4 +35,13 @@ $drop-zone-height: 60px;
 		color: #ccc;
 		text-shadow: 1px 1px #fff;
 	}
+}
+
+.handle {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	text-decoration: none;
+	font-size: 40px;
+	color: #ddd;
 }
