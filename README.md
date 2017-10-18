@@ -6,20 +6,49 @@ You can check live app at [Novel App Demo](http://novel.xesenix.pl/).
 
 # TODO
 
+Structure based on "Kurs pisania powieści dla bystrzaków"
+
 * stages editor
-* characters editor:
+	* shortcut (pages 163)
+	* stage list
+	* stage proactive reactive (pages 172)
+	* owner of perspective
+	* chapter 
+
+* characters editor: (pages 115-140)
+	* role, archetypes (pages 115-116)
+	* backstory (pages 118-119)
+	* motivations ambitions and targets, fundamental truths (120-125, 225)
+	* dossier (pages 221+)
+	* physical description (page 223)
+	* family (page 223)
+	* work hobbies (page 224)
+	* point of view
+	* behaviors
+
+* world editor: (pages 97-114)
 	* description
-	* motivations
-* world editor:
-	* description
-	* politics
-	* places
+	* map, locations, geography, 
+	* climate
+	* politics, culture groups
+	* history
+	* languages 
+	* story background, status quo, weak point (page 104)
+	* culture (people, races)
+	* culture rules and culture targets (page 102)
+	* technology and science
+	* religion, cults, mythology
+	* world rules (physique, magic etc)
+
 * inventory editor:
 	* description
+	* owner in time
+
 * grouping stages into chapters
 * placing characters in world and time
 * assigning items to characters and time
 * saving work
+* import export
 
 # Development
 
