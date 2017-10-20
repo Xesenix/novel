@@ -1,13 +1,15 @@
 <h3>{{ stage?.title }}</h3>
 <ng-container *ngIf="!isEdited">
 	<p>{{ stage?.content }}</p>
-	<a class="btn btn-default" (click)="edit()">Edit</a>
 </ng-container>
-<xes-stage-form
-	#form
-	*ngIf="isEdited"
-	[data]="stage"
-></xes-stage-form>
-<a class="btn btn-primary" (click)="update()" *ngIf="isEdited">Save</a>
-<a class="btn btn-default" (click)="cancel()" *ngIf="isEdited">Cancel</a>
-<a class="btn btn-danger" (click)="remove()">Remove</a>
+
+<div class="well" *ngIf="isEdited">
+	<xes-stage-form #form [data]="stage"></xes-stage-form>
+</div>
+
+<div class="btn-group">
+	<a class="btn btn-default" (click)="edit()" *ngIf="!isEdited">Edit</a>
+	<a class="btn btn-primary" (click)="update()" *ngIf="isEdited">Save</a>
+	<a class="btn btn-default" (click)="cancel()" *ngIf="isEdited">Cancel</a>
+	<a class="btn btn-danger" (click)="remove()">Remove</a>
+</div>

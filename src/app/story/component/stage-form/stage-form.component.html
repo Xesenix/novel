@@ -1,12 +1,15 @@
-<p>
-	Title: <input class="form-control" [formControl]="title"/>
-</p>
-<p>
-	Content: <textarea class="form-control" [formControl]="content"></textarea>
-</p>
-<p>
-	Chapter:
+<div class="form-group">
+	<label for="">Title</label>
+	<input class="form-control" [formControl]="title"/>
+</div>
+<div class="form-group">
+	<label for="">Content</label>
+	<textarea class="form-control" [formControl]="content"></textarea>
+</div>
+<div class="form-group">
+	<label for="">Chapter</label>
+
 	<select class="form-control" [formControl]="chapter">
 		<option *ngFor="let chapter of chapters | async" [ngValue]="chapter.id">{{ chapter.title }}</option>
 	</select>
-</p>
+</div>
