@@ -1,14 +1,15 @@
 import { BehaviorSubject } from 'rxjs/Rx';
 import { ViewChild, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { StageFormComponent } from '../../stage-form/stage-form.component';
-import { StoryStage } from '../../../model/story-stage';
+import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
+import { StoryStage } from 'story/model/story-stage';
 
-@Component({
+export const component = {
 	selector: 'xes-stage-list-item',
 	templateUrl: './list-item.component.html',
 	styleUrls: ['./list-item.component.scss']
-})
+};
+@Component(component)
 export class ListItemComponent {
 	@Input() stage: StoryStage = null;
 

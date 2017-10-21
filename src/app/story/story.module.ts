@@ -4,17 +4,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { DragulaModule } from 'ng2-dragula';
 
-import { StageFormComponent } from './component/stage-form/stage-form.component';
-import { StageListComponent } from './container/view/stage-list/stage-list.component';
-import { StoryRoutingModule } from './routing/story-routing.module';
-import { StoryStage } from './model/story-stage';
-import { reducer } from './reducers';
-import { ChapterComponent } from './container/view/chapter/chapter.component';
-import { ChaptersComponent } from './container/view/chapters/chapters.component';
-import { ChapterFormComponent } from './component/chapter-form/chapter-form.component';
-import { MenuComponent } from './container/menu/menu.component';
-import { LayoutModule } from '../layout/layout.module';
-import { ListItemComponent } from './component/stage/list-item/list-item.component';
+import { LayoutModule } from 'layout/layout.module';
+import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
+import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
+import { ListItemComponent } from 'story/component/stage/list-item/list-item.component';
+import { MenuComponent } from 'story/container/menu/menu.component';
+import { ChapterComponent } from 'story/container/view/chapter/chapter.component';
+import { ChaptersComponent } from 'story/container/view/chapters/chapters.component';
+import { StageListComponent } from 'story/container/view/stage-list/stage-list.component';
+import { StoryStage } from 'story/model/story-stage';
+import { reducer } from 'story/reducers';
+import { StoryRoutingModule } from 'story/routing/story-routing.module';
 
 export function provideInitialState() {
 	return {

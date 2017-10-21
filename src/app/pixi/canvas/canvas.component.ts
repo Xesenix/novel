@@ -5,7 +5,7 @@ import { animationFrame } from 'rxjs/scheduler/animationFrame';
 import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
 import { TweenObservable } from 'xes-rx-tween';
 
-import { PixiService } from '../pixi.service';
+import { PixiService } from 'pixi/pixi.service';
 
 @Component({
 	selector: 'xes-canvas',

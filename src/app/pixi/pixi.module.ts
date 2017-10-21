@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PixiService } from './pixi.service';
-import { CanvasComponent } from './canvas/canvas.component';
+import { PixiService } from 'pixi/pixi.service';
+import { CanvasComponent } from 'pixi/canvas/canvas.component';
 
 @NgModule({
 	imports: [

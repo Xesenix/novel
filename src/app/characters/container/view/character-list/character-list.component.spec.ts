@@ -2,8 +2,9 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
+import { reducer as rootReducer, AppState } from 'app/reducers';
+
 import { CharacterListComponent } from './character-list.component';
-import { reducer as rootReducer, AppState } from '../../../../reducers';
 
 describe('CharacterListComponent', () => {
 	let component: CharacterListComponent;

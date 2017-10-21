@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CharacterListComponent } from '../container/view/character-list/character-list.component';
+import { CharacterListComponent } from 'characters/container/view/character-list/character-list.component';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'list', pathMatch: 'full' },

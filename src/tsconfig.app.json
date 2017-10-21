@@ -1,11 +1,21 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
+		"paths": {
+			"app/*": ["app/*"],
+			"characters/*": ["app/characters/*"],
+			"layout/*": ["app/layout/*"],
+			"pixi/*": ["app/pixi/*"],
+			"story/*": ["app/story/*"]
+		},
 		"outDir": "../out-tsc/app",
 		"baseUrl": "./",
 		"module": "es2015",
 		"types": []
 	},
+	"include": [
+		"app/*"
+	],
 	"exclude": [
 		"test.ts",
 		"**/*.spec.ts"

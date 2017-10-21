@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
-// import { EffectsModule  } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './routing/app-routing.module';
-import { CharactersModule } from './characters/characters.module';
-import { reducer } from './reducers';
-import { StoryModule } from './story/story.module';
-import { PixiModule } from './pixi/pixi.module';
+import { AppComponent } from 'app/app.component';
+import { reducer } from 'app/reducers';
+import { AppRoutingModule } from 'app/routing/app-routing.module';
+import { CharactersModule } from 'characters/characters.module';
+import { PixiModule } from 'pixi/pixi.module';
+import { StoryModule } from 'story/story.module';
+
+// import { EffectsModule } from '@ngrx/effects';
+
 
 @NgModule({
 	declarations: [

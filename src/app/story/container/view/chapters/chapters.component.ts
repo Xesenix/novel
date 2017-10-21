@@ -6,9 +6,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 
-import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction } from '../../../actions/chapter';
-import { StoryChapter } from '../../../model/story-chapter';
-import { selectFeatureChapters, StoryModuleState } from '../../../reducers/index';
+import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction } from 'story/actions/chapter';
+import { StoryChapter } from 'story/model/story-chapter';
+import { selectFeatureChapters, StoryModuleState } from 'story/reducers/index';
 
 @Component({
 	selector: 'xes-chapters',

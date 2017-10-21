@@ -12,10 +12,10 @@ import {
 	MoveStoryStageAction,
 	RemoveStoryStageAction,
 	UpdateStoryStageAction,
-} from '../../../actions/stage';
-import { StageFormComponent } from '../../../component/stage-form/stage-form.component';
-import { StoryStage } from '../../../model/story-stage';
-import { StoryModuleState, selectFeatureStages } from '../../../reducers';
+} from 'story/actions/stage';
+import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
+import { StoryStage } from 'story/model/story-stage';
+import { StoryModuleState, selectFeatureStages } from 'story/reducers';
 
 @Component({
 	selector: 'xes-stage-list',

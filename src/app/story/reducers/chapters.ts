@@ -1,4 +1,5 @@
-import { listReducerFactory, sortableListReducerFactory } from '../../reducers/list';
+import { listReducerFactory, sortableListReducerFactory } from 'app/reducers/list';
+
 import { StoryChapter } from '../model/story-chapter';
 import * as actions from '../actions/chapter';
 

@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { PixiService } from 'pixi/pixi.service';
+
 import { CanvasComponent } from './canvas.component';
-import { PixiService } from '../pixi.service';
 
 describe('CanvasComponent', () => {
 	let component: CanvasComponent;

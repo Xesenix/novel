@@ -3,9 +3,9 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, ConnectableObservable, Observable } from 'rxjs/Rx';
 
-import { selectFeatureChapters, StoryModuleState } from '../../reducers/index';
-import { StoryStage } from '../../model/story-stage';
-import { StoryChapter } from '../../model/story-chapter';
+import { selectFeatureChapters, StoryModuleState } from 'story/reducers/index';
+import { StoryStage } from 'story/model/story-stage';
+import { StoryChapter } from 'story/model/story-chapter';
 
 @Component({
 	selector: 'xes-stage-form',

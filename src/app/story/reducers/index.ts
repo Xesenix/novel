@@ -1,4 +1,5 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+
 import { reducer as stages, StageState } from './stages';
 import { reducer as chapters, ChaptersState } from './chapters';
 

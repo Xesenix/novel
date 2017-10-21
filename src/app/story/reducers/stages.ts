@@ -1,6 +1,7 @@
-import { listReducerFactory, sortableListReducerFactory, updatableListReducerFactory } from '../../reducers/list';
-import { StoryStage } from '../model/story-stage';
-import * as actions from '../actions/stage';
+import { listReducerFactory, sortableListReducerFactory, updatableListReducerFactory } from 'app/reducers/list';
+
+import { StoryStage } from 'story/model/story-stage';
+import * as actions from 'story/actions/stage';
 
 export type StageState = StoryStage[];
 
