@@ -1,7 +1,7 @@
 import { listReducerFactory, sortableListReducerFactory } from 'app/reducers/list';
 
-import { StoryChapter } from '../model/story-chapter';
-import * as actions from '../actions/chapter';
+import * as actions from 'story/actions/chapter';
+import { StoryChapter } from 'story/model/story-chapter';
 
 export type ChaptersState = StoryChapter[];
 

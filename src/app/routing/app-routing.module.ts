@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from '../app.component';
+import { AppComponent } from 'app/app.component';
 import { CharacterListComponent } from 'characters/container/view/character-list/character-list.component';
 import { StageListComponent } from 'story/container/view/stage-list/stage-list.component';
 

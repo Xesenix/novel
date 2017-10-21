@@ -1,0 +1,11 @@
+:host {
+	& > .container {
+		padding-top: 60px;
+	}
+}
+
+::ng-deep [slot="title-bar"] {
+	margin-bottom: 40px;
+	color: #fff;
+	text-align: center;
+}
