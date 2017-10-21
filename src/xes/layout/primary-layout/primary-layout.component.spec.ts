@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrimaryLayoutComponent } from './primary-layout.component';
 
-describe('PrimaryLayoutComponent', () => {
+describe('xes:PrimaryLayoutComponent', () => {
 	let component: PrimaryLayoutComponent;
 	let fixture: ComponentFixture<PrimaryLayoutComponent>;
 

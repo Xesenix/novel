@@ -2,10 +2,10 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { ChapterFormComponent } from './chapter-form.component';
-import { reducer as rootReducer, AppState } from '../../../reducers';
+import { reducer as rootReducer, AppState } from 'app/reducers';
+import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
 
-describe('ChapterFormComponent', () => {
+describe('story:ChapterFormComponent', () => {
 	let component: ChapterFormComponent;
 	let fixture: ComponentFixture<ChapterFormComponent>;
 

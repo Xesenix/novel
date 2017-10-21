@@ -1,6 +1,6 @@
-import { LIST_ADD, AddStoryStageAction, LIST_REMOVE, RemoveStoryStageAction } from './stage';
+import { LIST_ADD, AddStoryStageAction, LIST_REMOVE, RemoveStoryStageAction } from 'story/actions/stage';
 
-describe('actions.stage', () => {
+describe('story:actions.stage', () => {
 	it('should create AddStoryStageAction action with filled properties', () => {
 		const title = 'title';
 		const content = 'content';

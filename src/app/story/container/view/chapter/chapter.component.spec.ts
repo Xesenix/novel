@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChapterComponent } from './chapter.component';
+import { ChapterComponent } from 'story/container/view/chapter/chapter.component';
 
-describe('ChapterComponent', () => {
+describe('story:ChapterComponent', () => {
 	let component: ChapterComponent;
 	let fixture: ComponentFixture<ChapterComponent>;
 

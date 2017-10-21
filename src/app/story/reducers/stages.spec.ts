@@ -1,8 +1,8 @@
-import { StoryStage } from '../model/story-stage';
-import { AddStoryStageAction, RemoveStoryStageAction } from '../actions/stage';
-import * as fromStages from './stages';
+import { AddStoryStageAction, RemoveStoryStageAction } from 'story/actions/stage';
+import { StoryStage } from 'story/model/story-stage';
+import * as fromStages from 'story/reducers/stages';
 
-describe('reducers.stages', () => {
+describe('story:reducers.stages', () => {
 	it('should reduce AddStoryStageAction', () => {
 		const title = 'title';
 		const content = 'content';

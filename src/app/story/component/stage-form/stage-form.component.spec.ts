@@ -2,10 +2,10 @@ import { StoreModule } from '@ngrx/store';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StageFormComponent } from './stage-form.component';
-import { reducer as rootReducer, AppState } from '../../../reducers';
+import { reducer as rootReducer, AppState } from 'app/reducers';
+import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
 
-describe('StageFormComponent', () => {
+describe('story:StageFormComponent', () => {
 	let component: StageFormComponent;
 	let fixture: ComponentFixture<StageFormComponent>;
 

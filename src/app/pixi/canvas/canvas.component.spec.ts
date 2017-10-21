@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PixiService } from 'pixi/pixi.service';
+import { CanvasComponent } from 'pixi/canvas/canvas.component';
 
-import { CanvasComponent } from './canvas.component';
-
-describe('CanvasComponent', () => {
+describe('pixi:CanvasComponent', () => {
 	let component: CanvasComponent;
 	let fixture: ComponentFixture<CanvasComponent>;
 

@@ -1,6 +1,6 @@
-import { listReducerFactory, sortableListReducerFactory } from './list';
+import { listReducerFactory, sortableListReducerFactory } from 'app/reducers/list';
 
-describe('listReducerFactory', () => {
+describe('app:listReducerFactory', () => {
 	[{
 		LIST_ADD: 'add',
 		LIST_REMOVE: 'remove',
@@ -72,7 +72,7 @@ describe('listReducerFactory', () => {
 	});
 });
 
-describe('sortableListReducerFactory', () => {
+describe('app:sortableListReducerFactory', () => {
 	const LIST_ITEM_MOVE = 'move';
 	const reducer = sortableListReducerFactory({ LIST_ITEM_MOVE });
 	[{

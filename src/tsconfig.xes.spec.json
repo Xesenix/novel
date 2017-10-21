@@ -13,17 +13,22 @@
 			"pixi/*": ["xes/pixi/*", "app/pixi/*"],
 			"story/*": ["xes/story/*", "app/story/*"]
 		},
-		"outDir": "../out-tsc/xes",
+		"outDir": "../out-tsc/spec",
 		"baseUrl": "./",
-		"module": "es2015",
-		"types": []
+		"module": "commonjs",
+		"target": "es5",
+		"types": [
+			"jasmine",
+			"node"
+		]
 	},
-	"include": [
-		"app/*",
-		"xes/*"
+	"files": [
+		"test.xes.ts"
 	],
-	"exclude": [
-		"test.ts",
-		"**/*.spec.ts"
+	"include": [
+		"xes/**/*.spec.ts",
+		"xes/**/*.d.ts",
+		"app/**/*.spec.ts",
+		"app/**/*.d.ts"
 	]
 }
