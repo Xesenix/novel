@@ -4,21 +4,21 @@
 	<ng-container slot="content">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h2>Add new story stage</h2>
+				<h2 i18n>Add new story stage</h2>
 			</div>
 			<div class="panel-body">
 				<xes-stage-form #addForm></xes-stage-form>
 
-				<a class="btn btn-primary" (click)="add()">Add</a>
+				<a class="btn btn-primary" (click)="add()" i18n>Add</a>
 			</div>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h2>Story stages:</h2>
+				<h2 i18n>Story stages:</h2>
 			</div>
 			<div class="panel-body">
 			</div>
-			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop">
+			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
 				<li class="list-group-item" *ngFor="let stage of stages | async; let $index = index">
 					<xes-stage-list-item
 						[stage]="stage"

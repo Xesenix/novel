@@ -8,8 +8,8 @@
 </div>
 
 <div class="btn-group">
-	<a class="btn btn-default" (click)="edit()" *ngIf="!isEdited">Edit</a>
-	<a class="btn btn-primary" (click)="update()" *ngIf="isEdited">Save</a>
-	<a class="btn btn-default" (click)="cancel()" *ngIf="isEdited">Cancel</a>
-	<a class="btn btn-danger" (click)="remove()">Remove</a>
+	<a class="btn btn-default" (click)="edit()" *ngIf="!isEdited" i18n>Edit</a>
+	<a class="btn btn-primary" (click)="update()" *ngIf="isEdited" i18n>Save</a>
+	<a class="btn btn-default" (click)="cancel()" *ngIf="isEdited" i18n>Cancel</a>
+	<a class="btn btn-danger" (click)="remove()" i18n>Remove</a>
 </div>

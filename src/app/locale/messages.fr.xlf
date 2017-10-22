@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template" target-language="fr">
+    <body>
+      <trans-unit id="fdf7cbdc140d0aab0f0b6c06065a0fd448ed6a2e" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\stage-form\stage-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      <target state="new">Title</target></trans-unit>
+      <trans-unit id="4ab4cb601522b9194922554d934c4c30bd93567d" datatype="html">
+        <source>Content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\stage-form\stage-form.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      <target state="new">Content</target></trans-unit>
+      <trans-unit id="46165f706787d73157ee16ed5894f0826a65707c" datatype="html">
+        <source>Chapter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\stage-form\stage-form.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      <target state="new">Chapter</target></trans-unit>
+      <trans-unit id="717e4f66f2ac0cf059233ec9ed9fe5fb0cc69e26" datatype="html">
+        <source>Story stages:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      <target state="new">Story stages:</target></trans-unit>
+      <trans-unit id="af2fe54224eeb3c316a645989f637e3c97d107f6" datatype="html">
+        <source>drag&amp;drop</source>
+        
+      <target state="new">drag&amp;drop</target><context-group purpose="location"><context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context><context context-type="linenumber">21</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context><context context-type="linenumber">18</context></context-group></trans-unit>
+      <trans-unit id="56a7a043567c6fee9c8b8e747843193fe1fbc37b" datatype="html">
+        <source>Characters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\characters\container\menu\menu.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\layout\primary-layout\primary-layout.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      <target state="new">Characters</target></trans-unit>
+      <trans-unit id="33dc872e0dbaf189fc4577f83e20fa4bcba2757a" datatype="html">
+        <source>Story</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\layout\primary-layout\primary-layout.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      <target state="new">Story</target></trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\stage\list-item\list-item.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      <target state="new">Edit</target></trans-unit>
+      <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
+        <source>Save</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\stage\list-item\list-item.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      <target state="new">Save</target></trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\stage\list-item\list-item.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      <target state="new">Cancel</target></trans-unit>
+      <trans-unit id="019d4bd6a5690f0cfa0ecf346a4e6bf7f0d8debb" datatype="html">
+        <source>Remove</source>
+        
+      <target state="new">Remove</target><context-group purpose="location"><context context-type="sourcefile">app\story\component\stage\list-item\list-item.component.ts</context><context context-type="linenumber">14</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context><context context-type="linenumber">21</context></context-group></trans-unit>
+      <trans-unit id="d904f74acb72356dd3547977ca3cf29d6da25946" datatype="html">
+        <source>Chapters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\menu\menu.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      <target state="new">Chapters</target></trans-unit>
+      <trans-unit id="0d74948919622c5393607c1d127119dd93253045" datatype="html">
+        <source>Stages</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\menu\menu.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      <target state="new">Stages</target></trans-unit>
+      <trans-unit id="a3f076eb041a92e4af0c8e717b956e59ebdc7615" datatype="html">
+        <source>Add new story chapter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      <target state="new">Add new story chapter</target></trans-unit>
+      <trans-unit id="966c53dd2aabb4e60a4bc1d3af52996f484e2826" datatype="html">
+        <source>Story chapters:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      <target state="new">Story chapters:</target></trans-unit>
+    <trans-unit id="5079309a04fb008e1253c955dda86709a90c4edd" datatype="html">
+        <source>Add new story stage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      <target state="new">Add new story stage</target></trans-unit><trans-unit id="f6755cff4957d5c3c89bafce5651f1b6fa2b1fd9" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      <target state="new">Add</target></trans-unit></body>
+  </file>
+</xliff>
