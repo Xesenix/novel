@@ -18,7 +18,8 @@
 		"postinstall": "run build:app",
 		"xi18n": "npm run xi18n:app",
 		"xi18n:app": "ng xi18n --progress --i18n-format xlf --out-file messages.xliff --app app --output-path src/app/locale --locale en && xliffmerge --profile src/xliffmerge.app.json",
-		"xi18n:xes": "ng xi18n --progress --i18n-format xlf --out-file messages.xliff --app xes --output-path src/xes/locale --locale en && xliffmerge --profile src/xliffmerge.xes.json"
+		"xi18n:xes": "ng xi18n --progress --i18n-format xlf --out-file messages.xliff --app xes --output-path src/xes/locale --locale en && xliffmerge --profile src/xliffmerge.xes.json",
+		"precommit": "ng lint && ng test --progress --watch false"
 	},
 	"private": true,
 	"dependencies": {
@@ -57,6 +58,7 @@
 		"@types/webpack-bundle-analyzer": "^2.9.0",
 		"args": "^3.0.7",
 		"codelyzer": "~3.1.1",
+		"husky": "^0.14.3",
 		"jasmine-core": "~2.6.2",
 		"jasmine-spec-reporter": "~4.1.0",
 		"karma": "~1.7.0",
