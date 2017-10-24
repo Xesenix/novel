@@ -5,11 +5,8 @@ import { RouterModule } from '@angular/router';
 import { PrimaryLayoutComponent } from 'layout/primary-layout/primary-layout.component';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		RouterModule
-	],
+	imports: [CommonModule, RouterModule],
 	declarations: [PrimaryLayoutComponent],
 	exports: [PrimaryLayoutComponent],
 })
-export class LayoutModule { }
+export class LayoutModule {}

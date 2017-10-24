@@ -10,7 +10,7 @@ import { PixiService } from 'pixi/pixi.service';
 @Component({
 	selector: 'xes-canvas',
 	templateUrl: './canvas.component.html',
-	styleUrls: ['./canvas.component.scss']
+	styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent implements AfterViewInit {
 	private renderer: PIXI.WebGLRenderer | PIXI.CanvasRenderer;
@@ -34,7 +34,7 @@ export class CanvasComponent implements AfterViewInit {
 	 */
 	private easing = (delta: number) => 0.5 * Math.sin(delta * Math.PI) * (1 - 1 * Math.pow(3 * (delta - 0.5), 4));
 
-	constructor(private host: ElementRef, private pixi: PixiService) { }
+	constructor(private host: ElementRef, private pixi: PixiService) {}
 
 	ngAfterViewInit() {
 		this.initPixi();
@@ -59,7 +59,10 @@ export class CanvasComponent implements AfterViewInit {
 		this.host.nativeElement.appendChild(this.renderer.view);
 
 		// preload assets
-		this.pixi.addAsset('assets/ui.json').load().then(this.initScene.bind(this));
+		this.pixi
+			.addAsset('assets/ui.json')
+			.load()
+			.then(this.initScene.bind(this));
 	}
 
 	/**
@@ -97,16 +100,17 @@ export class CanvasComponent implements AfterViewInit {
 
 		// event handlers
 		Observable.fromEvent(window, 'mousedown')
-			.switchMap(() => TweenObservable.create(1000))// schedule to requestAnimationFrame
+			.switchMap(() => TweenObservable.create(1000)) // schedule to requestAnimationFrame
 			.map(this.easing)
-			.subscribe((v) => {
+			.subscribe(v => {
 				this.bulgeFilter.strength = 0.5 + 0.5 * v;
 				this.bulgeFilter.radius = 128 + 128 * v;
 				this.light.scale.set(1 + v);
 				this.renderer.render(this.stage);
 			});
-		Observable.fromEvent(window, 'mousemove').throttleTime(16)
-			.switchMap((ev) => Observable.of(ev, animationFrame))// schedule to requestAnimationFrame
+		Observable.fromEvent(window, 'mousemove')
+			.throttleTime(16)
+			.switchMap(ev => Observable.of(ev, animationFrame)) // schedule to requestAnimationFrame
 			.subscribe((event: MouseEvent) => {
 				this.light.position.x = event.x;
 				this.light.position.y = event.y;
@@ -114,7 +118,8 @@ export class CanvasComponent implements AfterViewInit {
 				this.bulgeFilter.center.y = event.y / window.innerHeight;
 				this.renderer.render(this.stage);
 			});
-		Observable.fromEvent(window, 'resize').throttleTime(100)
+		Observable.fromEvent(window, 'resize')
+			.throttleTime(100)
 			.subscribe((event: Event) => {
 				this.bg.width = window.innerWidth + 20;
 				this.bg.height = window.innerHeight + 20;

@@ -7,12 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
-import {
-	AddStoryStageAction,
-	MoveStoryStageAction,
-	RemoveStoryStageAction,
-	UpdateStoryStageAction,
-} from 'story/actions/stage';
+import { AddStoryStageAction, MoveStoryStageAction, RemoveStoryStageAction, UpdateStoryStageAction } from 'story/actions/stage';
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
 import { StoryStage } from 'story/model/story-stage';
 import { StoryModuleState, selectFeatureStages } from 'story/reducers';
@@ -30,12 +25,11 @@ export class StageListComponent implements OnDestroy {
 
 	subscriptionDragAndDrop: Subscription;
 
-	constructor(private store: Store<StoryModuleState>,
-		private dragulaService: DragulaService) {
+	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {
 		this.stages = store.select(selectFeatureStages);
 
 		this.dragulaService.setOptions('stages', {
-			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0
+			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0,
 		});
 
 		this.subscriptionDragAndDrop = this.dragulaService.drag

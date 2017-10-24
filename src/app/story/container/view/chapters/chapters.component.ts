@@ -13,16 +13,14 @@ import { selectFeatureChapters, StoryModuleState } from 'story/reducers/index';
 @Component({
 	selector: 'xes-chapters',
 	templateUrl: './chapters.component.html',
-	styleUrls: ['./chapters.component.scss']
+	styleUrls: ['./chapters.component.scss'],
 })
 export class ChaptersComponent implements OnDestroy {
-
 	chapters: Observable<StoryChapter[]>;
 
 	subscriptionDragAndDrop: Subscription;
 
-	constructor(private store: Store<StoryModuleState>,
-		private dragulaService: DragulaService) {
+	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {
 		this.chapters = store.select(selectFeatureChapters);
 
 		this.subscriptionDragAndDrop = this.dragulaService.drag

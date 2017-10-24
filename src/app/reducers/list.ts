@@ -1,5 +1,5 @@
 import { factoryOrValue } from 'rxjs/operator/multicast';
-export function listReducerFactory<T>(itemFactory: (any) => T, actionTypes: { LIST_ADD: string, LIST_REMOVE: string }) {
+export function listReducerFactory<T>(itemFactory: (any) => T, actionTypes: { LIST_ADD: string; LIST_REMOVE: string }) {
 	return (state: T[] = [], action) => {
 		switch (action.type) {
 			case actionTypes.LIST_ADD:
@@ -32,9 +32,7 @@ export function sortableListReducerFactory<T>(actionTypes: { LIST_ITEM_MOVE: str
 							? from < state.length - 1
 								? [...state.slice(0, to), state[from], ...state.slice(to, from), ...state.slice(from + 1)]
 								: [...state.slice(0, to), state[from], ...state.slice(to, from)]
-							: from < state.length - 1
-								? [state[from], ...state.slice(to, from), ...state.slice(from + 1)]
-								: [state[from], ...state.slice(to, from)];
+							: from < state.length - 1 ? [state[from], ...state.slice(to, from), ...state.slice(from + 1)] : [state[from], ...state.slice(to, from)];
 			}
 			default:
 				return state;

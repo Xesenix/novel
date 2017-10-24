@@ -16,7 +16,7 @@ export class PixiService {
 
 	load() {
 		if (this.loadPromise === null) {
-			this.loadPromise = new Promise((resolve) => PIXI.loader.load(resolve));
+			this.loadPromise = new Promise(resolve => PIXI.loader.load(resolve));
 		}
 
 		return this.loadPromise;

@@ -12,11 +12,8 @@ import { StoryModule } from 'story/story.module';
 
 // import { EffectsModule } from '@ngrx/effects';
 
-
 @NgModule({
-	declarations: [
-		AppComponent,
-	],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		PixiModule,
@@ -26,11 +23,11 @@ import { StoryModule } from 'story/story.module';
 		StoreModule.forRoot(reducer),
 		// do not use with @ngrx/router-store (performance issue)
 		StoreDevtoolsModule.instrument({
-		 	maxAge: 25
+			maxAge: 25,
 		}),
 		// EffectsModule.forRoot([]),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

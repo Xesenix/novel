@@ -25,9 +25,6 @@ describe('story:reducers.stages', () => {
 
 		const resultState = fromStages.reducer(store, action);
 
-		expect(resultState).toEqual([
-			new StoryStage('title 1', 'content 1'),
-			new StoryStage('title 3', 'content 3'),
-		]);
+		expect(resultState).toEqual([new StoryStage('title 1', 'content 1'), new StoryStage('title 3', 'content 3')]);
 	});
 });

@@ -15,11 +15,18 @@
 		"test": "ng test --code-coverage",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
-		"postinstall": "run build:app",
+		"postinstall": "npm run build",
 		"xi18n": "npm run xi18n:app",
 		"xi18n:app": "ng xi18n --progress --i18n-format xlf --out-file messages.xliff --app app --output-path src/app/locale --locale en && xliffmerge --profile src/xliffmerge.app.json",
 		"xi18n:xes": "ng xi18n --progress --i18n-format xlf --out-file messages.xliff --app xes --output-path src/xes/locale --locale en && xliffmerge --profile src/xliffmerge.xes.json",
-		"precommit": "ng lint && ng test --progress --watch false"
+		"precommit": "ng lint && lint-staged",
+		"prepush": "ng test --progress false --watch false && npm run build:app -- --progress false"
+	},
+	"lint-staged": {
+		"{src,scripts}/**/*.ts": [
+			"prettier --write --use-tabs --parser typescript",
+			"git add"
+		]
 	},
 	"private": true,
 	"dependencies": {
@@ -67,6 +74,7 @@
 		"karma-coverage-istanbul-reporter": "^1.2.1",
 		"karma-jasmine": "~1.1.0",
 		"karma-jasmine-html-reporter": "^0.2.2",
+		"lint-staged": "^4.3.0",
 		"ngx-i18nsupport": "^0.8.8",
 		"protractor": "~5.1.2",
 		"ts-node": "^3.2.2",

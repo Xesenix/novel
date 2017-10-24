@@ -6,12 +6,13 @@ describe('story:ChapterComponent', () => {
 	let component: ChapterComponent;
 	let fixture: ComponentFixture<ChapterComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [ChapterComponent]
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [ChapterComponent],
+			}).compileComponents();
 		})
-			.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ChapterComponent);

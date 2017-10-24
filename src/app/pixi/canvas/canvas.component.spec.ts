@@ -7,13 +7,14 @@ describe('pixi:CanvasComponent', () => {
 	let component: CanvasComponent;
 	let fixture: ComponentFixture<CanvasComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [CanvasComponent],
-			providers: [PixiService],
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [CanvasComponent],
+				providers: [PixiService],
+			}).compileComponents();
 		})
-			.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(CanvasComponent);

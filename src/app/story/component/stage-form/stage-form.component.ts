@@ -10,7 +10,7 @@ import { StoryChapter } from 'story/model/story-chapter';
 @Component({
 	selector: 'xes-stage-form',
 	templateUrl: './stage-form.component.html',
-	styleUrls: ['./stage-form.component.scss']
+	styleUrls: ['./stage-form.component.scss'],
 })
 export class StageFormComponent implements OnChanges {
 	@Input() data: StoryStage;
@@ -30,7 +30,7 @@ export class StageFormComponent implements OnChanges {
 			this.content.valueChanges.startWith(''),
 			this.chapter.valueChanges.startWith(''),
 			(title, content, chapter) => new StoryStage(title, content, chapter)
-		).subscribe((stage) => this.valueChange.next(stage));
+		).subscribe(stage => this.valueChange.next(stage));
 	}
 
 	ngOnChanges(changes: SimpleChanges) {

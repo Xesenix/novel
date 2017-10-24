@@ -7,11 +7,7 @@ import { CharactersRoutingModule } from 'characters/routing/characters-routing.m
 import { LayoutModule } from 'layout/layout.module';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		CharactersRoutingModule,
-		LayoutModule,
-	],
-	declarations: [CharacterListComponent, MenuComponent]
+	imports: [CommonModule, CharactersRoutingModule, LayoutModule],
+	declarations: [CharacterListComponent, MenuComponent],
 })
-export class CharactersModule { }
+export class CharactersModule {}

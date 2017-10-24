@@ -10,17 +10,16 @@ describe('story:ChaptersComponent', () => {
 	let component: ChaptersComponent;
 	let fixture: ComponentFixture<ChaptersComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [ChaptersComponent],
-			schemas: [NO_ERRORS_SCHEMA],
-			imports: [
-				StoreModule.forRoot(rootReducer, { initialState: { story: {} } }),
-			],
-			providers: [DragulaService],
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [ChaptersComponent],
+				schemas: [NO_ERRORS_SCHEMA],
+				imports: [StoreModule.forRoot(rootReducer, { initialState: { story: {} } })],
+				providers: [DragulaService],
+			}).compileComponents();
 		})
-		.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ChaptersComponent);

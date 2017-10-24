@@ -7,7 +7,7 @@ import { StoryStage } from 'story/model/story-stage';
 export const component = {
 	selector: 'xes-stage-list-item',
 	templateUrl: './list-item.component.html',
-	styleUrls: ['./list-item.component.scss']
+	styleUrls: ['./list-item.component.scss'],
 };
 @Component(component)
 export class ListItemComponent {

@@ -14,17 +14,16 @@ describe('story:StageListComponent', () => {
 	let component: StageListComponent;
 	let fixture: ComponentFixture<StageListComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [StageListComponent],
-			schemas: [NO_ERRORS_SCHEMA],
-			imports: [
-				StoreModule.forRoot(rootReducer, { initialState: { story: {} } }),
-			],
-			providers: [DragulaService],
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [StageListComponent],
+				schemas: [NO_ERRORS_SCHEMA],
+				imports: [StoreModule.forRoot(rootReducer, { initialState: { story: {} } })],
+				providers: [DragulaService],
+			}).compileComponents();
 		})
-			.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(StageListComponent);
@@ -37,27 +36,33 @@ describe('story:StageListComponent', () => {
 	});
 
 	describe('onStoryStageAdd', () => {
-		it('should dispatch AddStoryStageAction', inject([Store], (store: Store<AppState>) => {
-			const title = 'title';
-			const content = 'content';
-			const chapter = 'ch-1';
-			spyOn(store, 'dispatch');
+		it(
+			'should dispatch AddStoryStageAction',
+			inject([Store], (store: Store<AppState>) => {
+				const title = 'title';
+				const content = 'content';
+				const chapter = 'ch-1';
+				spyOn(store, 'dispatch');
 
-			component.onStoryStageAdd({ title, content, chapter });
+				component.onStoryStageAdd({ title, content, chapter });
 
-			expect(store.dispatch).toHaveBeenCalledWith(new AddStoryStageAction(title, content, chapter));
-		}));
+				expect(store.dispatch).toHaveBeenCalledWith(new AddStoryStageAction(title, content, chapter));
+			})
+		);
 	});
 
 	describe('onStoryStageRemove', () => {
-		it('should dispatch RemoveStoryStageAction', inject([Store], (store: Store<AppState>) => {
-			const index = 0;
-			spyOn(store, 'dispatch');
+		it(
+			'should dispatch RemoveStoryStageAction',
+			inject([Store], (store: Store<AppState>) => {
+				const index = 0;
+				spyOn(store, 'dispatch');
 
-			component.onStoryStageRemove(index);
+				component.onStoryStageRemove(index);
 
-			expect(store.dispatch).toHaveBeenCalledWith(new RemoveStoryStageAction(index));
-		}));
+				expect(store.dispatch).toHaveBeenCalledWith(new RemoveStoryStageAction(index));
+			})
+		);
 	});
 
 	// TODO: test that after start dragging after drop no action is dispatched

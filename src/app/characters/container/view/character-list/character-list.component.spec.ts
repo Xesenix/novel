@@ -10,16 +10,15 @@ describe('CharacterListComponent', () => {
 	let component: CharacterListComponent;
 	let fixture: ComponentFixture<CharacterListComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [CharacterListComponent],
-			schemas: [ NO_ERRORS_SCHEMA ],
-			imports: [
-				StoreModule.forRoot(rootReducer, { initialState: { story: {} } }),
-			],
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [CharacterListComponent],
+				schemas: [NO_ERRORS_SCHEMA],
+				imports: [StoreModule.forRoot(rootReducer, { initialState: { story: {} } })],
+			}).compileComponents();
 		})
-			.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(CharacterListComponent);

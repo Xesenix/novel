@@ -11,13 +11,14 @@ describe('story:ListItemComponent', () => {
 	let component: ListItemComponent;
 	let fixture: ComponentFixture<ListItemComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [ListItemComponent],
-			schemas: [NO_ERRORS_SCHEMA],
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [ListItemComponent],
+				schemas: [NO_ERRORS_SCHEMA],
+			}).compileComponents();
 		})
-			.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ListItemComponent);

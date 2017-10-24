@@ -5,11 +5,14 @@ import { PixiService } from 'pixi/pixi.service';
 describe('pixi:PixiService', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			providers: [PixiService]
+			providers: [PixiService],
 		});
 	});
 
-	it('should be created', inject([PixiService], (service: PixiService) => {
-		expect(service).toBeTruthy();
-	}));
+	it(
+		'should be created',
+		inject([PixiService], (service: PixiService) => {
+			expect(service).toBeTruthy();
+		})
+	);
 });

@@ -10,7 +10,7 @@ export interface StoryModuleState {
 
 export const reducer: ActionReducerMap<StoryModuleState> = {
 	stages,
-	chapters
+	chapters,
 };
 
 // TODO: now module reducer needs to know where it will be mounted in global state, find a way to decople it from global state knowledge

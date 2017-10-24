@@ -18,14 +18,11 @@ import { StoryRoutingModule } from 'story/routing/story-routing.module';
 
 export function provideInitialState() {
 	return {
-		chapters: [
-			{ title: 'Chapter I', id: 'ch-1' },
-			{ title: 'Chapter II', id: 'ch-2' },
-		],
+		chapters: [{ title: 'Chapter I', id: 'ch-1' }, { title: 'Chapter II', id: 'ch-2' }],
 		stages: [
 			{ title: 'Brave new world', content: 'Darkness was lighted by volcanos spewing yellow glowing sulfur.', chapter: 'ch-1' },
 			{ title: 'Creatures of darkness', content: 'In shadows of caves lurked creatures born from darkness.', chapter: 'ch-2' },
-		]
+		],
 	};
 }
 @NgModule({
@@ -36,18 +33,10 @@ export function provideInitialState() {
 		DragulaModule,
 		ReactiveFormsModule,
 		StoreModule.forFeature('story', reducer, {
-			initialState: provideInitialState
+			initialState: provideInitialState,
 		}),
 	],
-	declarations: [
-		StageListComponent,
-		StageFormComponent,
-		ChapterComponent,
-		ChaptersComponent,
-		ChapterFormComponent,
-		MenuComponent,
-		ListItemComponent,
-	],
-	exports: [StageListComponent]
+	declarations: [StageListComponent, StageFormComponent, ChapterComponent, ChaptersComponent, ChapterFormComponent, MenuComponent, ListItemComponent],
+	exports: [StageListComponent],
 })
-export class StoryModule { }
+export class StoryModule {}

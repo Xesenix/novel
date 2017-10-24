@@ -6,12 +6,13 @@ describe('layout:PrimaryLayoutComponent', () => {
 	let component: PrimaryLayoutComponent;
 	let fixture: ComponentFixture<PrimaryLayoutComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [PrimaryLayoutComponent]
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [PrimaryLayoutComponent],
+			}).compileComponents();
 		})
-			.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(PrimaryLayoutComponent);

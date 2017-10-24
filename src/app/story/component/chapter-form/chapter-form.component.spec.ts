@@ -9,16 +9,15 @@ describe('story:ChapterFormComponent', () => {
 	let component: ChapterFormComponent;
 	let fixture: ComponentFixture<ChapterFormComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [ChapterFormComponent],
-			schemas: [ NO_ERRORS_SCHEMA ],
-			imports: [
-				StoreModule.forRoot(rootReducer, { initialState: { story: {} } }),
-			],
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [ChapterFormComponent],
+				schemas: [NO_ERRORS_SCHEMA],
+				imports: [StoreModule.forRoot(rootReducer, { initialState: { story: {} } })],
+			}).compileComponents();
 		})
-		.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(ChapterFormComponent);

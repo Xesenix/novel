@@ -5,11 +5,9 @@ import { PixiService } from 'pixi/pixi.service';
 import { CanvasComponent } from 'pixi/canvas/canvas.component';
 
 @NgModule({
-	imports: [
-		CommonModule
-	],
+	imports: [CommonModule],
 	declarations: [CanvasComponent],
 	providers: [PixiService],
 	exports: [CanvasComponent],
 })
-export class PixiModule { }
+export class PixiModule {}

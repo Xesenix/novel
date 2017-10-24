@@ -9,17 +9,16 @@ describe('story:StageFormComponent', () => {
 	let component: StageFormComponent;
 	let fixture: ComponentFixture<StageFormComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			declarations: [StageFormComponent],
-			schemas: [NO_ERRORS_SCHEMA],
-			imports: [
-				StoreModule.forRoot(rootReducer, { initialState: { story: {} } }),
-			],
-			providers: [],
+	beforeEach(
+		async(() => {
+			TestBed.configureTestingModule({
+				declarations: [StageFormComponent],
+				schemas: [NO_ERRORS_SCHEMA],
+				imports: [StoreModule.forRoot(rootReducer, { initialState: { story: {} } })],
+				providers: [],
+			}).compileComponents();
 		})
-		.compileComponents();
-	}));
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(StageFormComponent);
