@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, HostListener } from '@angular/core';
+/* tslint:disable:no-console */
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, OnDestroy } from '@angular/core';
 import 'pixi.js';
 import { Observable } from 'rxjs/Rx';
 import { animationFrame } from 'rxjs/scheduler/animationFrame';
@@ -11,8 +12,9 @@ import { PixiService } from 'pixi/pixi.service';
 	selector: 'xes-canvas',
 	templateUrl: './canvas.component.html',
 	styleUrls: ['./canvas.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CanvasComponent implements AfterViewInit {
+export class CanvasComponent implements AfterViewInit, OnDestroy {
 	private renderer: PIXI.WebGLRenderer | PIXI.CanvasRenderer;
 
 	private stage: PIXI.Container;
@@ -37,7 +39,14 @@ export class CanvasComponent implements AfterViewInit {
 	constructor(private host: ElementRef, private pixi: PixiService) {}
 
 	ngAfterViewInit() {
+		console.debug('ngAfterViewInit');
 		this.initPixi();
+	}
+
+	ngOnDestroy() {
+		console.debug('ngOnDestroy');
+		// cleanup
+		this.pixi.destroy();
 	}
 
 	/**

@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'xes-chapter-form',
 	templateUrl: './chapter-form.component.html',
 	styleUrls: ['./chapter-form.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChapterFormComponent {
 	@Output() onSubmitSignal: EventEmitter<any> = new EventEmitter<any>();

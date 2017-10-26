@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, ConnectableObservable, Observable } from 'rxjs/Rx';
@@ -11,16 +11,16 @@ import { StoryChapter } from 'story/model/story-chapter';
 	selector: 'xes-stage-form',
 	templateUrl: './stage-form.component.html',
 	styleUrls: ['./stage-form.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StageFormComponent implements OnChanges {
 	@Input() data: StoryStage;
+	@Output() valueChange: BehaviorSubject<StoryStage> = new BehaviorSubject<StoryStage>(this.data);
 
 	chapters: Observable<StoryChapter[]>;
 	title = new FormControl();
 	content = new FormControl();
 	chapter = new FormControl();
-
-	@Output() valueChange: BehaviorSubject<StoryStage> = new BehaviorSubject<StoryStage>(this.data);
 
 	constructor(private store: Store<StoryModuleState>) {
 		this.chapters = store.select(selectFeatureChapters);

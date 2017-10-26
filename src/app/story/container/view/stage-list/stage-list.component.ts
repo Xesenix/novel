@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber, Subscription } from 'rxjs/Rx';
 import 'rxjs/add/operator/combineLatest';
@@ -17,6 +17,7 @@ import { StoryModuleState, selectFeatureStages } from 'story/reducers';
 	templateUrl: './stage-list.component.html',
 	styleUrls: ['./stage-list.component.scss'],
 	providers: [DragulaService],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StageListComponent implements OnDestroy {
 	@ViewChild('addForm') addForm: StageFormComponent;

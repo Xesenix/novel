@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs/Rx';
 import 'rxjs/add/operator/combineLatest';
@@ -14,6 +14,7 @@ import { selectFeatureChapters, StoryModuleState } from 'story/reducers/index';
 	selector: 'xes-chapters',
 	templateUrl: './chapters.component.html',
 	styleUrls: ['./chapters.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChaptersComponent implements OnDestroy {
 	chapters: Observable<StoryChapter[]>;

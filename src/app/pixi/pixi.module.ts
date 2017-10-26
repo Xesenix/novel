@@ -7,7 +7,7 @@ import { CanvasComponent } from 'pixi/canvas/canvas.component';
 @NgModule({
 	imports: [CommonModule],
 	declarations: [CanvasComponent],
-	providers: [PixiService],
+	providers: [], // do not put singleton services like PixiService inside submodule put them into app module provider
 	exports: [CanvasComponent],
 })
 export class PixiModule {}

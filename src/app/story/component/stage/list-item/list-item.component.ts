@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs/Rx';
-import { ViewChild, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
 import { StoryStage } from 'story/model/story-stage';
@@ -8,6 +8,7 @@ export const component = {
 	selector: 'xes-stage-list-item',
 	templateUrl: './list-item.component.html',
 	styleUrls: ['./list-item.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 };
 @Component(component)
 export class ListItemComponent {
