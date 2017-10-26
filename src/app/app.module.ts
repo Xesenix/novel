@@ -7,7 +7,7 @@ import { AppComponent } from 'app/app.component';
 import { reducer } from 'app/reducers';
 import { AppRoutingModule } from 'app/routing/app-routing.module';
 import { CharactersModule } from 'characters/characters.module';
-import { PixiModule } from 'pixi/pixi.module';
+import { PixiService } from 'pixi/pixi.service';
 import { StoryModule } from 'story/story.module';
 
 // import { EffectsModule } from '@ngrx/effects';
@@ -16,7 +16,6 @@ import { StoryModule } from 'story/story.module';
 	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
-		PixiModule,
 		AppRoutingModule,
 		CharactersModule,
 		StoryModule,
@@ -27,7 +26,7 @@ import { StoryModule } from 'story/story.module';
 		}),
 		// EffectsModule.forRoot([]),
 	],
-	providers: [],
+	providers: [PixiService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
