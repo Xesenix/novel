@@ -17,6 +17,10 @@
 				<h2 i18n>Story stages:</h2>
 			</div>
 			<div class="panel-body">
+				<div class="alert alert-info" i18n>
+					Stage contains few paragraphs that tell story from one <strong>point of view</strong> that progresses action forward.
+					We distinguish two types of stages <strong>proactive</strong> and <strong>reactive</strong>.
+				</div>
 			</div>
 			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
 				<li class="list-group-item" *ngFor="let stage of stages | async; let $index = index">

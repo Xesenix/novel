@@ -1,4 +1,3 @@
-import { factoryOrValue } from 'rxjs/operator/multicast';
 export function listReducerFactory<T>(itemFactory: (any) => T, actionTypes: { LIST_ADD: string; LIST_REMOVE: string }) {
 	return (state: T[] = [], action) => {
 		switch (action.type) {
