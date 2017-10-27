@@ -18,6 +18,7 @@ export class StageFormComponent implements OnChanges {
 	@Output() valueChange: BehaviorSubject<StoryStage> = new BehaviorSubject<StoryStage>(this.data);
 
 	chapters: Observable<StoryChapter[]>;
+	id: string;
 	title = new FormControl();
 	content = new FormControl();
 	chapter = new FormControl();
@@ -29,11 +30,12 @@ export class StageFormComponent implements OnChanges {
 			this.title.valueChanges.startWith(''),
 			this.content.valueChanges.startWith(''),
 			this.chapter.valueChanges.startWith(''),
-			(title, content, chapter) => new StoryStage(title, content, chapter)
+			(title, content, chapter) => new StoryStage(this.id, title, content, chapter)
 		).subscribe(stage => this.valueChange.next(stage));
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
+		this.id = changes.data.currentValue.id;
 		this.title.setValue(changes.data.currentValue.title);
 		this.content.setValue(changes.data.currentValue.content);
 		this.chapter.setValue(changes.data.currentValue.chapter);

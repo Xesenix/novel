@@ -23,13 +23,14 @@
 				</div>
 			</div>
 			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
-				<li class="list-group-item" *ngFor="let stage of stages | async; let $index = index">
+				<li class="list-group-item" *ngFor="let stage of stages | async; trackBy: stageListItemIdentity; let $index = index" [@listState]>
 					<xes-stage-list-item
 						[stage]="stage"
 						(updateSignal)="onStoryStageUpdate($index, $event)"
 						(removeSignal)="onStoryStageRemove($index)"
 					></xes-stage-list-item>
 					<a class="handle glyphicon glyphicon-move"></a>
+					[{{ stageListItemIdentity($index, stage) }}]
 				</li>
 			</ul>
 		</div>

@@ -8,7 +8,7 @@ import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 
 import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction } from 'story/actions/chapter';
 import { StoryChapter } from 'story/model/story-chapter';
-import { selectFeatureChapters, StoryModuleState } from 'story/reducers/index';
+import { selectFeatureChapters, StoryModuleState } from 'story/reducers';
 
 @Component({
 	selector: 'xes-chapters',

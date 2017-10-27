@@ -12,7 +12,7 @@ describe('app:listReducerFactory', () => {
 		},
 	].forEach(({ LIST_ADD, LIST_REMOVE }) => {
 		describe(`for LIST_ADD='${LIST_ADD}' and LIST_REMOVE='${LIST_REMOVE}'`, () => {
-			const reducer = listReducerFactory(({ name }) => name, { LIST_ADD, LIST_REMOVE });
+			const reducer = listReducerFactory((list, { name }) => name, { LIST_ADD, LIST_REMOVE });
 
 			[
 				{

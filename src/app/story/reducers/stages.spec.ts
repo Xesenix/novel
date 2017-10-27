@@ -11,20 +11,20 @@ describe('story:reducers.stages', () => {
 
 		const resultState = fromStages.reducer(store, action);
 
-		expect(resultState).toEqual([new StoryStage(title, content)]);
+		expect(resultState).toEqual([new StoryStage('0', title, content)]);
 	});
 
 	it('should reduce RemoveStoryStageAction', () => {
 		const index = 1;
 		const action = new RemoveStoryStageAction(index);
 		const store: fromStages.StageState = [
-			new StoryStage('title 1', 'content 1'),
-			new StoryStage('title 2', 'content 2'),
-			new StoryStage('title 3', 'content 3'),
+			new StoryStage('0', 'title 1', 'content 1'),
+			new StoryStage('1', 'title 2', 'content 2'),
+			new StoryStage('2', 'title 3', 'content 3'),
 		];
 
 		const resultState = fromStages.reducer(store, action);
 
-		expect(resultState).toEqual([new StoryStage('title 1', 'content 1'), new StoryStage('title 3', 'content 3')]);
+		expect(resultState).toEqual([new StoryStage('0', 'title 1', 'content 1'), new StoryStage('2', 'title 3', 'content 3')]);
 	});
 });

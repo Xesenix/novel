@@ -31,6 +31,7 @@ export class ListItemComponent {
 
 	update() {
 		this.updateSignal.emit(this.form.valueChange.getValue());
+		this.isEdited = false;
 	}
 
 	remove() {

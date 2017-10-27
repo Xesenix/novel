@@ -1,5 +1,6 @@
-import { Store } from '@ngrx/store';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber, Subscription } from 'rxjs/Rx';
 import 'rxjs/add/operator/combineLatest';
@@ -17,6 +18,7 @@ import { StoryModuleState, selectFeatureStages } from 'story/reducers';
 	templateUrl: './stage-list.component.html',
 	styleUrls: ['./stage-list.component.scss'],
 	providers: [DragulaService],
+	animations: [trigger('listState', [transition(':enter', [style({ transform: 'scale(1.0)', opacity: 1, backgroundColor: '#8f8' }), animate(500)])])],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StageListComponent implements OnDestroy {
@@ -44,6 +46,10 @@ export class StageListComponent implements OnDestroy {
 			.subscribe(([dragIndex, dropIndex]) => this.store.dispatch(new MoveStoryStageAction(dragIndex, dropIndex)));
 	}
 
+	stageListItemIdentity(index: number, stage: StoryStage) {
+		return `${index}:${stage.id}`;
+	}
+
 	add() {
 		this.onStoryStageAdd(this.addForm.valueChange.getValue());
 	}
@@ -52,8 +58,8 @@ export class StageListComponent implements OnDestroy {
 		this.store.dispatch(new AddStoryStageAction(title, content, chapter));
 	}
 
-	onStoryStageUpdate(index, { title, content, chapter }) {
-		this.store.dispatch(new UpdateStoryStageAction(index, title, content, chapter));
+	onStoryStageUpdate(index, { id, title, content, chapter }) {
+		this.store.dispatch(new UpdateStoryStageAction(index, id, title, content, chapter));
 	}
 
 	onStoryStageRemove(index: number) {

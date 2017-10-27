@@ -5,7 +5,8 @@ import * as actions from 'story/actions/stage';
 
 export type StageState = StoryStage[];
 
-const itemFactory = ({ title, content, chapter }) => new StoryStage(title, content, chapter);
+const itemFactory = (list: StageState, { id = null, title, content, chapter }: { id: string; title: string; content: string; chapter: string }) =>
+	new StoryStage(id !== null ? id : list.length.toString(), title, content, chapter);
 const listReducer = listReducerFactory<StoryStage>(itemFactory, actions);
 const sortableReducer = sortableListReducerFactory<StoryStage>(actions);
 const updateReducer = updatableListReducerFactory<StoryStage>(itemFactory, actions);
