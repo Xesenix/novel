@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs/Rx';
@@ -25,7 +24,7 @@ export class ChaptersComponent implements OnDestroy {
 
 	subscriptionDragAndDrop: Subscription;
 
-	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService, private router: Router) {
+	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {
 		this.chapters = store.select(selectFeatureChapters);
 
 		this.subscriptionDragAndDrop = this.dragulaService.drag

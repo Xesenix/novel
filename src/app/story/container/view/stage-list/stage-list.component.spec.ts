@@ -35,7 +35,7 @@ describe('story:StageListComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	describe('onStoryStageAdd', () => {
+	describe('stageAdd', () => {
 		it(
 			'should dispatch AddStoryStageAction',
 			inject([Store], (store: Store<AppState>) => {
@@ -44,21 +44,21 @@ describe('story:StageListComponent', () => {
 				const chapter = 'ch-1';
 				spyOn(store, 'dispatch');
 
-				component.onStoryStageAdd({ title, content, chapter });
+				component.stageAdd({ title, content, chapter });
 
 				expect(store.dispatch).toHaveBeenCalledWith(new AddStoryStageAction(title, content, chapter));
 			})
 		);
 	});
 
-	describe('onStoryStageRemove', () => {
+	describe('stageRemove', () => {
 		it(
 			'should dispatch RemoveStoryStageAction',
 			inject([Store], (store: Store<AppState>) => {
 				const index = 0;
 				spyOn(store, 'dispatch');
 
-				component.onStoryStageRemove(index);
+				component.stageRemove(index);
 
 				expect(store.dispatch).toHaveBeenCalledWith(new RemoveStoryStageAction(index));
 			})
