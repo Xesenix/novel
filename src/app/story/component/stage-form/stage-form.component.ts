@@ -14,6 +14,7 @@ import { StoryChapter } from 'story/model/story-chapter';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StageFormComponent implements OnChanges {
+	@Input() showChapter = true;
 	@Input() data: StoryStage;
 	@Output() valueChange: BehaviorSubject<StoryStage> = new BehaviorSubject<StoryStage>(this.data);
 
@@ -35,9 +36,11 @@ export class StageFormComponent implements OnChanges {
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		this.id = changes.data.currentValue.id;
-		this.title.setValue(changes.data.currentValue.title);
-		this.content.setValue(changes.data.currentValue.content);
-		this.chapter.setValue(changes.data.currentValue.chapter);
+		if (changes.data.currentValue !== null) {
+			this.id = changes.data.currentValue.id;
+			this.title.setValue(changes.data.currentValue.title);
+			this.content.setValue(changes.data.currentValue.content);
+			this.chapter.setValue(changes.data.currentValue.chapter);
+		}
 	}
 }

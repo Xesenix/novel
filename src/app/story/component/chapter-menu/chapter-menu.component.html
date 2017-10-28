@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+	<div class="panel-heading"><h3 i18n>Choose chapter</h3></div>
+	<div class="list-group">
+		<a class="list-group-item"
+			routerLinkActive="active"
+			[routerLink]="['/story/chapter/item/', chapter.id]"
+			*ngFor="let chapter of chapters | async">{{ chapter.title }}</a>
+	</div>
+</div>

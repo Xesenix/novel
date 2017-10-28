@@ -1,8 +1,12 @@
 <xes-primary-layout>
 	<h1 slot="title-bar">Story stages list</h1>
-	<xes-menu slot="side-bar"></xes-menu>
+	<ng-container slot="side-bar">
+		<xes-menu></xes-menu>
+		<xes-chapter-menu [chapters]="chapters"></xes-chapter-menu>
+	</ng-container>
+
 	<ng-container slot="content">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h2 i18n>Add new story stage</h2>
 			</div>
@@ -26,8 +30,8 @@
 				<li class="list-group-item" *ngFor="let stage of stages | async; trackBy: stageListItemIdentity; let $index = index" [@listState]>
 					<xes-stage-list-item
 						[stage]="stage"
-						(updateSignal)="onStoryStageUpdate($index, $event)"
-						(removeSignal)="onStoryStageRemove($index)"
+						(updateSignal)="stageUpdate($index, $event)"
+						(removeSignal)="stageRemove($index)"
 					></xes-stage-list-item>
 					<a class="handle glyphicon glyphicon-move"></a>
 					[{{ stageListItemIdentity($index, stage) }}]

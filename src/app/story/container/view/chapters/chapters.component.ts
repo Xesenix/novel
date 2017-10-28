@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs/Rx';
 import 'rxjs/add/operator/combineLatest';
@@ -9,6 +10,7 @@ import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction } from 'story/actions/chapter';
 import { StoryChapter } from 'story/model/story-chapter';
 import { selectFeatureChapters, StoryModuleState } from 'story/reducers';
+import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
 
 @Component({
 	selector: 'xes-chapters',
@@ -17,11 +19,13 @@ import { selectFeatureChapters, StoryModuleState } from 'story/reducers';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChaptersComponent implements OnDestroy {
+	@ViewChild('addForm') addForm: ChapterFormComponent;
+
 	chapters: Observable<StoryChapter[]>;
 
 	subscriptionDragAndDrop: Subscription;
 
-	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {
+	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService, private router: Router) {
 		this.chapters = store.select(selectFeatureChapters);
 
 		this.subscriptionDragAndDrop = this.dragulaService.drag
@@ -37,11 +41,15 @@ export class ChaptersComponent implements OnDestroy {
 			});
 	}
 
-	onStoryChapterAdd({ title, id }) {
+	add() {
+		this.chapterAdd(this.addForm.valueChange.getValue());
+	}
+
+	chapterAdd({ title, id }) {
 		this.store.dispatch(new AddStoryChapterAction(id, title));
 	}
 
-	onStoryChapterRemove(index: number) {
+	chapterRemove(index: number) {
 		this.store.dispatch(new RemoveStoryChapterAction(index));
 	}
 
