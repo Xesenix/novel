@@ -8,6 +8,10 @@
           <context context-type="sourcefile">app\story\component\stage-form\stage-form.component.ts</context>
           <context context-type="linenumber">2</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\chapter-form\chapter-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="4ab4cb601522b9194922554d934c4c30bd93567d" datatype="html">
         <source>Content</source>
@@ -27,32 +31,54 @@
         <source>Add new story stage</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\chapter\chapter.component.ts</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f6755cff4957d5c3c89bafce5651f1b6fa2b1fd9" datatype="html">
         <source>Add</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\chapter\chapter.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="717e4f66f2ac0cf059233ec9ed9fe5fb0cc69e26" datatype="html">
         <source>Story stages:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7849b7c8eb06953d7b0226503d5c5a0ee0d57703" datatype="html">
+        <source>
+					Stage contains few paragraphs that tell story from one <x id="START_TAG_STRONG" ctype="x-strong"/>point of view<x id="CLOSE_TAG_STRONG" ctype="x-strong"/> that progresses action forward.
+					We distinguish two types of stages <x id="START_TAG_STRONG" ctype="x-strong"/>proactive<x id="CLOSE_TAG_STRONG" ctype="x-strong"/> and <x id="START_TAG_STRONG" ctype="x-strong"/>reactive<x id="CLOSE_TAG_STRONG" ctype="x-strong"/>.
+				</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="af2fe54224eeb3c316a645989f637e3c97d107f6" datatype="html">
         <source>drag&amp;drop</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\story\container\view\stage-list\stage-list.component.ts</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="56a7a043567c6fee9c8b8e747843193fe1fbc37b" datatype="html">
@@ -71,6 +97,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app\layout\primary-layout\primary-layout.component.ts</context>
           <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2798cc1e152b1ec07fd8daf94a2a073d1ba1ebcc" datatype="html">
+        <source>Id</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\chapter-form\chapter-form.component.ts</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
@@ -102,7 +135,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d904f74acb72356dd3547977ca3cf29d6da25946" datatype="html">
@@ -119,18 +152,39 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="9497fad050301ee857082ce817ae472b325ebc4e" datatype="html">
+        <source>Chapter <x id="INTERPOLATION"/> stages</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\chapter\chapter.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="a3f076eb041a92e4af0c8e717b956e59ebdc7615" datatype="html">
         <source>Add new story chapter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="966c53dd2aabb4e60a4bc1d3af52996f484e2826" datatype="html">
         <source>Story chapters:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6829218544e108e152f5fa72cb79c4ccb82e0d06" datatype="html">
+        <source>View</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\container\view\chapters\chapters.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a3987e46044b65d6371ee9d40ea69f19c3de1117" datatype="html">
+        <source>Choose chapter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\story\component\chapter-menu\chapter-menu.component.ts</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
     </body>
