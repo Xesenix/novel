@@ -38,7 +38,12 @@ describe('story:ChapterComponent', () => {
 					{
 						provide: ActivatedRoute,
 						useValue: {
-							paramMap: Observable.of({ id: 'ch-1' }),
+							paramMap: Observable.of({
+								id: 'ch-1',
+								get: function(key) {
+									return this[key];
+								},
+							}),
 						},
 					},
 				],

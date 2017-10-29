@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChapterMenuComponent } from 'story/component/chapter-menu/chapter-menu.component';
 
-describe('ChapterMenuComponent', () => {
+describe('story:ChapterMenuComponent', () => {
 	let component: ChapterMenuComponent;
 	let fixture: ComponentFixture<ChapterMenuComponent>;
 

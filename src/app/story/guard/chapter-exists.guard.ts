@@ -8,7 +8,7 @@ import { StoryModuleState, selectFeatureChapters } from 'story/reducers';
 
 @Injectable()
 export class ChapterExistsGuard implements CanActivate {
-	constructor(private store: Store<StoryModuleState>, private router: Router, private activatedRoute: ActivatedRoute) {}
+	constructor(private store: Store<StoryModuleState>, private router: Router) {}
 
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 		const id = next.params.id;
