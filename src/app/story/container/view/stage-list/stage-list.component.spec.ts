@@ -1,13 +1,15 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store, StoreModule } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 
-import { reducer as rootReducer, AppState } from 'app/reducers';
+import { AppState, reducer as rootReducer } from 'app/reducers';
 import { AddStoryStageAction, RemoveStoryStageAction } from 'story/actions/stage';
 import { StageListComponent } from 'story/container/view/stage-list/stage-list.component';
 import { StoryStage } from 'story/model/story-stage';
 import { provideInitialState } from 'story/story.module';
+
 // FIXME: need to decouple module from global state
 
 describe('story:StageListComponent', () => {
@@ -19,7 +21,7 @@ describe('story:StageListComponent', () => {
 			TestBed.configureTestingModule({
 				declarations: [StageListComponent],
 				schemas: [NO_ERRORS_SCHEMA],
-				imports: [StoreModule.forRoot(rootReducer, { initialState: { story: {} } })],
+				imports: [NoopAnimationsModule, StoreModule.forRoot(rootReducer, { initialState: { story: provideInitialState() } })],
 				providers: [DragulaService],
 			}).compileComponents();
 		})

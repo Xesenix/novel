@@ -1,4 +1,10 @@
-export function listReducerFactory<T>(itemFactory: (state: T[], action: any) => T, actionTypes: { LIST_ADD: string; LIST_REMOVE: string }) {
+export function listReducerFactory<T>(
+	itemFactory: (state: T[], action: any) => T,
+	actionTypes: {
+		LIST_ADD: string;
+		LIST_REMOVE: string;
+	}
+) {
 	return (state: T[] = [], action) => {
 		switch (action.type) {
 			case actionTypes.LIST_ADD:
@@ -39,15 +45,24 @@ export function sortableListReducerFactory<T>(actionTypes: { LIST_ITEM_MOVE: str
 	};
 }
 
-export function updatableListReducerFactory<T>(itemFactory: (state: T[], action: any) => T, actionTypes: { LIST_ITEM_UPDATE: string }) {
+export function updatableListReducerFactory<T>(
+	itemFactory: (state: T[], action: any) => T,
+	actionTypes: {
+		LIST_ITEM_UPDATE: string;
+	}
+) {
 	return (state: T[] = [], action) => {
 		switch (action.type) {
 			case actionTypes.LIST_ITEM_UPDATE:
 				state[action.index] = itemFactory(state, action);
-				return state;
+				return [...state];
 
 			default:
 				return state;
 		}
 	};
+}
+
+export class SortableListItem<T> {
+	constructor(public data: T, public index: number) {}
 }

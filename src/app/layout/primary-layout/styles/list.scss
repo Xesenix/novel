@@ -1,0 +1,44 @@
+$drop-zone-height: 60px;
+@mixin drop-zone() {
+	content: attr(data-label);
+	display: block;
+	height: $drop-zone-height;
+	position: absolute;
+	left: 0;
+	right: 0;
+	font-size: $drop-zone-height / 2;
+	line-height: $drop-zone-height;
+	text-align: center;
+	color: #ccc;
+	text-shadow: 1px 1px #fff;
+}
+
+.sortable {
+	padding-top: $drop-zone-height;
+	padding-bottom: $drop-zone-height;
+	position: relative;
+	background-color: #ddd;
+
+	&::before {
+		@include drop-zone;
+		top: 0;
+	}
+
+	&::after {
+		@include drop-zone;
+		bottom: 0;
+	}
+
+	.list-group-item {
+		overflow: hidden;
+	}
+}
+
+.handle {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	text-decoration: none;
+	font-size: 40px;
+	color: #ddd;
+}

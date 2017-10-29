@@ -5,3 +5,8 @@ body {
 .alert {
 	box-shadow: 2px 2px 10px rgba(0, 0, 0, .2);
 }
+
+// for stages in chapter view so that move handle won't appear outside of item while dragging
+.list-group-item {
+	overflow: hidden;
+}

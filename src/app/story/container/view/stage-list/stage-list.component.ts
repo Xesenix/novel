@@ -1,18 +1,21 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { Subscriber, Subscription } from 'rxjs/Rx';
-import 'rxjs/add/operator/combineLatest';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import 'rxjs/add/operator/combineLatest';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+import { switchMap } from 'rxjs/operator/switchMap';
+import { Subscriber, Subscription } from 'rxjs/Rx';
 
+import { pickAndDropObservable } from 'app/list/pick-and-drop';
+import { SortableListItem } from 'app/reducers/list';
 import { AddStoryStageAction, MoveStoryStageAction, RemoveStoryStageAction, UpdateStoryStageAction } from 'story/actions/stage';
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
-import { StoryStage } from 'story/model/story-stage';
 import { StoryChapter } from 'story/model/story-chapter';
-import { StoryModuleState, selectFeatureStages, selectFeatureChapters } from 'story/reducers';
+import { StoryStage } from 'story/model/story-stage';
+import { selectFeatureChapters, selectFeatureStages, selectFeatureStagesSortableList, StoryModuleState } from 'story/reducers';
 
 @Component({
 	selector: 'xes-stage-list',
@@ -22,33 +25,29 @@ import { StoryModuleState, selectFeatureStages, selectFeatureChapters } from 'st
 	animations: [trigger('listState', [transition(':enter', [style({ transform: 'scale(1.0)', opacity: 1, backgroundColor: '#8f8' }), animate(500)])])],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StageListComponent implements OnDestroy {
+export class StageListComponent implements OnInit, OnDestroy {
 	@ViewChild('addForm') addForm: StageFormComponent;
 
-	@Input() stages: Observable<StoryStage[]>;
+	@Input() list: Observable<SortableListItem<StoryStage>[]>;
 
 	subscriptionDragAndDrop: Subscription;
 
-	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {
-		this.stages = store.select(selectFeatureStages);
+	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {}
+
+	ngOnInit() {
+		this.list = this.store.select(selectFeatureStagesSortableList).share();
 
 		this.dragulaService.setOptions('stages', {
 			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0,
 		});
 
-		this.subscriptionDragAndDrop = this.dragulaService.drag
-			.filter(([container]) => container === 'stages')
-			.map(([container, dragElement, source]): number => Array.prototype.indexOf.call(source.children, dragElement))
-			.zip(
-				this.dragulaService.drop
-					.filter(([container]) => container === 'stages')
-					.map(([container, dropElement, target, source]): number => Array.prototype.indexOf.call(target.children, dropElement))
-			)
-			.subscribe(([dragIndex, dropIndex]) => this.store.dispatch(new MoveStoryStageAction(dragIndex, dropIndex)));
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to, pick, drop }) =>
+			this.store.dispatch(new MoveStoryStageAction(from, to))
+		);
 	}
 
-	stageListItemIdentity(index: number, stage: StoryStage) {
-		return `${index}:${stage.id}`;
+	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {
+		return `index:${index}:id:${item.data.id}:version:${item.data.title}${item.data.content}`;
 	}
 
 	add() {

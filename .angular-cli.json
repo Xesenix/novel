@@ -23,6 +23,12 @@
 				"../node_modules/dragula/dist/dragula.css",
 				"styles.scss"
 			],
+			"stylePreprocessorOptions": {
+				"includePaths": [
+					"./app/layout",
+					"./styles"
+				]
+			},
 			"scripts": [],
 			"environmentSource": "environments/environment.ts",
 			"environments": {

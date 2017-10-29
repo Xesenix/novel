@@ -1,39 +1,53 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
+import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 import { Observable } from 'rxjs/Observable';
-import { flatMap, filter, map, share, switchMap, tap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import { of } from 'rxjs/observable/of';
+import { filter, flatMap, map, share, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, ReplaySubject, Subject, Subscription } from 'rxjs/Rx';
 
-import { AddStoryStageAction } from 'story/actions/stage';
-import { StoryStage } from 'story/model/story-stage';
-import { StoryChapter } from 'story/model/story-chapter';
-import { StoryModuleState, selectFeatureStages, selectFeatureChapters } from 'story/reducers';
+import { pickAndDropObservable } from 'app/list/pick-and-drop';
+import { SortableListItem } from 'app/reducers/list';
+import { AddStoryStageAction, MoveStoryStageAction } from 'story/actions/stage';
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
+import { StoryChapter } from 'story/model/story-chapter';
+import { StoryStage } from 'story/model/story-stage';
+import { selectFeatureChapters, selectFeatureStages, selectFeatureStagesSortableList, StoryModuleState } from 'story/reducers';
 
 @Component({
 	selector: 'xes-chapter',
 	templateUrl: './chapter.component.html',
 	styleUrls: ['./chapter.component.scss'],
+	providers: [DragulaService],
+	animations: [trigger('listState', [transition(':enter', [style({ transform: 'scale(1.0)', opacity: 1, backgroundColor: '#8f8' }), animate(500)])])],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChapterComponent implements OnInit {
+export class ChapterComponent implements OnInit, OnDestroy {
 	@ViewChild('addForm') addForm: StageFormComponent;
 
 	templateStage: ReplaySubject<StoryStage>;
-	stages: Observable<StoryStage[]>;
 	chapter: StoryChapter;
 	chapters: Observable<StoryChapter[]>;
-	chapterStages: Observable<StoryStage[]>;
+	list: Observable<SortableListItem<StoryStage>[]>;
 
-	constructor(private route: ActivatedRoute, private store: Store<StoryModuleState>) {}
+	subscriptionDragAndDrop: Subscription;
+
+	constructor(private route: ActivatedRoute, private store: Store<StoryModuleState>, private dragulaService: DragulaService) {}
 
 	ngOnInit() {
+		this.dragulaService.setOptions('stages', {
+			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0,
+		});
+
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) =>
+			this.store.dispatch(new MoveStoryStageAction(from, to))
+		);
+
 		this.templateStage = new ReplaySubject();
 		this.chapters = this.store.select(selectFeatureChapters);
-		this.stages = this.store.select(selectFeatureStages);
 
 		const chapterId$ = this.route.paramMap.pipe(map(params => params.get('id')));
 
@@ -41,8 +55,8 @@ export class ChapterComponent implements OnInit {
 			chapters.find((chapter: StoryChapter) => chapter.id === chapterId)
 		);
 
-		this.chapterStages = combineLatest(this.stages, chapterId$, (stages: StoryStage[], chapterId: string) =>
-			stages.filter((stage: StoryStage) => stage.chapter === chapterId)
+		this.list = combineLatest(this.store.select(selectFeatureStagesSortableList), chapterId$, (stages: SortableListItem<StoryStage>[], chapterId: string) =>
+			stages.filter((item: SortableListItem<StoryStage>) => item.data.chapter === chapterId)
 		);
 
 		chapterChange$.subscribe(chapter => {
@@ -52,8 +66,8 @@ export class ChapterComponent implements OnInit {
 		});
 	}
 
-	stageListItemIdentity(index: number, stage: StoryStage) {
-		return `${index}:${stage.id}`;
+	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {
+		return `index:${index}:id:${item.data.id}:version:${item.data.title}${item.data.content}`;
 	}
 
 	add() {
@@ -62,5 +76,9 @@ export class ChapterComponent implements OnInit {
 
 	stageAdd({ title, content, chapter }) {
 		this.store.dispatch(new AddStoryStageAction(title, content, chapter));
+	}
+
+	ngOnDestroy() {
+		this.subscriptionDragAndDrop.unsubscribe();
 	}
 }
