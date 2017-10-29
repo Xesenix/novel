@@ -12,6 +12,7 @@ import { MenuComponent } from 'story/container/menu/menu.component';
 import { ChapterComponent } from 'story/container/view/chapter/chapter.component';
 import { ChaptersComponent } from 'story/container/view/chapters/chapters.component';
 import { StageListComponent } from 'story/container/view/stage-list/stage-list.component';
+import { ChapterExistsGuard } from 'story/guard/chapter-exists.guard';
 import { StoryChapter } from 'story/model/story-chapter';
 import { StoryStage } from 'story/model/story-stage';
 import { reducer } from 'story/reducers';
@@ -49,6 +50,7 @@ export function provideInitialState() {
 		ListItemComponent,
 		ChapterMenuComponent,
 	],
+	providers: [ChapterExistsGuard],
 	exports: [StageListComponent],
 })
 export class StoryModule {}
