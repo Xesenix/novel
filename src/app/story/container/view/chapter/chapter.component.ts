@@ -35,7 +35,7 @@ export class ChapterComponent implements OnInit {
 		this.chapters = this.store.select(selectFeatureChapters);
 		this.stages = this.store.select(selectFeatureStages);
 
-		const chapterId$ = this.route.paramMap.pipe(map(params => params['id']));
+		const chapterId$ = this.route.paramMap.pipe(map(params => params.get('id')));
 
 		const chapterChange$ = combineLatest(this.chapters, chapterId$, (chapters: StoryChapter[], chapterId: string) =>
 			chapters.find((chapter: StoryChapter) => chapter.id === chapterId)

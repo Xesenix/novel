@@ -1,0 +1,14 @@
+$item-color: #eee;
+$item-color-active: #48d;
+
+.list-sub-group {
+	& > .list-group-item {
+		border-radius-right-top: 0;
+		border-radius-left-top: 0;
+		background-color: $item-color;
+		&.active {
+			background-color: $item-color-active;
+			border-color: $item-color-active;
+		}
+	}
+}

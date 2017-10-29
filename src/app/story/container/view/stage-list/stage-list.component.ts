@@ -26,13 +26,11 @@ export class StageListComponent implements OnDestroy {
 	@ViewChild('addForm') addForm: StageFormComponent;
 
 	@Input() stages: Observable<StoryStage[]>;
-	@Input() chapters: Observable<StoryChapter[]>;
 
 	subscriptionDragAndDrop: Subscription;
 
 	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {
 		this.stages = store.select(selectFeatureStages);
-		this.chapters = store.select(selectFeatureChapters);
 
 		this.dragulaService.setOptions('stages', {
 			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0,
