@@ -21,4 +21,10 @@ export class MoveStoryChapterAction implements Action {
 	constructor(public from: number, public to: number) {}
 }
 
-export type Actions = AddStoryChapterAction | RemoveStoryChapterAction | MoveStoryChapterAction;
+export const LIST_ITEM_UPDATE = 'STORY_UPDATE_CHAPTER';
+export class UpdateStoryChapterAction implements Action {
+	readonly type = LIST_ITEM_UPDATE;
+	constructor(public index: number, public id: string = null, public title: string = null) {}
+}
+
+export type Actions = AddStoryChapterAction | RemoveStoryChapterAction | MoveStoryChapterAction | UpdateStoryChapterAction;

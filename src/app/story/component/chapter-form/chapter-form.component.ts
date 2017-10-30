@@ -11,6 +11,7 @@ import { StoryChapter } from 'story/model/story-chapter';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChapterFormComponent implements OnChanges {
+	@Input() edit = false;
 	@Input() data: StoryChapter;
 	@Output() valueChange: BehaviorSubject<StoryChapter> = new BehaviorSubject<StoryChapter>(this.data);
 
@@ -28,5 +29,11 @@ export class ChapterFormComponent implements OnChanges {
 	ngOnChanges(changes: SimpleChanges) {
 		this.id.setValue(changes.data.currentValue.id);
 		this.title.setValue(changes.data.currentValue.title);
+
+		if (changes.edit.currentValue) {
+			this.id.disable();
+		} else {
+			this.id.enable();
+		}
 	}
 }

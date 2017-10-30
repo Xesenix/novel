@@ -13,6 +13,7 @@ import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction
 import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
 import { StoryChapter } from 'story/model/story-chapter';
 import { selectFeatureChapters, selectFeatureChaptersSortableList, StoryModuleState } from 'story/reducers';
+import { UpdateStoryChapterAction } from 'story/actions/chapter';
 
 @Component({
 	selector: 'xes-chapters',
@@ -41,23 +42,27 @@ export class ChaptersComponent implements OnDestroy {
 		});
 	}
 
-	listItemIdentity(index: number, item: SortableListItem<StoryChapter>) {
+	listItemIdentity(index: number, item: SortableListItem<StoryChapter>): string {
 		return `index:${index}:id:${item.data.id}:version:${item.data.title}`;
 	}
 
-	add() {
+	add(): void {
 		this.chapterAdd(this.addForm.valueChange.getValue());
 	}
 
-	chapterAdd({ title, id }) {
+	chapterAdd({ title, id }): void {
 		this.store.dispatch(new AddStoryChapterAction(id, title));
 	}
 
-	chapterRemove(index: number) {
+	chapterUpdate(index, { id, title }) {
+		this.store.dispatch(new UpdateStoryChapterAction(index, id, title));
+	}
+
+	chapterRemove(index: number): void {
 		this.store.dispatch(new RemoveStoryChapterAction(index));
 	}
 
-	ngOnDestroy() {
+	ngOnDestroy(): void {
 		this.subscriptionDragAndDrop.unsubscribe();
 	}
 }

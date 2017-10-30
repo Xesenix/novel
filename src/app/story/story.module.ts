@@ -18,6 +18,7 @@ import { StoryStage } from 'story/model/story-stage';
 import { reducer } from 'story/reducers';
 import { StoryRoutingModule } from 'story/routing/story-routing.module';
 import { ChapterMenuComponent } from 'story/component/chapter-menu/chapter-menu.component';
+import { ChapterListItemComponent } from 'story/component/chapter-list-item/chapter-list-item.component';
 
 export function provideInitialState() {
 	return {
@@ -49,6 +50,7 @@ export function provideInitialState() {
 		MenuComponent,
 		ListItemComponent,
 		ChapterMenuComponent,
+		ChapterListItemComponent,
 	],
 	providers: [ChapterExistsGuard],
 	exports: [StageListComponent],

@@ -1,0 +1,16 @@
+<h3>{{ chapter?.title }}<small>{{ chapter?.id }}</small></h3>
+<ng-container *ngIf="!isEdited">
+	<p>{{ chapter?.content }}</p>
+</ng-container>
+
+<div class="well" *ngIf="isEdited">
+	<xes-chapter-form #form [data]="chapter" [edit]="true"></xes-chapter-form>
+</div>
+
+<div class="btn-group">
+	<a class="btn btn-default" (click)="edit()" *ngIf="!isEdited" i18n>Edit</a>
+	<a class="btn btn-primary" (click)="update()" *ngIf="isEdited" i18n>Save</a>
+	<a class="btn btn-default" (click)="cancel()" *ngIf="isEdited" i18n>Cancel</a>
+	<a class="btn btn-default" [routerLink]="['/story/chapter/item/', chapter?.id]" i18n>View</a>
+	<a class="btn btn-danger" (click)="remove()" i18n>Remove</a>
+</div>
