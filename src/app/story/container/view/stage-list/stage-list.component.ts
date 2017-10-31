@@ -16,6 +16,7 @@ import { StageFormComponent } from 'story/component/stage-form/stage-form.compon
 import { StoryChapter } from 'story/model/story-chapter';
 import { StoryStage } from 'story/model/story-stage';
 import { selectFeatureChapters, selectFeatureStages, selectFeatureStagesSortableList, StoryModuleState } from 'story/reducers';
+import { hash } from 'app/utils/hash';
 
 @Component({
 	selector: 'xes-stage-list',
@@ -41,13 +42,13 @@ export class StageListComponent implements OnInit, OnDestroy {
 			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0,
 		});
 
-		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to, pick, drop }) =>
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) =>
 			this.store.dispatch(new MoveStoryStageAction(from, to))
 		);
 	}
 
 	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {
-		return `index:${index}:id:${item.data.id}:version:${item.data.title}${item.data.content}`;
+		return `index:${index}:${hash(item.data)}`;
 	}
 
 	add() {

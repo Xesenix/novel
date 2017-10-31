@@ -14,6 +14,7 @@ import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.
 import { StoryChapter } from 'story/model/story-chapter';
 import { selectFeatureChapters, selectFeatureChaptersSortableList, StoryModuleState } from 'story/reducers';
 import { UpdateStoryChapterAction } from 'story/actions/chapter';
+import { hash } from 'app/utils/hash';
 
 @Component({
 	selector: 'xes-chapters',
@@ -43,7 +44,7 @@ export class ChaptersComponent implements OnDestroy {
 	}
 
 	listItemIdentity(index: number, item: SortableListItem<StoryChapter>): string {
-		return `index:${index}:id:${item.data.id}:version:${item.data.title}`;
+		return `index:${index}:${hash(item.data)}`;
 	}
 
 	add(): void {
