@@ -46,7 +46,7 @@ export function sortableListReducerFactory<T>(actionTypes: { LIST_ITEM_MOVE: str
 }
 
 export function updatableListReducerFactory<T>(
-	itemFactory: (state: T[], action: any) => T,
+	itemReducer: (state: T[], action: any) => T,
 	actionTypes: {
 		LIST_ITEM_UPDATE: string;
 	}
@@ -54,7 +54,7 @@ export function updatableListReducerFactory<T>(
 	return (state: T[] = [], action) => {
 		switch (action.type) {
 			case actionTypes.LIST_ITEM_UPDATE:
-				state[action.index] = itemFactory(state, action);
+				state[action.index] = itemReducer(state, action);
 				return [...state];
 
 			default:

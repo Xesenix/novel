@@ -19,15 +19,19 @@ import { reducer } from 'story/reducers';
 import { StoryRoutingModule } from 'story/routing/story-routing.module';
 import { ChapterMenuComponent } from 'story/component/chapter-menu/chapter-menu.component';
 import { ChapterListItemComponent } from 'story/component/chapter-list-item/chapter-list-item.component';
+import { StageState } from 'story/reducers/stages';
 
 export function provideInitialState() {
 	return {
 		chapters: <StoryChapter[]>[{ title: 'Chapter I', id: 'ch-1' }, { title: 'Chapter II', id: 'ch-2' }],
-		stages: <StoryStage[]>[
-			{ id: '0', title: 'Brave new world', content: 'Darkness was lighted by volcanos spewing yellow glowing sulfur.', chapter: 'ch-1' },
-			{ id: '1', title: 'Creatures of darkness', content: 'In shadows of caves lurked creatures born from darkness.', chapter: 'ch-2' },
-			{ id: '2', title: 'Endless void', content: "When you look deep into void it's fills your mind with emptiness.", chapter: 'ch-2' },
-		],
+		stages: <StageState>{
+			versions: {},
+			list: <StoryStage[]>[
+				{ id: '0', title: 'Brave new world', content: 'Darkness was lighted by volcanos spewing yellow glowing sulfur.', chapter: 'ch-1' },
+				{ id: '1', title: 'Creatures of darkness', content: 'In shadows of caves lurked creatures born from darkness.', chapter: 'ch-2' },
+				{ id: '2', title: 'Endless void', content: "When you look deep into void it's fills your mind with emptiness.", chapter: 'ch-2' },
+			],
+		},
 	};
 }
 @NgModule({

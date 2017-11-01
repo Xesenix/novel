@@ -18,7 +18,7 @@ export const reducer: ActionReducerMap<StoryModuleState> = {
 
 // TODO: now module reducer needs to know where it will be mounted in global state, find a way to decouple it from global state knowledge
 export const selectFeatureStory = createFeatureSelector<StoryModuleState>('story'); // argument passed here is path from root state
-export const selectFeatureStages = createSelector(selectFeatureStory, (store: StoryModuleState) => store.stages);
+export const selectFeatureStages = createSelector(selectFeatureStory, (store: StoryModuleState) => store.stages.list);
 export const selectFeatureStagesSortableList = createSelector(selectFeatureStages, (stages: StoryStage[]) => {
 	console.log('update stages list');
 	return stages.map((stage: StoryStage, index: number) => new SortableListItem<StoryStage>(stage, index));
