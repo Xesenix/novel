@@ -24,13 +24,15 @@
 					Stage contains few paragraphs that tell story from one <strong>point of view</strong> that progresses action forward.
 					We distinguish two types of stages <strong>proactive</strong> and <strong>reactive</strong>.
 				</div>
+				<button class="btn btn-primary" [disabled]="!stagesService.canUndo()" (click)="stagesService.undo()" i18n>Undo</button>
+				<button class="btn btn-primary" [disabled]="!stagesService.canRedo()" (click)="stagesService.redo()" i18n>Redo</button>
 			</div>
 			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
 				<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
 					<xes-stage-list-item
 						[stage]="item.data"
-						(updateSignal)="stageUpdate(item.index, $event)"
-						(removeSignal)="stageRemove(item.index)"
+						(updateSignal)="stagesService.update(item.index, $event)"
+						(removeSignal)="stagesService.remove(item.index)"
 					></xes-stage-list-item>
 					<a class="handle glyphicon glyphicon-move"></a>
 					<div class="text-right text-muted">

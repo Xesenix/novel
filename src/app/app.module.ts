@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { handleUndo } from 'ngrx-undo';
 
 import { AppComponent } from 'app/app.component';
 import { reducer } from 'app/reducers';
@@ -21,7 +22,9 @@ import { StoryModule } from 'story/story.module';
 		AppRoutingModule,
 		CharactersModule,
 		StoryModule,
-		StoreModule.forRoot(reducer),
+		StoreModule.forRoot(reducer, {
+			metaReducers: [handleUndo],
+		}),
 		// do not use with @ngrx/router-store (performance issue)
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,

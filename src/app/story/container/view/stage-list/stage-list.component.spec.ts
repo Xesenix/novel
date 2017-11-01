@@ -9,6 +9,7 @@ import { AddStoryStageAction, RemoveStoryStageAction } from 'story/actions/stage
 import { StageListComponent } from 'story/container/view/stage-list/stage-list.component';
 import { StoryStage } from 'story/model/story-stage';
 import { provideInitialState } from 'story/story.module';
+import { StagesService } from 'story/service/stages.service';
 
 // FIXME: need to decouple module from global state
 
@@ -22,7 +23,7 @@ describe('story:StageListComponent', () => {
 				declarations: [StageListComponent],
 				schemas: [NO_ERRORS_SCHEMA],
 				imports: [NoopAnimationsModule, StoreModule.forRoot(rootReducer, { initialState: { story: provideInitialState() } })],
-				providers: [DragulaService],
+				providers: [DragulaService, StagesService],
 			}).compileComponents();
 		})
 	);
@@ -35,36 +36,6 @@ describe('story:StageListComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
-	});
-
-	describe('stageAdd', () => {
-		it(
-			'should dispatch AddStoryStageAction',
-			inject([Store], (store: Store<AppState>) => {
-				const title = 'title';
-				const content = 'content';
-				const chapter = 'ch-1';
-				spyOn(store, 'dispatch');
-
-				component.stageAdd({ title, content, chapter });
-
-				expect(store.dispatch).toHaveBeenCalledWith(new AddStoryStageAction(title, content, chapter));
-			})
-		);
-	});
-
-	describe('stageRemove', () => {
-		it(
-			'should dispatch RemoveStoryStageAction',
-			inject([Store], (store: Store<AppState>) => {
-				const index = 0;
-				spyOn(store, 'dispatch');
-
-				component.stageRemove(index);
-
-				expect(store.dispatch).toHaveBeenCalledWith(new RemoveStoryStageAction(index));
-			})
-		);
 	});
 
 	// TODO: test that after start dragging after drop no action is dispatched

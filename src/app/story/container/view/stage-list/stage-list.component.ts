@@ -1,3 +1,4 @@
+import { StagesService } from 'story/service/stages.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -11,7 +12,6 @@ import { Subscriber, Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { SortableListItem } from 'app/reducers/list';
-import { AddStoryStageAction, MoveStoryStageAction, RemoveStoryStageAction, UpdateStoryStageAction } from 'story/actions/stage';
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
 import { StoryChapter } from 'story/model/story-chapter';
 import { StoryStage } from 'story/model/story-stage';
@@ -33,7 +33,9 @@ export class StageListComponent implements OnInit, OnDestroy {
 
 	subscriptionDragAndDrop: Subscription;
 
-	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {}
+	undo: any[] = [];
+
+	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService, public stagesService: StagesService) {}
 
 	ngOnInit() {
 		this.list = this.store.select(selectFeatureStagesSortableList).share();
@@ -42,9 +44,7 @@ export class StageListComponent implements OnInit, OnDestroy {
 			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0,
 		});
 
-		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) =>
-			this.store.dispatch(new MoveStoryStageAction(from, to))
-		);
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) => this.stagesService.move(from, to));
 	}
 
 	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {
@@ -52,19 +52,7 @@ export class StageListComponent implements OnInit, OnDestroy {
 	}
 
 	add() {
-		this.stageAdd(this.addForm.valueChange.getValue());
-	}
-
-	stageAdd({ title, content, chapter }) {
-		this.store.dispatch(new AddStoryStageAction(title, content, chapter));
-	}
-
-	stageUpdate(index, { id, title, content, chapter }) {
-		this.store.dispatch(new UpdateStoryStageAction(index, id, title, content, chapter));
-	}
-
-	stageRemove(index: number) {
-		this.store.dispatch(new RemoveStoryStageAction(index));
+		this.stagesService.add(this.addForm.valueChange.getValue());
 	}
 
 	ngOnDestroy() {
