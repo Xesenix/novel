@@ -18,6 +18,8 @@
 		]
 	},
 	"files": [
+		"main.ts",
+		"polyfills.ts",
 		"test.app.ts"
 	],
 	"include": [

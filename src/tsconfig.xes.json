@@ -18,6 +18,10 @@
 		"module": "es2015",
 		"types": []
 	},
+	"files": [
+		"main.ts",
+		"polyfills.ts"
+	],
 	"include": [
 		"app/*",
 		"xes/*"
