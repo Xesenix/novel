@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -9,12 +10,12 @@ import { Observable, Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { SortableListItem } from 'app/reducers/list';
-import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction } from 'story/actions/chapter';
+import { hash } from 'app/utils/hash';
+import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction, UpdateStoryChapterAction } from 'story/actions/chapter';
 import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
 import { StoryChapter } from 'story/model/story-chapter';
 import { selectFeatureChapters, selectFeatureChaptersSortableList, StoryModuleState } from 'story/reducers';
-import { UpdateStoryChapterAction } from 'story/actions/chapter';
-import { hash } from 'app/utils/hash';
+import { ChapterService } from 'story/service/chapter.service';
 
 @Component({
 	selector: 'xes-chapters',
@@ -31,16 +32,21 @@ export class ChaptersComponent implements OnDestroy {
 
 	subscriptionDragAndDrop: Subscription;
 
-	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService) {
+	constructor(
+		private store: Store<StoryModuleState>,
+		private dragulaService: DragulaService,
+		public chapterService: ChapterService,
+		private activatedRoute: ActivatedRoute
+	) {
 		this.list = store.select(selectFeatureChaptersSortableList);
 
 		this.dragulaService.setOptions('chapters', {
 			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0,
 		});
 
-		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'chapters').subscribe(({ from, to }) => {
-			this.store.dispatch(new MoveStoryChapterAction(from, to));
-		});
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'chapters').subscribe(({ from, to }) => this.chapterService.move(from, to));
+
+		this.activatedRoute.data.subscribe(data => console.log('router', data));
 	}
 
 	listItemIdentity(index: number, item: SortableListItem<StoryChapter>): string {
@@ -48,19 +54,7 @@ export class ChaptersComponent implements OnDestroy {
 	}
 
 	add(): void {
-		this.chapterAdd(this.addForm.valueChange.getValue());
-	}
-
-	chapterAdd({ title, id }): void {
-		this.store.dispatch(new AddStoryChapterAction(id, title));
-	}
-
-	chapterUpdate(index, { id, title }) {
-		this.store.dispatch(new UpdateStoryChapterAction(index, id, title));
-	}
-
-	chapterRemove(index: number): void {
-		this.store.dispatch(new RemoveStoryChapterAction(index));
+		this.chapterService.add(this.addForm.valueChange.getValue());
 	}
 
 	ngOnDestroy(): void {

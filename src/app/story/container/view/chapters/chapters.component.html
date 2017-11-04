@@ -18,13 +18,15 @@
 				<h2 i18n>Story chapters:</h2>
 			</div>
 			<div class="panel-body">
+				<button class="btn btn-primary" [disabled]="!chapterService.canUndo()" (click)="chapterService.undo()" i18n>Undo</button>
+				<button class="btn btn-primary" [disabled]="!chapterService.canRedo()" (click)="chapterService.redo()" i18n>Redo</button>
 			</div>
 			<ul class="list-group sortable" [dragula]="'chapters'" data-label="drag&drop" i18n-data-label>
 				<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
 					<xes-chapter-list-item
 						[chapter]="item.data"
-						(updateSignal)="chapterUpdate(item.index, $event)"
-						(removeSignal)="chapterRemove(item.index)"
+						(updateSignal)="chapterService.update(item.index, $event)"
+						(removeSignal)="chapterService.remove(item.index)"
 					></xes-chapter-list-item>
 					<a class="handle glyphicon glyphicon-move"></a>
 				</li>

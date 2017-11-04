@@ -27,4 +27,5 @@ export class UpdateStoryChapterAction implements Action {
 	constructor(public index: number, public id: string = null, public title: string = null) {}
 }
 
+export const LIST_ACTIONS = [LIST_ADD, LIST_REMOVE, LIST_ITEM_MOVE, LIST_ITEM_UPDATE];
 export type Actions = AddStoryChapterAction | RemoveStoryChapterAction | MoveStoryChapterAction | UpdateStoryChapterAction;

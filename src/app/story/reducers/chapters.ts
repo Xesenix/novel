@@ -1,4 +1,5 @@
 import { listReducerFactory, sortableListReducerFactory, updatableListReducerFactory } from 'app/reducers/list';
+import { LIST_ACTIONS } from 'story/actions/chapter';
 import * as actions from 'story/actions/chapter';
 import { StoryChapter } from 'story/model/story-chapter';
 
@@ -10,8 +11,10 @@ const sortableReducer = sortableListReducerFactory(actions);
 const updateReducer = updatableListReducerFactory<StoryChapter>(itemFactory, actions);
 
 export function reducer(state, action): ChaptersState {
-	state = listReducer(state, action);
-	state = sortableReducer(state, action);
-	state = updateReducer(state, action);
+	if (LIST_ACTIONS.indexOf(action.type) > -1) {
+		state = listReducer(state, action);
+		state = sortableReducer(state, action);
+		state = updateReducer(state, action);
+	}
 	return state;
 }
