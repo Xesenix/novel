@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { undo } from 'ngrx-undo';
+import { undo } from 'xes-ngrx-undo';
 
 @Injectable()
 export class RepositoryService<T> {

@@ -3,6 +3,7 @@ import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store, StoreModule } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
+import { undoBehavior } from 'xes-ngrx-undo';
 
 import { AppState, reducer as rootReducer } from 'app/reducers';
 import { AddStoryStageAction, RemoveStoryStageAction } from 'story/actions/stage';
@@ -22,7 +23,13 @@ describe('story:StageListComponent', () => {
 			TestBed.configureTestingModule({
 				declarations: [StageListComponent],
 				schemas: [NO_ERRORS_SCHEMA],
-				imports: [NoopAnimationsModule, StoreModule.forRoot(rootReducer, { initialState: { story: provideInitialState() } })],
+				imports: [
+					NoopAnimationsModule,
+					StoreModule.forRoot(rootReducer, {
+						initialState: { story: provideInitialState() },
+						metaReducers: [undoBehavior(100)],
+					}),
+				],
 				providers: [DragulaService, StagesService],
 			}).compileComponents();
 		})

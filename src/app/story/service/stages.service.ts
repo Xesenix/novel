@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { undo } from 'ngrx-undo';
 
 import { MoveStoryStageAction, AddStoryStageAction, UpdateStoryStageAction, RemoveStoryStageAction } from 'story/actions/stage';
 import { StoryModuleState } from 'story/reducers';

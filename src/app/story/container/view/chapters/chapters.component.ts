@@ -32,12 +32,7 @@ export class ChaptersComponent implements OnDestroy {
 
 	subscriptionDragAndDrop: Subscription;
 
-	constructor(
-		private store: Store<StoryModuleState>,
-		private dragulaService: DragulaService,
-		public chapterService: ChapterService,
-		private activatedRoute: ActivatedRoute
-	) {
+	constructor(private store: Store<StoryModuleState>, private dragulaService: DragulaService, public chapterService: ChapterService) {
 		this.list = store.select(selectFeatureChaptersSortableList);
 
 		this.dragulaService.setOptions('chapters', {
@@ -45,8 +40,6 @@ export class ChaptersComponent implements OnDestroy {
 		});
 
 		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'chapters').subscribe(({ from, to }) => this.chapterService.move(from, to));
-
-		this.activatedRoute.data.subscribe(data => console.log('router', data));
 	}
 
 	listItemIdentity(index: number, item: SortableListItem<StoryChapter>): string {

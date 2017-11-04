@@ -4,6 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
+import { undoBehavior } from 'xes-ngrx-undo';
 
 import { reducer as rootReducer } from 'app/reducers';
 import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
@@ -22,7 +23,13 @@ describe('story:ChapterComponent', () => {
 			TestBed.configureTestingModule({
 				declarations: [ChapterComponent, StageFormComponent],
 				schemas: [NO_ERRORS_SCHEMA],
-				imports: [NoopAnimationsModule, StoreModule.forRoot(rootReducer, { initialState: { story: provideInitialState() } })],
+				imports: [
+					NoopAnimationsModule,
+					StoreModule.forRoot(rootReducer, {
+						initialState: { story: provideInitialState() },
+						metaReducers: [undoBehavior(100)],
+					}),
+				],
 				providers: [
 					{
 						provide: ActivatedRoute,

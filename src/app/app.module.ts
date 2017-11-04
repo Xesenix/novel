@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { handleUndo } from 'ngrx-undo';
+import { undoBehavior } from 'xes-ngrx-undo';
 
 import { AppComponent } from 'app/app.component';
 import { reducer } from 'app/reducers';
@@ -14,6 +14,11 @@ import { StoryModule } from 'story/story.module';
 
 // import { EffectsModule } from '@ngrx/effects';
 
+const undoBehaviorReducerDecorator = undoBehavior(100);
+export function undoBehaviorReducer(rootReducer: any) {
+	return undoBehaviorReducerDecorator(rootReducer);
+}
+
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -23,7 +28,7 @@ import { StoryModule } from 'story/story.module';
 		CharactersModule,
 		StoryModule,
 		StoreModule.forRoot(reducer, {
-			metaReducers: [handleUndo],
+			metaReducers: [undoBehaviorReducer],
 		}),
 		// do not use with @ngrx/router-store (performance issue)
 		StoreDevtoolsModule.instrument({

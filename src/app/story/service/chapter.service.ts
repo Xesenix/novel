@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { undo } from 'ngrx-undo';
+
 import { RemoveStoryChapterAction, UpdateStoryChapterAction, AddStoryChapterAction, MoveStoryChapterAction } from 'story/actions/chapter';
 import { StoryModuleState } from 'story/reducers';
 import { RepositoryService } from 'story/service/repository.service';

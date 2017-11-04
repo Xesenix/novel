@@ -1,15 +1,22 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
+import { undoBehavior } from 'xes-ngrx-undo';
 
-import { StagesService } from 'story/service/stages.service';
 import { reducer as rootReducer, AppState } from 'app/reducers';
 import { AddStoryStageAction, RemoveStoryStageAction } from 'story/actions/stage';
+import { StagesService } from 'story/service/stages.service';
+import { provideInitialState } from 'story/story.module';
 
 describe('StagesService', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
+			imports: [
+				StoreModule.forRoot(rootReducer, {
+					initialState: { story: provideInitialState() },
+					metaReducers: [undoBehavior(100)],
+				}),
+			],
 			providers: [StagesService],
-			imports: [StoreModule.forRoot(rootReducer)],
 		});
 	});
 
