@@ -55,14 +55,7 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 	 * @memberof CanvasComponent
 	 */
 	initPixi() {
-		// prepare renderer
-		this.renderer = PIXI.autoDetectRenderer({
-			transparent: true,
-			autoResize: true,
-		});
-		this.renderer.view.style.width = '100%';
-		this.renderer.view.style.height = '100%';
-		this.renderer.resize(window.innerWidth, window.innerHeight);
+		this.renderer = this.pixi.renderer.renderer;
 
 		// attach canvas to dom
 		this.host.nativeElement.appendChild(this.renderer.view);

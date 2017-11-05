@@ -10,6 +10,7 @@ import { reducer } from 'app/reducers';
 import { AppRoutingModule } from 'app/routing/app-routing.module';
 import { CharactersModule } from 'characters/characters.module';
 import { PixiService } from 'pixi/pixi.service';
+import { RendererService } from 'pixi/renderer.service';
 import { StoryModule } from 'story/story.module';
 
 // import { EffectsModule } from '@ngrx/effects';
@@ -36,7 +37,7 @@ export function undoBehaviorReducer(rootReducer: any) {
 		}),
 		// EffectsModule.forRoot([]),
 	],
-	providers: [PixiService],
+	providers: [PixiService, RendererService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

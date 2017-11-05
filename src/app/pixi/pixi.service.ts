@@ -1,12 +1,14 @@
 /* tslint:disable:no-console */
 import { Injectable } from '@angular/core';
 
+import { RendererService } from 'pixi/renderer.service';
+
 @Injectable()
 export class PixiService {
 	private assets: string[] = [];
 	private loadPromise = null;
 
-	constructor() {
+	constructor(public renderer: RendererService) {
 		console.debug('PixiService:new');
 	}
 

@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PixiService } from 'pixi/pixi.service';
 import { CanvasComponent } from 'pixi/canvas/canvas.component';
+import { RendererService } from 'pixi/renderer.service';
 
 describe('pixi:CanvasComponent', () => {
 	let component: CanvasComponent;
@@ -11,7 +12,7 @@ describe('pixi:CanvasComponent', () => {
 		async(() => {
 			TestBed.configureTestingModule({
 				declarations: [CanvasComponent],
-				providers: [PixiService],
+				providers: [PixiService, RendererService],
 			}).compileComponents();
 		})
 	);
