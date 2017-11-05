@@ -1,22 +1,22 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { of } from 'rxjs/observable/of';
-import { filter, flatMap, map, share, switchMap, tap } from 'rxjs/operators';
-import { BehaviorSubject, ReplaySubject, Subject, Subscription } from 'rxjs/Rx';
+import { map } from 'rxjs/operators';
+import { ReplaySubject, Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { SortableListItem } from 'app/reducers/list';
+import { hash } from 'app/utils/hash';
 import { AddStoryStageAction, MoveStoryStageAction } from 'story/actions/stage';
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
 import { StoryChapter } from 'story/model/story-chapter';
 import { StoryStage } from 'story/model/story-stage';
-import { selectFeatureChapters, selectFeatureStages, selectFeatureStagesSortableList, StoryModuleState } from 'story/reducers';
-import { hash } from 'app/utils/hash';
+import { selectFeatureChapters, selectFeatureStagesSortableList, StoryModuleState } from 'story/reducers';
 
 @Component({
 	selector: 'xes-chapter',

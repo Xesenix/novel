@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, ConnectableObservable, Observable } from 'rxjs/Rx';
+import { BehaviorSubject, Observable } from 'rxjs/Rx';
 
-import { selectFeatureChapters, StoryModuleState } from 'story/reducers/index';
-import { StoryStage } from 'story/model/story-stage';
 import { StoryChapter } from 'story/model/story-chapter';
+import { StoryStage } from 'story/model/story-stage';
+import { selectFeatureChapters, StoryModuleState } from 'story/reducers';
 
 @Component({
 	selector: 'xes-stage-form',

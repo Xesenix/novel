@@ -1,4 +1,3 @@
-import { BehaviorSubject } from 'rxjs/Rx';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';

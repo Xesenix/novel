@@ -7,7 +7,7 @@ import { AddStoryStageAction, RemoveStoryStageAction } from 'story/actions/stage
 import { StagesService } from 'story/service/stages.service';
 import { provideInitialState } from 'story/story.module';
 
-describe('StagesService', () => {
+describe('story:StagesService', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [

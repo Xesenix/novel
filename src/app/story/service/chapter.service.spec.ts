@@ -6,7 +6,7 @@ import { reducer as rootReducer } from 'app/reducers';
 import { ChapterService } from 'story/service/chapter.service';
 import { provideInitialState } from 'story/story.module';
 
-describe('ChapterService', () => {
+describe('story:ChapterService', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [

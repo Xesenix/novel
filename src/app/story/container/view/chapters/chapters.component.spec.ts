@@ -7,8 +7,8 @@ import { undoBehavior } from 'xes-ngrx-undo';
 
 import { AppState, reducer as rootReducer } from 'app/reducers';
 import { ChaptersComponent } from 'story/container/view/chapters/chapters.component';
-import { provideInitialState } from 'story/story.module';
 import { ChapterService } from 'story/service/chapter.service';
+import { provideInitialState } from 'story/story.module';
 
 describe('story:ChaptersComponent', () => {
 	let component: ChaptersComponent;

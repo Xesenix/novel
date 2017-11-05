@@ -1,7 +1,7 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChapterListItemComponent } from './chapter-list-item.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChapterListItemComponent } from 'story/component/chapter-list-item/chapter-list-item.component';
 
 describe('ChapterListItemComponent', () => {
 	let component: ChapterListItemComponent;

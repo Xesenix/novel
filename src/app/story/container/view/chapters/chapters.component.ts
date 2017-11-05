@@ -1,20 +1,16 @@
-import { ActivatedRoute } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
-import 'rxjs/add/operator/combineLatest';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
 import { Observable, Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { SortableListItem } from 'app/reducers/list';
 import { hash } from 'app/utils/hash';
-import { AddStoryChapterAction, MoveStoryChapterAction, RemoveStoryChapterAction, UpdateStoryChapterAction } from 'story/actions/chapter';
 import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
 import { StoryChapter } from 'story/model/story-chapter';
-import { selectFeatureChapters, selectFeatureChaptersSortableList, StoryModuleState } from 'story/reducers';
+import { selectFeatureChaptersSortableList, StoryModuleState } from 'story/reducers';
 import { ChapterService } from 'story/service/chapter.service';
 
 @Component({

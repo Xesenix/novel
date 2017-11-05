@@ -1,22 +1,17 @@
-import { StagesService } from 'story/service/stages.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import 'rxjs/add/operator/combineLatest';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { switchMap } from 'rxjs/operator/switchMap';
-import { Subscriber, Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { SortableListItem } from 'app/reducers/list';
-import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
-import { StoryChapter } from 'story/model/story-chapter';
-import { StoryStage } from 'story/model/story-stage';
-import { selectFeatureChapters, selectFeatureStages, selectFeatureStagesSortableList, StoryModuleState } from 'story/reducers';
 import { hash } from 'app/utils/hash';
+import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
+import { StoryStage } from 'story/model/story-stage';
+import { selectFeatureStagesSortableList, StoryModuleState } from 'story/reducers';
+import { StagesService } from 'story/service/stages.service';
 
 @Component({
 	selector: 'xes-stage-list',
