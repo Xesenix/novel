@@ -1,45 +1,59 @@
-<xes-primary-layout>
-	<h1 slot="title-bar">Story stages list</h1>
-	<ng-container slot="side-bar">
-		<xes-menu></xes-menu>
-	</ng-container>
+<ng-template #defaultLayout>
+	<div class="container">
+		Layout:
+		<ng-container *ngTemplateOutlet="titleBar"></ng-container>
+		<ng-container *ngTemplateOutlet="sideBar"></ng-container>
+		<ng-container *ngTemplateOutlet="content"></ng-container>
+		Transclude:
+		<ng-content></ng-content>
+	</div>
+</ng-template>
 
-	<ng-container slot="content">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h2 i18n>Add new story stage</h2>
-			</div>
-			<div class="panel-body">
-				<xes-stage-form #addForm></xes-stage-form>
+<ng-template #titleBar>
+	<h1>Story stages list</h1>
+</ng-template>
 
-				<a class="btn btn-primary" (click)="add()" i18n>Add</a>
-			</div>
+<ng-template #sideBar>
+	<xes-menu></xes-menu>
+</ng-template>
+
+<ng-template #content>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h2 i18n>Add new story stage</h2>
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h2 i18n>Story stages:</h2>
+		<div class="panel-body">
+			<xes-stage-form #addForm></xes-stage-form>
+
+			<a class="btn btn-primary" (click)="add()" i18n>Add</a>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2 i18n>Story stages:</h2>
+		</div>
+		<div class="panel-body">
+			<div class="alert alert-info" i18n>
+				Stage contains few paragraphs that tell story from one <strong>point of view</strong> that progresses action forward.
+				We distinguish two types of stages <strong>proactive</strong> and <strong>reactive</strong>.
 			</div>
-			<div class="panel-body">
-				<div class="alert alert-info" i18n>
-					Stage contains few paragraphs that tell story from one <strong>point of view</strong> that progresses action forward.
-					We distinguish two types of stages <strong>proactive</strong> and <strong>reactive</strong>.
+			<button class="btn btn-primary" [disabled]="!stagesService.canUndo()" (click)="stagesService.undo()" i18n>Undo</button>
+			<button class="btn btn-primary" [disabled]="!stagesService.canRedo()" (click)="stagesService.redo()" i18n>Redo</button>
+		</div>
+		<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
+			<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
+				<xes-stage-list-item
+					[stage]="item.data"
+					(updateSignal)="stagesService.update(item.index, $event)"
+					(removeSignal)="stagesService.remove(item.index)"
+				></xes-stage-list-item>
+				<a class="handle glyphicon glyphicon-move"></a>
+				<div class="text-right text-muted">
+					<var>list index: {{$index}} | {{listItemIdentity($index,item)}}</var>
 				</div>
-				<button class="btn btn-primary" [disabled]="!stagesService.canUndo()" (click)="stagesService.undo()" i18n>Undo</button>
-				<button class="btn btn-primary" [disabled]="!stagesService.canRedo()" (click)="stagesService.redo()" i18n>Redo</button>
-			</div>
-			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
-				<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
-					<xes-stage-list-item
-						[stage]="item.data"
-						(updateSignal)="stagesService.update(item.index, $event)"
-						(removeSignal)="stagesService.remove(item.index)"
-					></xes-stage-list-item>
-					<a class="handle glyphicon glyphicon-move"></a>
-					<div class="text-right text-muted">
-						<var>list index: {{$index}} | {{listItemIdentity($index,item)}}</var>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</ng-container>
-</xes-primary-layout>
+			</li>
+		</ul>
+	</div>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="layout ? layout : defaultLayout; context: { titleBar: titleBar, sideBar: sideBar, content: content }"><h3>Hello</h3></ng-container>

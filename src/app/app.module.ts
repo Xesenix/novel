@@ -7,6 +7,7 @@ import { undoBehavior } from 'xes-ngrx-undo';
 
 import { AppComponent } from 'app/app.component';
 import { reducer } from 'app/reducers';
+import { LayoutResolver } from 'app/resolver/layout.resolver';
 import { AppRoutingModule } from 'app/routing/app-routing.module';
 import { CharactersModule } from 'characters/characters.module';
 import { PixiService } from 'pixi/pixi.service';
@@ -37,7 +38,7 @@ export function undoBehaviorReducer(rootReducer: any) {
 		}),
 		// EffectsModule.forRoot([]),
 	],
-	providers: [PixiService, RendererService],
+	providers: [PixiService, RendererService, LayoutResolver],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

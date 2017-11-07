@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 
 import { PrimaryLayoutComponent } from 'layout/primary-layout/primary-layout.component';
 import { PixiModule } from 'pixi/pixi.module';
+import { SimpleLayoutComponent } from './simple-layout/simple-layout.component';
 
 @NgModule({
 	imports: [CommonModule, RouterModule, PixiModule],
-	declarations: [PrimaryLayoutComponent],
+	declarations: [PrimaryLayoutComponent, SimpleLayoutComponent],
 	exports: [PrimaryLayoutComponent],
 })
 export class LayoutModule {}
