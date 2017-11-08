@@ -10,5 +10,6 @@ import { SimpleLayoutComponent } from './simple-layout/simple-layout.component';
 	imports: [CommonModule, RouterModule, PixiModule],
 	declarations: [PrimaryLayoutComponent, SimpleLayoutComponent],
 	exports: [PrimaryLayoutComponent],
+	entryComponents: [PrimaryLayoutComponent],
 })
 export class LayoutModule {}

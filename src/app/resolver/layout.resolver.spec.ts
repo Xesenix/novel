@@ -1,6 +1,6 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
-import { LayoutResolver } from 'app/service/layout.resolver';
+import { LayoutResolver } from 'app/resolver/layout.resolver';
 
 describe('app:LayoutResolver', () => {
 	beforeEach(() => {

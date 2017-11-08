@@ -8,9 +8,4 @@ import { ChangeDetectionStrategy, Component, ContentChild, Input, TemplateRef } 
 })
 export class PrimaryLayoutComponent {
 	@Input() brandName: string;
-
-	@Input() menuTemplate: TemplateRef<any>;
-	@Input() contentTemplate: TemplateRef<any>;
-	@Input() titleBarTemplate: TemplateRef<any>;
-	@Input() sideBarTemplate: TemplateRef<any>;
 }

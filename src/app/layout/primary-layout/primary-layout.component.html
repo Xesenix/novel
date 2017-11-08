@@ -12,14 +12,11 @@
 	<div class="row">
 		<div class="col-lg-4 pull-right">
 			<ng-content select="[slot=side-bar]"></ng-content>
-			<ng-container *ngTemplateOutlet="sideBarTemplate"></ng-container>
 		</div>
 		<div class="col-lg-8">
 			<ng-content select="[slot=content]"></ng-content>
-			<ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
 		</div>
 	</div>
 </div>
-
 
 <xes-canvas [ngStyle]="{ position: 'fixed', left: 0, right: 0, top: 0, bottom: 0, 'z-index': -1, 'background': '#000 url(assets/bg-00.png) repeat -10px -10px' }"></xes-canvas>
