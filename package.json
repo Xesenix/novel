@@ -8,6 +8,8 @@
 		"start": "ng serve",
 		"serve:app:pl": "ng serve --aot --app app --i18n-format xlf --i18n-file src/app/locale/messages.pl.xlf --locale pl",
 		"serve:app:en": "ng serve --aot --app app --i18n-format xlf --i18n-file src/app/locale/messages.en.xlf --locale en",
+		"serve:xes:pl": "ng serve --app xes --i18n-format xlf --i18n-file src/app/locale/messages.pl.xlf --locale pl",
+		"serve:xes:en": "ng serve --app xes --i18n-format xlf --i18n-file src/app/locale/messages.en.xlf --locale en",
 		"build": "npm run build:app",
 		"build:app": "ts-node scripts/build.langs.ts --app app --langs \"pl en\"",
 		"build:xes": "ts-node scripts/build.langs.ts --app xes --langs \"pl en\"",

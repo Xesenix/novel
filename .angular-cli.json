@@ -55,6 +55,13 @@
 				"../node_modules/dragula/dist/dragula.css",
 				"styles.scss"
 			],
+			"stylePreprocessorOptions": {
+				"includePaths": [
+					"./xes/layout",
+					"./app/layout",
+					"./styles"
+				]
+			},
 			"scripts": [],
 			"environmentSource": "environments/environment.ts",
 			"environments": {
