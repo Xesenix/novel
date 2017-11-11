@@ -2,11 +2,28 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewCh
 
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
 import { StoryStage } from 'story/model/story-stage';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 export const component = {
 	selector: 'xes-stage-list-item',
 	templateUrl: './list-item.component.html',
 	styleUrls: ['./list-item.component.scss'],
+	animations: [
+		trigger('itemState', [
+			transition(':enter', [
+				style({ transform: 'scale(2)', opacity: '0', filter: 'blur(20px)' }),
+				animate(500, style({ transform: 'scale(1)', opacity: '1', filter: 'blur(0px)' })),
+			]),
+			transition(':leave', [
+				style({ transform: 'scale(1)', opacity: '1', filter: 'blur(0px)' }),
+				animate(500, style({ transform: 'scale(2)', opacity: '0', filter: 'blur(20px)' })),
+			]),
+		]),
+		trigger('itemDescriptionState', [
+			transition(':enter', [style({ filter: 'blur(10px)' }), animate(500, style({ filter: 'blur(0px)' }))]),
+			transition(':leave', [style({ filter: 'blur(0px)', opacity: 1, position: 'absolute' }), animate(500, style({ filter: 'blur(10px)', opacity: 0 }))]),
+		]),
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 };
 @Component(component)

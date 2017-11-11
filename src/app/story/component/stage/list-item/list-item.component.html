@@ -1,9 +1,7 @@
 <h3>{{ stage?.title }}</h3>
-<ng-container *ngIf="!isEdited">
-	<p>{{ stage?.content }}</p>
-</ng-container>
+<p *ngIf="!isEdited" [@itemDescriptionState]>{{ stage?.content }}</p>
 
-<div class="well" *ngIf="isEdited">
+<div class="well" *ngIf="isEdited" [@itemState]>
 	<xes-stage-form #form [data]="stage"></xes-stage-form>
 </div>
 
