@@ -1,6 +1,6 @@
 $drop-zone-height: 60px;
 
-@mixin drop-zone() {
+@mixin drop-zone {
 	content: attr(data-label);
 	display: block;
 	height: $drop-zone-height;
@@ -14,7 +14,7 @@ $drop-zone-height: 60px;
 	text-shadow: 1px 1px #fff;
 }
 
-.sortable {
+@mixin sortable {
 	padding-top: $drop-zone-height;
 	padding-bottom: $drop-zone-height;
 	position: relative;
@@ -35,7 +35,7 @@ $drop-zone-height: 60px;
 	}
 }
 
-.handle {
+@mixin handle {
 	position: absolute;
 	top: 20px;
 	right: 20px;
@@ -48,5 +48,15 @@ $drop-zone-height: 60px;
 		color: #8f8;
 		transform: scale(1.5);
 		cursor: pointer;
+	}
+}
+
+@mixin list {
+	.sortable-container {
+		@include sortable;
+	}
+
+	.sortable-handle {
+		@include handle;
 	}
 }

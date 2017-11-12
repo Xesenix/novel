@@ -14,3 +14,21 @@
 	<a class="btn btn-default" [routerLink]="['/story/chapter/item/', chapter?.id]" i18n>View</a>
 	<a class="btn btn-danger" (click)="remove()" i18n>Remove</a>
 </div>
+
+<div class="well">
+	<div class="panel panel-default">
+		<ul class="list-group sortable-container" [dragula]="dragListName" data-label="drag&drop" i18n-data-label>
+			<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index">
+				<xes-stage-list-item
+					[stage]="item.data"
+					(updateSignal)="stagesService.update(item.index, $event)"
+					(removeSignal)="stagesService.remove(item.index)"
+				></xes-stage-list-item>
+				<a class="sortable-handle glyphicon glyphicon-move" data-drag="stage"></a>
+				<div class="text-right text-muted">
+					<var>list index: {{ $index }} | {{ listItemIdentity($index, item) }}</var>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

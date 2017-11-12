@@ -35,12 +35,13 @@ export class ChapterComponent implements OnInit, OnDestroy {
 	list: Observable<SortableListItem<StoryStage>[]>;
 
 	subscriptionDragAndDrop: Subscription;
+	subscriptionChapterChange: Subscription;
 
 	constructor(private route: ActivatedRoute, private store: Store<StoryModuleState>, private dragulaService: DragulaService) {}
 
 	ngOnInit() {
 		this.dragulaService.setOptions('stages', {
-			moves: (el, container, handle) => handle.className.split(' ').indexOf('handle') >= 0,
+			moves: (el, container, handle) => handle.getAttribute('data-drag') === 'stage',
 		});
 
 		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) =>
@@ -60,7 +61,7 @@ export class ChapterComponent implements OnInit, OnDestroy {
 			stages.filter((item: SortableListItem<StoryStage>) => item.data.chapter === chapterId)
 		);
 
-		chapterChange$.subscribe(chapter => {
+		this.subscriptionChapterChange = chapterChange$.subscribe(chapter => {
 			this.chapter = chapter;
 			const templateStage = this.addForm.valueChange.getValue();
 			this.templateStage.next(new StoryStage(templateStage.id, templateStage.title, templateStage.content, chapter.id));
@@ -81,5 +82,6 @@ export class ChapterComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy() {
 		this.subscriptionDragAndDrop.unsubscribe();
+		this.subscriptionChapterChange.unsubscribe();
 	}
 }

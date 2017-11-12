@@ -27,16 +27,16 @@
 				<button class="btn btn-primary" [disabled]="!stagesService.canUndo()" (click)="stagesService.undo()" i18n>Undo</button>
 				<button class="btn btn-primary" [disabled]="!stagesService.canRedo()" (click)="stagesService.redo()" i18n>Redo</button>
 			</div>
-			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
+			<ul class="list-group sortable-container" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
 				<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
 					<xes-stage-list-item
 						[stage]="item.data"
 						(updateSignal)="stagesService.update(item.index, $event)"
 						(removeSignal)="stagesService.remove(item.index)"
 					></xes-stage-list-item>
-					<a class="handle glyphicon glyphicon-move"></a>
+					<a class="sortable-handle glyphicon glyphicon-move" data-drag="stage"></a>
 					<div class="text-right text-muted">
-						<var>list index: {{$index}} | {{listItemIdentity($index,item)}}</var>
+						<var>list index: {{ $index }} | {{ listItemIdentity($index, item) }}</var>
 					</div>
 				</li>
 			</ul>

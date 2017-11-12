@@ -17,10 +17,10 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading"><h3>{{ chapter.title }}</h3></div>
-			<ul class="list-group sortable" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
+			<ul class="list-group sortable-container" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
 				<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
 					{{ item.data.content }}
-					<a class="handle glyphicon glyphicon-move"></a>
+					<a class="sortable-handle glyphicon glyphicon-move" data-drag="stage"></a>
 				</li>
 			</ul>
 		</div>
