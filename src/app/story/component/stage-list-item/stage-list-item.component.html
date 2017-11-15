@@ -1,4 +1,4 @@
-<h3>{{ stage?.title }}</h3>
+<h3>{{ stage?.title }} <small>{{ stage?.chapter }}</small></h3>
 <p *ngIf="!isEdited" [@itemDescriptionState]>{{ stage?.content }}</p>
 
 <div class="well" *ngIf="isEdited" [@itemState]>

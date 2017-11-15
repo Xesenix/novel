@@ -8,6 +8,7 @@ import { RepositoryService } from 'story/service/repository.service';
 @Injectable()
 export class StagesService extends RepositoryService<StoryModuleState> {
 	move(from, to) {
+		// console.log('move', from, to);
 		this.dispatch(new MoveStoryStageAction(from, to));
 	}
 

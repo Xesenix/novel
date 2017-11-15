@@ -35,7 +35,7 @@ export class ChaptersComponent implements OnDestroy {
 			moves: (el, container, handle) => handle.getAttribute('data-drag') === 'chapter',
 		});
 
-		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'chapters').subscribe(({ from, to }) => this.chapterService.move(from, to));
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'chapters').subscribe(({ from, to }) => this.chapterService.move(+from, +to));
 	}
 
 	listItemIdentity(index: number, item: SortableListItem<StoryChapter>): string {

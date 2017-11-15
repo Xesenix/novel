@@ -45,7 +45,7 @@ export class ChapterComponent implements OnInit, OnDestroy {
 		});
 
 		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) =>
-			this.store.dispatch(new MoveStoryStageAction(from, to))
+			this.store.dispatch(new MoveStoryStageAction(+from, +to))
 		);
 
 		this.templateStage = new ReplaySubject();

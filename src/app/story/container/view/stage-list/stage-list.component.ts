@@ -39,7 +39,7 @@ export class StageListComponent implements OnInit, OnDestroy {
 			moves: (el, container, handle) => handle.getAttribute('data-drag') === 'stage',
 		});
 
-		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) => this.stagesService.move(from, to));
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) => this.stagesService.move(+from, +to));
 	}
 
 	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {

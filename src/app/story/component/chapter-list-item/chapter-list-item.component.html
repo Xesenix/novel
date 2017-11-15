@@ -1,4 +1,4 @@
-<h3>{{ chapter?.title }}<small>{{ chapter?.id }}</small></h3>
+<h3>{{ chapter?.title }} <small>{{ chapter?.id }}</small></h3>
 <ng-container *ngIf="!isEdited">
 	<p>{{ chapter?.content }}</p>
 </ng-container>
@@ -17,7 +17,7 @@
 
 <div class="well">
 	<div class="panel panel-default">
-		<ul class="list-group sortable-container" [dragula]="dragListName" data-label="drag&drop" i18n-data-label>
+		<ul class="list-group sortable-container" [attr.data-item-id]="chapter?.id"  [dragula]="dragListName" data-label="drag&drop" i18n-data-label>
 			<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index">
 				<xes-stage-list-item
 					[stage]="item.data"
@@ -26,6 +26,7 @@
 				></xes-stage-list-item>
 				<a class="sortable-handle glyphicon glyphicon-move" data-drag="stage"></a>
 				<div class="text-right text-muted">
+					<var>item id: {{ item.data?.id }}</var>
 					<var>list index: {{ $index }} | {{ listItemIdentity($index, item) }}</var>
 				</div>
 			</li>

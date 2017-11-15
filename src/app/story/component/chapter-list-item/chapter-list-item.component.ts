@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import { map, shareReplay } from 'rxjs/operators';
+import { combineLatest, map, shareReplay, take } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Rx';
 
@@ -13,6 +13,7 @@ import { StoryChapter } from 'story/model/story-chapter';
 import { StoryStage } from 'story/model/story-stage';
 import { StoryModuleState, selectFeatureStagesSortableList } from 'story/reducers';
 import { StagesService } from 'story/service/stages.service';
+import { selectFeatureStages } from 'story/reducers';
 
 @Component({
 	selector: 'xes-chapter-list-item',
@@ -46,15 +47,25 @@ export class ChapterListItemComponent implements OnInit, OnDestroy {
 			);
 
 		this.dragListName = 'chapter-stages';
-		console.log('dragListName', this.dragListName);
+		// console.log('dragListName', this.dragListName);
 		if (!this.dragulaService.find(this.dragListName)) {
 			this.dragulaService.setOptions(this.dragListName, {
 				moves: (el, container, handle) => handle.getAttribute('data-drag') === 'stage',
 			});
 
-			this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, this.dragListName).subscribe(({ from, to }) =>
-				this.stagesService.move(from, to)
-			);
+			this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, this.dragListName).subscribe(({ from, to, pick, drop }) => {
+				const fromIndex = +from;
+				const toIndex = +to;
+				// console.log('drop update stage', fromIndex, toIndex, pick, drop);
+				this.store
+					.select(selectFeatureStages)
+					.pipe(map(stages => [stages[fromIndex], stages[toIndex]]), take(1))
+					.subscribe(([fromStage, toStage]) => {
+						// console.log('update stage', fromStage, { chapter: drop.containerId });
+						this.stagesService.update(fromIndex, { ...fromStage, chapter: drop.containerId });
+						this.stagesService.move(fromIndex, toIndex);
+					});
+			});
 		}
 	}
 
