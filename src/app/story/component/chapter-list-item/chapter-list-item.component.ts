@@ -59,7 +59,7 @@ export class ChapterListItemComponent implements OnInit, OnDestroy {
 	}
 
 	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {
-		const chapter = this.chapter !== null ? this.chapter.id : 'none';
+		const chapter = this.chapter ? this.chapter.id : 'none';
 		return `index:${chapter}:${index}:${hash(item.data)}`;
 	}
 
