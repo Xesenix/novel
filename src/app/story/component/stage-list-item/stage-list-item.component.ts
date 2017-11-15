@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
 import { StoryStage } from 'story/model/story-stage';
-import { trigger, transition, style, animate } from '@angular/animations';
 
 export const component = {
 	selector: 'xes-stage-list-item',
-	templateUrl: './list-item.component.html',
-	styleUrls: ['./list-item.component.scss'],
+	templateUrl: './stage-list-item.component.html',
+	styleUrls: ['./stage-list-item.component.scss'],
 	animations: [
 		trigger('itemState', [
 			transition(':enter', [
@@ -27,7 +27,7 @@ export const component = {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 };
 @Component(component)
-export class ListItemComponent {
+export class StageListItemComponent {
 	@Input() stage: StoryStage = null;
 
 	@Output() updateSignal: EventEmitter<any> = new EventEmitter<any>();

@@ -7,7 +7,7 @@ import { DragulaModule } from 'ng2-dragula';
 import { LayoutModule } from 'layout/layout.module';
 import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
-import { ListItemComponent } from 'story/component/stage/list-item/list-item.component';
+import { StageListItemComponent } from 'story/component/stage-list-item/stage-list-item.component';
 import { MenuComponent } from 'story/container/menu/menu.component';
 import { ChapterComponent } from 'story/container/view/chapter/chapter.component';
 import { ChaptersComponent } from 'story/container/view/chapters/chapters.component';
@@ -54,7 +54,7 @@ export function provideInitialState() {
 		ChaptersComponent,
 		ChapterFormComponent,
 		MenuComponent,
-		ListItemComponent,
+		StageListItemComponent,
 		ChapterMenuComponent,
 		ChapterListItemComponent,
 	],

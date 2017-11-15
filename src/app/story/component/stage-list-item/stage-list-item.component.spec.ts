@@ -2,16 +2,16 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ListItemComponent } from 'story/component/stage/list-item/list-item.component';
+import { StageListItemComponent } from 'story/component/stage-list-item/stage-list-item.component';
 
-describe('story:ListItemComponent', () => {
-	let component: ListItemComponent;
-	let fixture: ComponentFixture<ListItemComponent>;
+describe('story:StageListItemComponent', () => {
+	let component: StageListItemComponent;
+	let fixture: ComponentFixture<StageListItemComponent>;
 
 	beforeEach(
 		async(() => {
 			TestBed.configureTestingModule({
-				declarations: [ListItemComponent],
+				declarations: [StageListItemComponent],
 				schemas: [NO_ERRORS_SCHEMA],
 				imports: [NoopAnimationsModule],
 			}).compileComponents();
@@ -19,7 +19,7 @@ describe('story:ListItemComponent', () => {
 	);
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(ListItemComponent);
+		fixture = TestBed.createComponent(StageListItemComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
