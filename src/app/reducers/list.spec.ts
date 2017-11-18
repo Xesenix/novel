@@ -4,15 +4,17 @@ describe('app:listReducerFactory', () => {
 	[
 		{
 			LIST_ADD: 'add',
+			LIST_ADD_AT: 'addAt',
 			LIST_REMOVE: 'remove',
 		},
 		{
 			LIST_ADD: 'x',
+			LIST_ADD_AT: 'z',
 			LIST_REMOVE: 'y',
 		},
-	].forEach(({ LIST_ADD, LIST_REMOVE }) => {
-		describe(`for LIST_ADD='${LIST_ADD}' and LIST_REMOVE='${LIST_REMOVE}'`, () => {
-			const reducer = listReducerFactory((list, { name }) => name, { LIST_ADD, LIST_REMOVE });
+	].forEach(({ LIST_ADD, LIST_ADD_AT, LIST_REMOVE }) => {
+		describe(`for LIST_ADD='${LIST_ADD}', LIST_ADD_AT='${LIST_ADD_AT}' and LIST_REMOVE='${LIST_REMOVE}'`, () => {
+			const reducer = listReducerFactory((list, { name }) => name, { LIST_ADD, LIST_ADD_AT, LIST_REMOVE });
 
 			[
 				{
@@ -34,6 +36,75 @@ describe('app:listReducerFactory', () => {
 				it(`should create reducer that handles LIST_ADD action item: ${name}, to list: [${state.join(', ')}]`, () => {
 					const action = {
 						type: LIST_ADD,
+						name,
+					};
+
+					const result = reducer(state, action);
+
+					expect(result).toEqual(expected);
+				});
+			});
+
+			[
+				{
+					index: 0,
+					name: 'a',
+					state: [],
+					expected: ['a'],
+				},
+				{
+					index: 0,
+					name: 'x',
+					state: ['a', 'a'],
+					expected: ['x', 'a', 'a'],
+				},
+				{
+					index: 0,
+					name: 'zxc',
+					state: ['q', 'w'],
+					expected: ['zxc', 'q', 'w'],
+				},
+				{
+					index: 1,
+					name: 'a',
+					state: [],
+					expected: ['a'],
+				},
+				{
+					index: 1,
+					name: 'x',
+					state: ['a', 'b'],
+					expected: ['a', 'x', 'b'],
+				},
+				{
+					index: 1,
+					name: 'zxc',
+					state: ['q', 'w'],
+					expected: ['q', 'zxc', 'w'],
+				},
+				{
+					index: 2,
+					name: 'a',
+					state: [],
+					expected: ['a'],
+				},
+				{
+					index: 2,
+					name: 'x',
+					state: ['a', 'a'],
+					expected: ['a', 'a', 'x'],
+				},
+				{
+					index: 2,
+					name: 'zxc',
+					state: ['q', 'w'],
+					expected: ['q', 'w', 'zxc'],
+				},
+			].forEach(({ index, name, state, expected }) => {
+				it(`should create reducer that handles LIST_ADD_AT action item: ${name} at: ${index}, to list: [${state.join(', ')}]`, () => {
+					const action = {
+						type: LIST_ADD_AT,
+						index,
 						name,
 					};
 

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
-import { SortableListItem } from 'app/reducers/list';
+import { IndexedListItem } from 'app/reducers/list';
 import { hash } from 'app/utils/hash';
 import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
 import { StoryChapter } from 'story/model/story-chapter';
@@ -30,7 +30,7 @@ export class ChapterListItemComponent implements OnInit, OnDestroy {
 
 	isEdited = false;
 
-	list: Observable<SortableListItem<StoryStage>[]>;
+	list: Observable<IndexedListItem<StoryStage>[]>;
 	dragListName: string;
 	subscriptionDragAndDrop: Subscription = null;
 
@@ -40,8 +40,8 @@ export class ChapterListItemComponent implements OnInit, OnDestroy {
 		this.list = this.store
 			.select(selectFeatureStagesSortableList)
 			.pipe(
-				map((items: SortableListItem<StoryStage>[]) =>
-					items.filter((item: SortableListItem<StoryStage>) => this.chapter !== null && item.data.chapter === this.chapter.id)
+				map((items: IndexedListItem<StoryStage>[]) =>
+					items.filter((item: IndexedListItem<StoryStage>) => this.chapter !== null && item.data.chapter === this.chapter.id)
 				),
 				shareReplay()
 			);
@@ -55,21 +55,14 @@ export class ChapterListItemComponent implements OnInit, OnDestroy {
 
 			this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, this.dragListName).subscribe(({ from, to, pick, drop }) => {
 				const fromIndex = +from;
-				const toIndex = +to;
-				// console.log('drop update stage', fromIndex, toIndex, pick, drop);
-				this.store
-					.select(selectFeatureStages)
-					.pipe(map(stages => [stages[fromIndex], stages[toIndex]]), take(1))
-					.subscribe(([fromStage, toStage]) => {
-						// console.log('update stage', fromStage, { chapter: drop.containerId });
-						this.stagesService.update(fromIndex, { ...fromStage, chapter: drop.containerId });
-						this.stagesService.move(fromIndex, toIndex);
-					});
+				const toIndex = to === null ? 1 + +drop.beforeItemId : +to;
+				console.log('drop update stage', { from, fromIndex, to, toIndex, pick, drop });
+				this.stagesService.moveToChapter(fromIndex, toIndex, drop.containerId);
 			});
 		}
 	}
 
-	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {
+	listItemIdentity(index: number, item: IndexedListItem<StoryStage>) {
 		const chapter = this.chapter ? this.chapter.id : 'none';
 		return `index:${chapter}:${index}:${hash(item.data)}`;
 	}

@@ -7,7 +7,7 @@ export class RepositoryService<T> {
 	redoActions: any[] = [];
 	undoActions: any[] = [];
 
-	constructor(private store: Store<T>) {}
+	constructor(protected store: Store<T>) {}
 
 	dispatch(action) {
 		this.undoActions.push(action);

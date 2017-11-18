@@ -1,6 +1,6 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { SortableListItem } from 'app/reducers/list';
+import { IndexedListItem } from 'app/reducers/list';
 import { reducer as stages, StageState } from 'story/reducers/stages';
 import { reducer as chapters, ChaptersState } from 'story/reducers/chapters';
 import { StoryChapter } from 'story/model/story-chapter';
@@ -21,10 +21,10 @@ export const selectFeatureStory = createFeatureSelector<StoryModuleState>('story
 export const selectFeatureStages = createSelector(selectFeatureStory, (store: StoryModuleState) => store.stages.list);
 export const selectFeatureStagesSortableList = createSelector(selectFeatureStages, (stages: StoryStage[]) => {
 	// console.log('update stages list');
-	return stages.map((stage: StoryStage, index: number) => new SortableListItem<StoryStage>(stage, index));
+	return stages.map((stage: StoryStage, index: number) => new IndexedListItem<StoryStage>(stage, index));
 });
 export const selectFeatureChapters = createSelector(selectFeatureStory, (store: StoryModuleState) => store.chapters);
 export const selectFeatureChaptersSortableList = createSelector(selectFeatureChapters, (chapters: StoryChapter[]) => {
 	// console.log('update chapters list');
-	return chapters.map((chapter: StoryChapter, index: number) => new SortableListItem<StoryChapter>(chapter, index));
+	return chapters.map((chapter: StoryChapter, index: number) => new IndexedListItem<StoryChapter>(chapter, index));
 });

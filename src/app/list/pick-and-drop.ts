@@ -6,8 +6,8 @@ export function pickAndDropObservable(
 	dragulaService: DragulaService,
 	selector: string
 ): Observable<{
-	pick: { index: number; itemId: string; containerId: string };
-	drop: { index: number; beforeItemId: string; afterItemId: string; containerId: string };
+	pick: { index: number; length: number; itemId: string; containerId: string };
+	drop: { index: number; length: number; beforeItemId: string; afterItemId: string; containerId: string };
 	from: string;
 	to: string;
 }> {
@@ -15,8 +15,9 @@ export function pickAndDropObservable(
 		filter(([container]) => container === selector),
 		map(([container, dragElement, source]) => ({
 			index: Array.prototype.indexOf.call(source.children, dragElement), // DOM index
+			length: source.children.length,
 			itemId: dragElement.getAttribute('data-item-id'),
-			containerId: source.getAttribute('data-item-id'),
+			containerId: source.getAttribute('data-container-id'),
 		})) // get index of picked up element
 		// tap(v => console.log('pick item', v))
 	);
@@ -35,9 +36,10 @@ export function pickAndDropObservable(
 			const after = target.children[index + 1];
 			return {
 				index,
+				length: target.children.length,
 				beforeItemId: before ? before.getAttribute('data-item-id') : null,
 				afterItemId: after ? after.getAttribute('data-item-id') : null,
-				containerId: target.getAttribute('data-item-id'),
+				containerId: target.getAttribute('data-container-id'),
 			};
 		}) // get index of drop
 		// tap(v => console.log('drop item', v))
@@ -58,8 +60,8 @@ export function pickAndDropObservable(
 		map(
 			(
 				[pick, drop]: [
-					{ index: number; itemId: string; containerId: string },
-					{ index: number; beforeItemId: string; afterItemId: string; containerId: string }
+					{ index: number; length: number; itemId: string; containerId: string },
+					{ index: number; length: number; beforeItemId: string; afterItemId: string; containerId: string }
 				]
 			) => ({ pick, drop })
 		),
@@ -68,16 +70,13 @@ export function pickAndDropObservable(
 				pick,
 				drop,
 			}: {
-				pick: { index: number; itemId: string; containerId: string };
-				drop: { index: number; beforeItemId: string; afterItemId: string; containerId: string };
+				pick: { index: number; length: number; itemId: string; containerId: string };
+				drop: { index: number; length: number; beforeItemId: string; afterItemId: string; containerId: string };
 			}) => ({
 				pick,
 				drop,
 				from: pick.itemId,
-				to:
-					pick.containerId === drop.containerId
-						? pick.index < drop.index && drop.beforeItemId !== null ? drop.beforeItemId : drop.afterItemId
-						: drop.afterItemId === null ? drop.beforeItemId : drop.afterItemId,
+				to: pick.containerId === drop.containerId ? drop.beforeItemId : drop.afterItemId,
 			})
 		)
 	);

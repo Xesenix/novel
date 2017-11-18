@@ -5,7 +5,7 @@ import { StoryChapter } from 'story/model/story-chapter';
 
 export type ChaptersState = StoryChapter[];
 
-const itemFactory = (list: ChaptersState, { title, id }) => new StoryChapter(id, title);
+const itemFactory = (list: ChaptersState, { title, id, stages = [] }) => new StoryChapter(id, title, stages);
 const listReducer = listReducerFactory<StoryChapter>(itemFactory, actions);
 const sortableReducer = sortableListReducerFactory(actions);
 const updateReducer = updatableListReducerFactory<StoryChapter>(itemFactory, actions);

@@ -8,8 +8,8 @@ export interface StageState {
 	list: StoryStage[];
 }
 
-const itemFactory = (list: StoryStage[], { id = null, title, content, chapter }: { id: string; title: string; content: string; chapter: string }) =>
-	new StoryStage(id !== null ? id : list.length.toString(), title, content, chapter);
+const itemFactory = (list: StoryStage[], { id = null, title, content, chapter }: { id: number; title: string; content: string; chapter: string }) =>
+	new StoryStage(id !== null ? id : list.length, title, content, chapter);
 const listReducer = listReducerFactory<StoryStage>(itemFactory, actions);
 const sortableListReducer = sortableListReducerFactory<StoryStage>(actions);
 const updateListItemReducer = updatableListReducerFactory<StoryStage>(itemFactory, actions);

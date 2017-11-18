@@ -6,7 +6,7 @@ import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 import { Observable, Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
-import { SortableListItem } from 'app/reducers/list';
+import { IndexedListItem } from 'app/reducers/list';
 import { hash } from 'app/utils/hash';
 import { ChapterFormComponent } from 'story/component/chapter-form/chapter-form.component';
 import { StoryChapter } from 'story/model/story-chapter';
@@ -24,7 +24,7 @@ import { ChapterService } from 'story/service/chapter.service';
 export class ChaptersComponent implements OnDestroy {
 	@ViewChild('addForm') addForm: ChapterFormComponent;
 
-	list: Observable<SortableListItem<StoryChapter>[]>;
+	list: Observable<IndexedListItem<StoryChapter>[]>;
 
 	subscriptionDragAndDrop: Subscription;
 
@@ -38,7 +38,7 @@ export class ChaptersComponent implements OnDestroy {
 		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'chapters').subscribe(({ from, to }) => this.chapterService.move(+from, +to));
 	}
 
-	listItemIdentity(index: number, item: SortableListItem<StoryChapter>): string {
+	listItemIdentity(index: number, item: IndexedListItem<StoryChapter>): string {
 		return `index:${index}:${hash(item.data)}`;
 	}
 

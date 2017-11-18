@@ -7,6 +7,13 @@ export class AddStoryStageAction implements Action {
 	constructor(public title: string = null, public content: string = null, public chapter: string = null) {}
 }
 
+export const LIST_ADD_AT = 'STORY_ADD_STAGE_AT';
+
+export class AddStoryStageAtAction implements Action {
+	readonly type = LIST_ADD_AT;
+	constructor(public index: number, public id: number = null, public title: string = null, public content: string = null, public chapter: string = null) {}
+}
+
 export const LIST_REMOVE = 'STORY_REMOVE_STAGE';
 
 export class RemoveStoryStageAction implements Action {
@@ -24,8 +31,8 @@ export class MoveStoryStageAction implements Action {
 export const LIST_ITEM_UPDATE = 'STORY_UPDATE_STAGE';
 export class UpdateStoryStageAction implements Action {
 	readonly type = LIST_ITEM_UPDATE;
-	constructor(public index: number, public id: string = null, public title: string = null, public content: string = null, public chapter: string = null) {}
+	constructor(public index: number, public id: number = null, public title: string = null, public content: string = null, public chapter: string = null) {}
 }
 
-export const LIST_ACTIONS = [LIST_ADD, LIST_REMOVE, LIST_ITEM_MOVE, LIST_ITEM_UPDATE];
-export type Actions = AddStoryStageAction | RemoveStoryStageAction | MoveStoryStageAction | UpdateStoryStageAction;
+export const LIST_ACTIONS = [LIST_ADD, LIST_ADD_AT, LIST_REMOVE, LIST_ITEM_MOVE, LIST_ITEM_UPDATE];
+export type Actions = AddStoryStageAction | AddStoryStageAtAction | RemoveStoryStageAction | MoveStoryStageAction | UpdateStoryStageAction;

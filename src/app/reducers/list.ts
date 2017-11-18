@@ -2,6 +2,7 @@ export function listReducerFactory<T>(
 	itemFactory: (state: T[], action: any) => T,
 	actionTypes: {
 		LIST_ADD: string;
+		LIST_ADD_AT: string;
 		LIST_REMOVE: string;
 	}
 ) {
@@ -9,6 +10,12 @@ export function listReducerFactory<T>(
 		switch (action.type) {
 			case actionTypes.LIST_ADD:
 				return [...state, itemFactory(state, action)];
+			case actionTypes.LIST_ADD_AT:
+				return action.index > 0
+					? action.index < state.length
+						? [...state.slice(0, action.index), itemFactory(state, action), ...state.slice(action.index)]
+						: [...state.slice(0, action.index), itemFactory(state, action)]
+					: action.index < state.length ? [itemFactory(state, action), ...state] : [itemFactory(state, action)];
 			case actionTypes.LIST_REMOVE:
 				return state.filter((el, index) => index !== action.index);
 			default:
@@ -63,6 +70,10 @@ export function updatableListReducerFactory<T>(
 	};
 }
 
-export class SortableListItem<T> {
+export class IndexedListItem<T> {
 	constructor(public data: T, public index: number) {}
+}
+
+export class GroupedListItem<T> {
+	constructor(public data: T, public group: string) {}
 }

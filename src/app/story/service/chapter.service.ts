@@ -7,16 +7,16 @@ import { RepositoryService } from 'story/service/repository.service';
 
 @Injectable()
 export class ChapterService extends RepositoryService<StoryModuleState> {
-	move(from, to) {
+	move(from: number, to: number): void {
 		this.dispatch(new MoveStoryChapterAction(from, to));
 	}
 
-	add({ title, id }): void {
-		this.dispatch(new AddStoryChapterAction(id, title));
+	add({ title, id, stages }: { id: string; title: string; stages?: number[] }): void {
+		this.dispatch(new AddStoryChapterAction(id, title, stages));
 	}
 
-	update(index, { id, title }) {
-		this.dispatch(new UpdateStoryChapterAction(index, id, title));
+	update(index: number, { id, title, stages = [] }: { id: string; title: string; stages?: number[] }): void {
+		this.dispatch(new UpdateStoryChapterAction(index, id, title, stages));
 	}
 
 	remove(index: number): void {

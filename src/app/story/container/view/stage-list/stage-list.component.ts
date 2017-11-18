@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
-import { SortableListItem } from 'app/reducers/list';
+import { IndexedListItem } from 'app/reducers/list';
 import { hash } from 'app/utils/hash';
 import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
 import { StoryStage } from 'story/model/story-stage';
@@ -24,7 +24,7 @@ import { StagesService } from 'story/service/stages.service';
 export class StageListComponent implements OnInit, OnDestroy {
 	@ViewChild('addForm') addForm: StageFormComponent;
 
-	@Input() list: Observable<SortableListItem<StoryStage>[]>;
+	@Input() list: Observable<IndexedListItem<StoryStage>[]>;
 
 	subscriptionDragAndDrop: Subscription;
 
@@ -39,10 +39,10 @@ export class StageListComponent implements OnInit, OnDestroy {
 			moves: (el, container, handle) => handle.getAttribute('data-drag') === 'stage',
 		});
 
-		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) => this.stagesService.move(+from, +to));
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to, pick }) => this.stagesService.move(+from, +to));
 	}
 
-	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {
+	listItemIdentity(index: number, item: IndexedListItem<StoryStage>) {
 		return `index:${index}:${hash(item.data)}`;
 	}
 

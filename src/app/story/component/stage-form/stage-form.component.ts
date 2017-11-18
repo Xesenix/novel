@@ -7,6 +7,11 @@ import { StoryChapter } from 'story/model/story-chapter';
 import { StoryStage } from 'story/model/story-stage';
 import { selectFeatureChapters, StoryModuleState } from 'story/reducers';
 
+export interface StageFormType {
+	title: string;
+	content: string;
+	chapter: string;
+}
 @Component({
 	selector: 'xes-stage-form',
 	templateUrl: './stage-form.component.html',
@@ -15,11 +20,11 @@ import { selectFeatureChapters, StoryModuleState } from 'story/reducers';
 })
 export class StageFormComponent implements OnChanges {
 	@Input() showChapter = true;
-	@Input() data: StoryStage;
-	@Output() valueChange: BehaviorSubject<StoryStage> = new BehaviorSubject<StoryStage>(this.data);
+	@Input() data: StageFormType;
+	@Output() valueChange: BehaviorSubject<StageFormType> = new BehaviorSubject<StageFormType>(this.data);
 
 	chapters: Observable<StoryChapter[]>;
-	id: string;
+	id: number;
 	title = new FormControl();
 	content = new FormControl();
 	chapter = new FormControl();
@@ -31,8 +36,8 @@ export class StageFormComponent implements OnChanges {
 			this.title.valueChanges.startWith(''),
 			this.content.valueChanges.startWith(''),
 			this.chapter.valueChanges.startWith(''),
-			(title, content, chapter) => new StoryStage(this.id, title, content, chapter)
-		).subscribe(stage => this.valueChange.next(stage));
+			(title, content, chapter) => ({ id: this.id, title, content, chapter })
+		).subscribe((stage: StageFormType) => this.valueChange.next(stage));
 	}
 
 	ngOnChanges(changes: SimpleChanges) {

@@ -10,10 +10,10 @@ import { map } from 'rxjs/operators';
 import { ReplaySubject, Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
-import { SortableListItem } from 'app/reducers/list';
+import { IndexedListItem } from 'app/reducers/list';
 import { hash } from 'app/utils/hash';
 import { AddStoryStageAction, MoveStoryStageAction } from 'story/actions/stage';
-import { StageFormComponent } from 'story/component/stage-form/stage-form.component';
+import { StageFormType, StageFormComponent } from 'story/component/stage-form/stage-form.component';
 import { StoryChapter } from 'story/model/story-chapter';
 import { StoryStage } from 'story/model/story-stage';
 import { selectFeatureChapters, selectFeatureStagesSortableList, StoryModuleState } from 'story/reducers';
@@ -29,10 +29,10 @@ import { selectFeatureChapters, selectFeatureStagesSortableList, StoryModuleStat
 export class ChapterComponent implements OnInit, OnDestroy {
 	@ViewChild('addForm') addForm: StageFormComponent;
 
-	templateStage: ReplaySubject<StoryStage>;
+	templateStage: ReplaySubject<StageFormType>;
 	chapter: StoryChapter;
 	chapters: Observable<StoryChapter[]>;
-	list: Observable<SortableListItem<StoryStage>[]>;
+	list: Observable<IndexedListItem<StoryStage>[]>;
 
 	subscriptionDragAndDrop: Subscription;
 	subscriptionChapterChange: Subscription;
@@ -44,11 +44,11 @@ export class ChapterComponent implements OnInit, OnDestroy {
 			moves: (el, container, handle) => handle.getAttribute('data-drag') === 'stage',
 		});
 
-		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to }) =>
+		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to, pick }) =>
 			this.store.dispatch(new MoveStoryStageAction(+from, +to))
 		);
 
-		this.templateStage = new ReplaySubject();
+		this.templateStage = new ReplaySubject<StageFormType>();
 		this.chapters = this.store.select(selectFeatureChapters);
 
 		const chapterId$ = this.route.paramMap.pipe(map(params => params.get('id')));
@@ -57,18 +57,18 @@ export class ChapterComponent implements OnInit, OnDestroy {
 			chapters.find((chapter: StoryChapter) => chapter.id === chapterId)
 		);
 
-		this.list = combineLatest(this.store.select(selectFeatureStagesSortableList), chapterId$, (stages: SortableListItem<StoryStage>[], chapterId: string) =>
-			stages.filter((item: SortableListItem<StoryStage>) => item.data.chapter === chapterId)
+		this.list = combineLatest(this.store.select(selectFeatureStagesSortableList), chapterId$, (stages: IndexedListItem<StoryStage>[], chapterId: string) =>
+			stages.filter((item: IndexedListItem<StoryStage>) => item.data.chapter === chapterId)
 		);
 
 		this.subscriptionChapterChange = chapterChange$.subscribe(chapter => {
 			this.chapter = chapter;
-			const templateStage = this.addForm.valueChange.getValue();
-			this.templateStage.next(new StoryStage(templateStage.id, templateStage.title, templateStage.content, chapter.id));
+			const { title, content } = this.addForm.valueChange.getValue();
+			this.templateStage.next({ title, content, chapter: chapter.id });
 		});
 	}
 
-	listItemIdentity(index: number, item: SortableListItem<StoryStage>) {
+	listItemIdentity(index: number, item: IndexedListItem<StoryStage>) {
 		return `index:${index}:${hash(item.data)}`;
 	}
 

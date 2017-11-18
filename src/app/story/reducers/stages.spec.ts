@@ -11,7 +11,7 @@ describe('story:reducers.stages', () => {
 
 		const resultState = fromStages.reducer(store, action);
 
-		expect(resultState).toEqual({ versions: {}, list: [new StoryStage('0', title, content)] });
+		expect(resultState).toEqual({ versions: {}, list: [new StoryStage(0, title, content)] });
 	});
 
 	it('should reduce RemoveStoryStageAction', () => {
@@ -19,14 +19,14 @@ describe('story:reducers.stages', () => {
 		const action = new RemoveStoryStageAction(index);
 		const store: fromStages.StageState = {
 			versions: {},
-			list: [new StoryStage('0', 'title 1', 'content 1'), new StoryStage('1', 'title 2', 'content 2'), new StoryStage('2', 'title 3', 'content 3')],
+			list: [new StoryStage(0, 'title 1', 'content 1'), new StoryStage(1, 'title 2', 'content 2'), new StoryStage(2, 'title 3', 'content 3')],
 		};
 
 		const resultState = fromStages.reducer(store, action);
 
 		expect(resultState).toEqual({
 			versions: {},
-			list: [new StoryStage('0', 'title 1', 'content 1'), new StoryStage('2', 'title 3', 'content 3')],
+			list: [new StoryStage(0, 'title 1', 'content 1'), new StoryStage(2, 'title 3', 'content 3')],
 		});
 	});
 });
