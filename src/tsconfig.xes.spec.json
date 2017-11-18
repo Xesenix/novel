@@ -1,20 +1,6 @@
 {
-	"extends": "../tsconfig.json",
+	"extends": "./tsconfig.xes.json",
 	"compilerOptions": {
-		"paths": {
-			"@core/*": ["app/*"],
-			"@core/characters/*": ["app/characters/*"],
-			"@core/layout/*": ["app/layout/*"],
-			"@core/pixi/*": ["app/pixi/*"],
-			"@core/story/*": ["app/story/*"],
-			"app/*": ["xes/*", "app/*"],
-			"characters/*": ["xes/characters/*", "app/characters/*"],
-			"layout/*": ["xes/layout/*", "app/layout/*"],
-			"pixi/*": ["xes/pixi/*", "app/pixi/*"],
-			"story/*": ["xes/story/*", "app/story/*"]
-		},
-		"outDir": "../out-tsc/spec",
-		"baseUrl": "./",
 		"module": "commonjs",
 		"target": "es5",
 		"types": [
@@ -28,9 +14,14 @@
 		"test.xes.ts"
 	],
 	"include": [
+		"xes/*.spec.ts",
+		"xes/*.d.ts",
+		"app/*.spec.ts",
+		"app/*.d.ts",
 		"xes/**/*.spec.ts",
 		"xes/**/*.d.ts",
 		"app/**/*.spec.ts",
 		"app/**/*.d.ts"
-	]
+	],
+	"exclude": []
 }

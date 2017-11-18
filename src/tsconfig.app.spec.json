@@ -1,15 +1,6 @@
 {
-	"extends": "../tsconfig.json",
+	"extends": "./tsconfig.app.json",
 	"compilerOptions": {
-		"paths": {
-			"app/*": ["app/*"],
-			"characters/*": ["app/characters/*"],
-			"layout/*": ["app/layout/*"],
-			"pixi/*": ["app/pixi/*"],
-			"story/*": ["app/story/*"]
-		},
-		"outDir": "../out-tsc/spec",
-		"baseUrl": "./",
 		"module": "commonjs",
 		"target": "es5",
 		"types": [
@@ -23,7 +14,10 @@
 		"test.app.ts"
 	],
 	"include": [
+		"app/*.spec.ts",
+		"app/*.d.ts",
 		"app/**/*.spec.ts",
 		"app/**/*.d.ts"
-	]
+	],
+	"exclude": []
 }
