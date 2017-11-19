@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { undoBehavior } from 'xes-ngrx-undo';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 import { AppComponent } from 'app/app.component';
 import { reducer } from 'app/reducers';
@@ -20,6 +21,10 @@ export function undoBehaviorReducer(rootReducer: any) {
 	return undoBehaviorReducerDecorator(rootReducer);
 }
 
+export function localStorageSyncReducer(rootReducer: any) {
+	return localStorageSync({ keys: ['story'], rehydrate: true })(rootReducer);
+}
+
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -29,7 +34,7 @@ export function undoBehaviorReducer(rootReducer: any) {
 		CharactersModule,
 		StoryModule,
 		StoreModule.forRoot(reducer, {
-			metaReducers: [undoBehaviorReducer],
+			metaReducers: [undoBehaviorReducer, localStorageSyncReducer],
 		}),
 		// do not use with @ngrx/router-store (performance issue)
 		StoreDevtoolsModule.instrument({
