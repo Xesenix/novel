@@ -55,7 +55,7 @@ export class ChapterListItemComponent implements OnInit, OnDestroy {
 
 			this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, this.dragListName).subscribe(({ from, to, pick, drop }) => {
 				const fromIndex = +from;
-				const toIndex = to === null ? 1 + +drop.beforeItemId : +to;
+				const toIndex = +to;
 				console.log('drop update stage', { from, fromIndex, to, toIndex, pick, drop });
 				this.stagesService.moveToChapter(fromIndex, toIndex, drop.containerId);
 			});
