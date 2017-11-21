@@ -22,6 +22,7 @@ import { ChapterListItemComponent } from 'story/component/chapter-list-item/chap
 import { StageState } from 'story/reducers/stages';
 import { StagesService } from 'story/service/stages.service';
 import { ChapterService } from 'story/service/chapter.service';
+import { StorageModule } from 'storage/storage.module';
 
 export function provideInitialState() {
 	return {
@@ -41,6 +42,7 @@ export function provideInitialState() {
 		CommonModule,
 		StoryRoutingModule,
 		LayoutModule,
+		StorageModule,
 		DragulaModule,
 		ReactiveFormsModule,
 		StoreModule.forFeature('story', reducer, {

@@ -13,6 +13,7 @@ import { CharactersModule } from 'characters/characters.module';
 import { PixiService } from 'pixi/pixi.service';
 import { RendererService } from 'pixi/renderer.service';
 import { StoryModule } from 'story/story.module';
+import { StorageModule } from 'storage/storage.module';
 
 // import { EffectsModule } from '@ngrx/effects';
 
@@ -32,6 +33,7 @@ export function localStorageSyncReducer(rootReducer: any) {
 		BrowserAnimationsModule,
 		AppRoutingModule,
 		CharactersModule,
+		StorageModule,
 		StoryModule,
 		StoreModule.forRoot(reducer, {
 			metaReducers: [undoBehaviorReducer, localStorageSyncReducer],

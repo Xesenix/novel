@@ -5,10 +5,10 @@ export const routes: Routes = [
 	{ path: '', redirectTo: 'story', pathMatch: 'full' },
 	{ path: 'story', loadChildren: 'story/story.module#StoryModule' },
 	{ path: 'characters', loadChildren: 'characters/characters.module#CharactersModule' },
+	{ path: 'storage', loadChildren: 'storage/storage.module#StorageModule' },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { enableTracing: false })],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}

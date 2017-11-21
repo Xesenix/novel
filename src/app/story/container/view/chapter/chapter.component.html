@@ -2,6 +2,10 @@
 	<h1 slot="title-bar" i18n>Chapter {{ chapter.title }} stages</h1>
 
 	<ng-container slot="side-bar">
+		<div class="list-group">
+			<a class="list-group-item" routerLinkActive="active" [routerLink]="['/', { outlets: { modal: ['save']}}]" i18n>Save</a>
+			<a class="list-group-item" routerLinkActive="active" [routerLink]="['/', { outlets: { modal: ['load']}}]" i18n>Load</a>
+		</div>
 		<xes-menu></xes-menu>
 	</ng-container>
 	<ng-container slot="content">

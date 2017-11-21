@@ -1,0 +1,8 @@
+.modal {
+	display: block;
+	pointer-events: none;
+
+	.modal-dialog {
+		pointer-events: all;
+	}
+}

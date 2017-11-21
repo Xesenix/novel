@@ -6,7 +6,9 @@
 			"characters/*": ["app/characters/*"],
 			"layout/*": ["app/layout/*"],
 			"pixi/*": ["app/pixi/*"],
-			"story/*": ["app/story/*"]
+			"story/*": ["app/story/*"],
+			"storage/*": ["app/storage/*"],
+			"modal/*": ["app/modal/*"]
 		},
 		"outDir": "../out-tsc/app",
 		"baseUrl": "./",
