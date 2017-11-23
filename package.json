@@ -24,7 +24,7 @@
 		"xi18n:app": "ng xi18n --progress --i18n-format xlf --out-file messages.xliff --app app --output-path src/app/locale --locale en && xliffmerge --profile src/xliffmerge.app.json",
 		"xi18n:xes": "ng xi18n --progress --i18n-format xlf --out-file messages.xliff --app xes --output-path src/xes/locale --locale en && xliffmerge --profile src/xliffmerge.xes.json",
 		"precommit": "ng lint && lint-staged",
-		"prepush": "ng test --progress false --watch false && npm run build:app -- --progress false"
+		"prepush": "ng test --progress false --watch false"
 	},
 	"lint-staged": {
 		"{src,scripts}/**/*.ts": [
@@ -35,7 +35,7 @@
 	"private": true,
 	"dependencies": {
 		"@angular/animations": "^5.0.0",
-		"@angular/cli": "^1.5.0",
+		"@angular/cli": "^1.5.3",
 		"@angular/common": "^5.0.0",
 		"@angular/compiler": "^5.0.0",
 		"@angular/compiler-cli": "^5.0.0",

@@ -1,10 +1,10 @@
-import { ChapterExistsGuard } from '../guard/chapter-exists.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ChaptersComponent } from 'story/container/view/chapters/chapters.component';
 import { StageListComponent } from 'story/container/view/stage-list/stage-list.component';
 import { ChapterComponent } from 'story/container/view/chapter/chapter.component';
+import { ChapterExistsGuard } from 'story/guard/chapter-exists.guard';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: 'stages', pathMatch: 'full' },
