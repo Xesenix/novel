@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+<nav class="layout-navbar" role="navigation">
 	<div class="container">
-		<a class="navbar-brand">Novel</a>
-		<ul class="nav navbar-nav">
+		<a class="layout-brand">Novel</a>
+		<ul class="layout-main-navigation">
 			<li routerLinkActive="active"><a routerLink="/story" i18n>Story</a></li>
 			<li routerLinkActive="active"><a routerLink="/characters" i18n>Characters</a></li>
 		</ul>
@@ -10,13 +10,13 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-lg-4 pull-right">
+		<div class="layout-aside">
 			<ng-content select="[slot=side-bar]"></ng-content>
 		</div>
-		<div class="col-lg-8">
+		<div class="layout-content">
 			<ng-content select="[slot=content]"></ng-content>
 		</div>
 	</div>
 </div>
 
-<xes-canvas [ngStyle]="{ position: 'fixed', left: 0, right: 0, top: 0, bottom: 0, 'z-index': -1, 'background': '#000 url(assets/bg-00.png) repeat -10px -10px' }"></xes-canvas>
+<xes-canvas class="layout-background"></xes-canvas>

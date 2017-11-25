@@ -1,5 +1,37 @@
+@import "bootstrap-sass/bootstrap";
+
 :host {
 	& > .container {
 		padding-top: 60px;
 	}
+}
+
+.layout-navbar {
+	@extend .navbar, .navbar-default, .navbar-fixed-top, .navbar-inverse;
+}
+
+.layout-brand {
+	@extend .navbar-brand;
+}
+
+.layout-main-navigation {
+	@extend .nav, .navbar-nav;
+}
+
+.layout-aside {
+	@extend .col-lg-4, .pull-right;
+}
+
+.layout-content {
+	@extend .col-lg-8;
+}
+
+.layout-background {
+	background: #000 url('/assets/bg-00.png') repeat -10px -10px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
 }
