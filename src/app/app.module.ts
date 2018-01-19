@@ -12,8 +12,9 @@ import { AppRoutingModule } from 'app/routing/app-routing.module';
 import { CharactersModule } from 'characters/characters.module';
 import { PixiService } from 'pixi/pixi.service';
 import { RendererService } from 'pixi/renderer.service';
-import { StoryModule } from 'story/story.module';
+import { STORY_MODULE_CONFIG, storyModuleDefaultConfig } from 'story/story.config';
 import { StorageModule } from 'storage/storage.module';
+import { StoryModule } from './story/story.module';
 
 // import { EffectsModule } from '@ngrx/effects';
 
@@ -34,17 +35,27 @@ export function localStorageSyncReducer(rootReducer: any) {
 		AppRoutingModule,
 		CharactersModule,
 		StorageModule,
-		StoryModule,
 		StoreModule.forRoot(reducer, {
 			metaReducers: [undoBehaviorReducer, localStorageSyncReducer],
 		}),
+		StoryModule,
 		// do not use with @ngrx/router-store (performance issue)
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 		}),
 		// EffectsModule.forRoot([]),
 	],
-	providers: [PixiService, RendererService],
+	providers: [
+		PixiService,
+		RendererService,
+		{
+			provide: STORY_MODULE_CONFIG,
+			useValue: {
+				...storyModuleDefaultConfig,
+				name: 'app-config',
+			},
+		},
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

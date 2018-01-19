@@ -25,6 +25,9 @@
 			</div>
 			<div class="panel-body">
 				<div class="alert alert-info" i18n>
+					<strong>Config: {{ config.name }}</strong>.
+				</div>
+				<div class="alert alert-info" *ngIf="config.showDescription" i18n>
 					Stage contains few paragraphs that tell story from one <strong>point of view</strong> that progresses action forward.
 					We distinguish two types of stages <strong>proactive</strong> and <strong>reactive</strong>.
 				</div>
