@@ -1,5 +1,9 @@
 import { Observable } from 'rxjs/Rx';
-import { filter, map, mapTo, tap, zip } from 'rxjs/operators';
+import { filter } from 'rxjs/operators/filter';
+import { map } from 'rxjs/operators/map';
+import { mapTo } from 'rxjs/operators/mapTo';
+import { tap } from 'rxjs/operators/tap';
+import { zip } from 'rxjs/operators/zip';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 export function pickAndDropObservable(

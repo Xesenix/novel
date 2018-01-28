@@ -2,7 +2,8 @@ import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators/map';
+import { tap } from 'rxjs/operators/tap';
 
 import { StoryChapter } from 'story/model/story-chapter';
 import { StoryModuleState, selectFeatureChapters } from 'story/reducers';

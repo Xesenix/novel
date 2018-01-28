@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import { combineLatest, map, shareReplay, take } from 'rxjs/operators';
+import { combineLatest } from 'rxjs/operators/combineLatest';
+import { map } from 'rxjs/operators/map';
+import { shareReplay } from 'rxjs/operators/shareReplay';
+import { take } from 'rxjs/operators/take';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Rx';
 

@@ -6,7 +6,7 @@ import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { of } from 'rxjs/observable/of';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators/map';
 import { ReplaySubject, Subscription } from 'rxjs/Rx';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';

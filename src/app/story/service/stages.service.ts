@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators/map';
+import { take } from 'rxjs/operators/take';
 import { Observable } from 'rxjs/Observable';
 
 import { MoveStoryStageAction, AddStoryStageAction, AddStoryStageAtAction, UpdateStoryStageAction, RemoveStoryStageAction } from 'story/actions/stage';
