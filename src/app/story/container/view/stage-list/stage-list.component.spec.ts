@@ -9,6 +9,7 @@ import { reducer as rootReducer } from 'app/reducers';
 import { StageListComponent } from 'story/container/view/stage-list/stage-list.component';
 import { StagesService } from 'story/service/stages.service';
 import { provideInitialState } from 'story/story.module';
+import { STORY_MODULE_CONFIG, storyModuleDefaultConfig } from 'story/story.config';
 
 // FIXME: need to decouple module from global state
 
@@ -28,7 +29,14 @@ describe('story:StageListComponent', () => {
 						metaReducers: [undoBehavior(100)],
 					}),
 				],
-				providers: [DragulaService, StagesService],
+				providers: [
+					DragulaService,
+					StagesService,
+					{
+						provide: STORY_MODULE_CONFIG,
+						useValue: storyModuleDefaultConfig,
+					},
+				],
 			}).compileComponents();
 		})
 	);
