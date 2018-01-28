@@ -2,7 +2,7 @@
 
 Novel is application helping in writing stories.
 
-You can check live app at [Novel App Demo](http://novel.xesenix.pl/).
+You can check live app at [Novel App Demo](http://novel.xesenix.pl/en).
 
 # TODO
 
