@@ -1,3 +1,5 @@
+import 'pixi.js';
+
 import { Injectable } from '@angular/core';
 
 @Injectable()

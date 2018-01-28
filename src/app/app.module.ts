@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { undoBehavior } from 'xes-ngrx-undo';
@@ -10,11 +11,11 @@ import { AppComponent } from 'app/app.component';
 import { reducer } from 'app/reducers';
 import { AppRoutingModule } from 'app/routing/app-routing.module';
 import { CharactersModule } from 'characters/characters.module';
-import { PixiService } from 'pixi/pixi.service';
-import { RendererService } from 'pixi/renderer.service';
+import { PixiModule } from 'pixi/pixi.module';
 import { STORY_MODULE_CONFIG, storyModuleDefaultConfig } from 'story/story.config';
 import { StorageModule } from 'storage/storage.module';
-import { StoryModule } from './story/story.module';
+import { StoryModule } from 'story/story.module';
+import { environment } from 'environments/environment';
 
 // import { EffectsModule } from '@ngrx/effects';
 
@@ -30,6 +31,7 @@ export function localStorageSyncReducer(rootReducer: any) {
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
+		ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
@@ -43,11 +45,10 @@ export function localStorageSyncReducer(rootReducer: any) {
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 		}),
+		PixiModule.forRoot(),
 		// EffectsModule.forRoot([]),
 	],
 	providers: [
-		PixiService,
-		RendererService,
 		{
 			provide: STORY_MODULE_CONFIG,
 			useValue: {

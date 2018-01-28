@@ -53,7 +53,7 @@
 		"express": "^4.16.2",
 		"ng2-dragula": "^1.5.0",
 		"ngrx-store-localstorage": "^0.2.4",
-		"pixi.js": "^4.6.0",
+		"pixi.js": "^4.7.0",
 		"rxjs": "^5.5.2",
 		"tslint-language-service": "^0.9.6",
 		"webpack-bundle-analyzer": "^2.9.0",

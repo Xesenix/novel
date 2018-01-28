@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PixiService } from 'pixi/pixi.service';
-import { CanvasComponent } from 'pixi/canvas/canvas.component';
+import { CanvasComponent } from './canvas/canvas.component';
+import { PixiService } from './pixi.service';
+import { RendererService } from './renderer.service';
 
 @NgModule({
 	imports: [CommonModule],
@@ -10,4 +11,11 @@ import { CanvasComponent } from 'pixi/canvas/canvas.component';
 	providers: [], // do not put singleton services like PixiService inside submodule put them into app module provider
 	exports: [CanvasComponent],
 })
-export class PixiModule {}
+export class PixiModule {
+	public static forRoot() {
+		return {
+			ngModule: PixiModule,
+			providers: [PixiService, RendererService],
+		};
+	}
+}
