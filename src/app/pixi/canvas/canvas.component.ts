@@ -1,6 +1,5 @@
 /* tslint:disable:no-console */
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, OnDestroy } from '@angular/core';
-import 'pixi.js';
 import { Observable } from 'rxjs/Rx';
 import { animationFrame } from 'rxjs/scheduler/animationFrame';
 import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
