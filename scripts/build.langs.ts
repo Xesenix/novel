@@ -28,15 +28,15 @@ Promise.all(
 				`--progress=${progress}`,
 				'--show-circular-dependencies',
 				'--subresource-integrity',
-				// '--stats-json',
+				'--stats-json',
 				'--target=production',
-				// '--named-chunks',
+				'--named-chunks',
 				'--build-optimizer',
 			],
 			inputStream: process.stdin,
 			outputStream: process.stdout,
 		}).then(
-			() => console.log(color.grey(`Finished building ${color.yellow(app)} for locale: ${color.yellow(locale)}`)),
+			() => console.log(color.grey(`Finished building '${color.yellow(app)}' for locale: ${color.yellow(locale)}`)),
 			() => console.log(color.red(`Failed building '${color.yellow(app)}' for locale: ${color.yellow(locale)}`))
 		);
 	})
