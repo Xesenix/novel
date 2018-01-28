@@ -1,52 +1,39 @@
-<xes-primary-layout>
-	<h1 slot="title-bar" i18n>Story stages list</h1>
-	<ng-container slot="side-bar">
-		<div class="list-group">
-			<a class="list-group-item" routerLinkActive="active" [routerLink]="['/', { outlets: { modal: ['save']}}]" i18n>Save</a>
-			<a class="list-group-item" routerLinkActive="active" [routerLink]="['/', { outlets: { modal: ['load']}}]" i18n>Load</a>
-		</div>
-		<xes-menu></xes-menu>
-	</ng-container>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h2 i18n>Add new story stage</h2>
+	</div>
+	<div class="panel-body">
+		<xes-stage-form #addForm></xes-stage-form>
 
-	<ng-container slot="content">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h2 i18n>Add new story stage</h2>
-			</div>
-			<div class="panel-body">
-				<xes-stage-form #addForm></xes-stage-form>
-
-				<a class="btn btn-primary" (click)="add()" i18n>Add</a>
-			</div>
+		<a class="btn btn-primary" (click)="add()" i18n>Add</a>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2 i18n>Story stages:</h2>
+	</div>
+	<div class="panel-body">
+		<div class="alert alert-info" i18n>
+			<strong>Config: {{ config.name }}</strong>.
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h2 i18n>Story stages:</h2>
-			</div>
-			<div class="panel-body">
-				<div class="alert alert-info" i18n>
-					<strong>Config: {{ config.name }}</strong>.
-				</div>
-				<div class="alert alert-info" *ngIf="config.showDescription" i18n>
-					Stage contains few paragraphs that tell story from one <strong>point of view</strong> that progresses action forward.
-					We distinguish two types of stages <strong>proactive</strong> and <strong>reactive</strong>.
-				</div>
-				<button class="btn btn-primary" [disabled]="!stagesService.canUndo()" (click)="stagesService.undo()" i18n>Undo</button>
-				<button class="btn btn-primary" [disabled]="!stagesService.canRedo()" (click)="stagesService.redo()" i18n>Redo</button>
-			</div>
-			<ul class="list-group sortable-container" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
-				<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
-					<xes-stage-list-item
-						[stage]="item.data"
-						(updateSignal)="stagesService.update(item.index, $event)"
-						(removeSignal)="stagesService.remove(item.index)"
-					></xes-stage-list-item>
-					<a class="sortable-handle glyphicon glyphicon-move" data-drag="stage"></a>
-					<div class="text-right text-muted">
-						<var>list index: {{ $index }} | {{ listItemIdentity($index, item) }}</var>
-					</div>
-				</li>
-			</ul>
+		<div class="alert alert-info" *ngIf="config.showDescription" i18n>
+			Stage contains few paragraphs that tell story from one <strong>point of view</strong> that progresses action forward.
+			We distinguish two types of stages <strong>proactive</strong> and <strong>reactive</strong>.
 		</div>
-	</ng-container>
-</xes-primary-layout>
+		<button class="btn btn-primary" [disabled]="!stagesService.canUndo()" (click)="stagesService.undo()" i18n>Undo</button>
+		<button class="btn btn-primary" [disabled]="!stagesService.canRedo()" (click)="stagesService.redo()" i18n>Redo</button>
+	</div>
+	<ul class="list-group sortable-container" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
+		<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
+			<xes-stage-list-item
+				[stage]="item.data"
+				(updateSignal)="stagesService.update(item.index, $event)"
+				(removeSignal)="stagesService.remove(item.index)"
+			></xes-stage-list-item>
+			<a class="sortable-handle glyphicon glyphicon-move" data-drag="stage"></a>
+			<div class="text-right text-muted">
+				<var>list index: {{ $index }} | {{ listItemIdentity($index, item) }}</var>
+			</div>
+		</li>
+	</ul>
+</div>

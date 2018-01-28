@@ -1,32 +1,19 @@
-<xes-primary-layout>
-	<h1 slot="title-bar" i18n>Chapter {{ chapter.title }} stages</h1>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h2 i18n>Add new story stage</h2>
+	</div>
+	<div class="panel-body">
+		<xes-stage-form #addForm [data]="templateStage | async" [showChapter]="false"></xes-stage-form>
 
-	<ng-container slot="side-bar">
-		<div class="list-group">
-			<a class="list-group-item" routerLinkActive="active" [routerLink]="['/', { outlets: { modal: ['save']}}]" i18n>Save</a>
-			<a class="list-group-item" routerLinkActive="active" [routerLink]="['/', { outlets: { modal: ['load']}}]" i18n>Load</a>
-		</div>
-		<xes-menu></xes-menu>
-	</ng-container>
-	<ng-container slot="content">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h2 i18n>Add new story stage</h2>
-			</div>
-			<div class="panel-body">
-				<xes-stage-form #addForm [data]="templateStage | async" [showChapter]="false"></xes-stage-form>
-
-				<a class="btn btn-primary" (click)="add()" i18n>Add</a>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading"><h3>{{ chapter.title }}</h3></div>
-			<ul class="list-group sortable-container" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
-				<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
-					{{ item.data.content }}
-					<a class="sortable-handle glyphicon glyphicon-move" data-drag="stage"></a>
-				</li>
-			</ul>
-		</div>
-	</ng-container>
-</xes-primary-layout>
+		<a class="btn btn-primary" (click)="add()" i18n>Add</a>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading"><h3>{{ chapter.title }}</h3></div>
+	<ul class="list-group sortable-container" [dragula]="'stages'" data-label="drag&drop" i18n-data-label>
+		<li class="list-group-item" [attr.data-item-id]="item.index" *ngFor="let item of list | async; trackBy: listItemIdentity; let $index = index" [@listState]>
+			{{ item.data.content }}
+			<a class="sortable-handle glyphicon glyphicon-move" data-drag="stage"></a>
+		</li>
+	</ul>
+</div>

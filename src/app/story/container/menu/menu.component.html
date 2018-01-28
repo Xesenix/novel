@@ -1,4 +1,9 @@
 <div class="list-group">
+	<a class="list-group-item" routerLinkActive="active" [routerLink]="['/', { outlets: { modal: ['save'] } }]" i18n>Save</a>
+	<a class="list-group-item" routerLinkActive="active" [routerLink]="['/', { outlets: { modal: ['load'] } }]" i18n>Load</a>
+</div>
+
+<div class="list-group">
 	<a class="list-group-item" routerLinkActive="active" routerLink="/story/stages" i18n>Stages</a>
 	<a class="list-group-item" routerLinkActive="active" routerLink="/story/chapter" i18n>Chapters</a>
 	<xes-chapter-menu [chapters]="chapters"></xes-chapter-menu>

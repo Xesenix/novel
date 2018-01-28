@@ -1,20 +1,24 @@
 <nav class="layout-navbar" role="navigation">
 	<div class="container">
-		<a class="layout-brand">Novel</a>
-		<ul class="layout-main-navigation">
-			<li routerLinkActive="active"><a routerLink="/story" i18n>Story</a></li>
-			<li routerLinkActive="active"><a routerLink="/characters" i18n>Characters</a></li>
-		</ul>
+		<router-outlet name="brand">
+			<a class="layout-brand">Novel</a>
+		</router-outlet>
+		<router-outlet name="navigation">
+			<ul class="layout-main-navigation">
+				<li routerLinkActive="active"><a routerLink="/story" i18n>Story</a></li>
+				<li routerLinkActive="active"><a routerLink="/characters" i18n>Characters</a></li>
+			</ul>
+		</router-outlet>
 	</div>
 </nav>
 
 <div class="container">
 	<div class="row">
 		<div class="layout-aside">
-			<ng-content select="[slot=side-bar]"></ng-content>
+			<router-outlet name="aside"></router-outlet>
 		</div>
 		<div class="layout-content">
-			<ng-content select="[slot=content]"></ng-content>
+			<router-outlet></router-outlet>
 		</div>
 	</div>
 </div>
