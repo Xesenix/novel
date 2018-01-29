@@ -10,7 +10,8 @@
 			"outDir": "dist",
 			"assets": [
 				"assets",
-				"favicon.ico"
+				"favicon.ico",
+				{ "glob": "manifest.json", "output": "../", "allowOutsideOutDir": true }
 			],
 			"index": "index.html",
 			"main": "main.ts",
@@ -44,7 +45,8 @@
 			"outDir": "dist",
 			"assets": [
 				"assets",
-				"favicon.ico"
+				"favicon.ico",
+				{ "glob": "manifest.json", "output": "../", "allowOutsideOutDir": true }
 			],
 			"index": "index.html",
 			"main": "main.ts",

@@ -31,7 +31,7 @@ export function localStorageSyncReducer(rootReducer: any) {
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
-		ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
@@ -40,7 +40,7 @@ export function localStorageSyncReducer(rootReducer: any) {
 		StoreModule.forRoot(reducer, {
 			metaReducers: [undoBehaviorReducer, localStorageSyncReducer],
 		}),
-		StoryModule,
+		// StoryModule,
 		// do not use with @ngrx/router-store (performance issue)
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
