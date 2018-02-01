@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ApplicationRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -8,6 +8,7 @@ import { undoBehavior } from 'xes-ngrx-undo';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
 import { AppComponent } from 'app/app.component';
+import { LevelUpModule } from 'app/level-up/level-up.module';
 import { reducer } from 'app/reducers';
 import { AppRoutingModule } from 'app/routing/app-routing.module';
 import { CharactersModule } from 'characters/characters.module';
@@ -47,6 +48,7 @@ export function localStorageSyncReducer(rootReducer: any) {
 		}),
 		PixiModule.forRoot(),
 		// EffectsModule.forRoot([]),
+		LevelUpModule,
 	],
 	providers: [
 		{
