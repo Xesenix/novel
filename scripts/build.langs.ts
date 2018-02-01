@@ -32,6 +32,7 @@ Promise.all(
 				'--target=production',
 				'--named-chunks',
 				'--build-optimizer',
+				'--extract-css',
 			],
 			inputStream: process.stdin,
 			outputStream: process.stdout,
