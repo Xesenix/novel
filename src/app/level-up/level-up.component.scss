@@ -2,8 +2,10 @@
 	user-select: none;
 }
 
-$entryEase: cubic-bezier(0, .2, .8, 1.3);
-$exitEase: cubic-bezier(0, -.5, .8, .3);
+$entryEase: cubic-bezier(0, .2, .2, 1.5);
+$exitEase: cubic-bezier(0, -1.2, .8, .3);
+$entryTimeScale: 0.3;
+$exitTimeScale: 1;
 
 @keyframes oscillate-enlarge {
 	from { transform: scale(1) }
@@ -36,37 +38,37 @@ $exitEase: cubic-bezier(0, -.5, .8, .3);
 
 #circle {
 	transform: scale(0);
-	animation: appear 1s $entryEase 0s 1 forwards;
+	animation: appear $entryTimeScale * 1s $entryEase 0s 1 forwards;
 	transform-origin: 220px 250px;
 }
 
 #star_0 {
 	transform: scale(0);
-	animation: appear 1.5s $entryEase 1s 1 forwards;
+	animation: appear $entryTimeScale * 1.5s $entryEase $entryTimeScale * 1s 1 forwards;
 	transform-origin: 220px 120px;
 }
 
 #star_1 {
 	transform: scale(0);
-	animation: appear 1.5s $entryEase 1.5s 1 forwards;
+	animation: appear $entryTimeScale * 1.5s $entryEase $entryTimeScale * 1.5s 1 forwards;
 	transform-origin: 220px 120px;
 }
 
 #star_2 {
 	transform: scale(0);
-	animation: appear 1.5s $entryEase 2s 1 forwards;
+	animation: appear $entryTimeScale * 1.5s $entryEase $entryTimeScale * 2s 1 forwards;
 	transform-origin: 220px 120px;
 }
 
 #banner {
 	transform: scale(0);
-	animation: appear 1s $entryEase 3s 1 forwards;
+	animation: appear $entryTimeScale * 1s $entryEase $entryTimeScale * 3s 1 forwards;
 	transform-origin: 220px 250px;
 }
 
 #level_label {
 	transform: scale(0);
-	animation: appear 1s $entryEase 4s 1 forwards;
+	animation: appear $entryTimeScale * 1s $entryEase $entryTimeScale * 4s 1 forwards;
 	transform-origin: 220px 250px;
 }
 
@@ -106,22 +108,23 @@ $exitEase: cubic-bezier(0, -.5, .8, .3);
 
 :host(.close) {
 	#circle {
-		animation: disappear 1.2s $exitEase 0s 1 forwards;
+		transform: scale(1);
+		animation: disappear $exitTimeScale * .8s $exitEase $exitTimeScale * 0.2s 1 forwards;
 		transform-origin: 220px 250px;
 	}
 
 	#star_0, #star_1, #star_2 {
-		animation: disappear .8s $exitEase 0s 1 forwards;
+		animation: disappear $exitTimeScale * .8s $exitEase $exitTimeScale * 0s 1 forwards;
 		transform-origin: 220px 250px;
 	}
 
 	#banner {
-		animation: disappear .5s $exitEase 0s 1 forwards;
+		animation: disappear $exitTimeScale * .5s $exitEase $exitTimeScale * 0s 1 forwards;
 		transform-origin: 220px 250px;
 	}
 
 	#level_label {
-		animation: disappear .5s $exitEase 0s 1 forwards;
+		animation: disappear $exitTimeScale * .5s $exitEase $exitTimeScale * 0s 1 forwards;
 		transform-origin: 220px 250px;
 	}
 }
