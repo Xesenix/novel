@@ -39,7 +39,7 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 
 	ngAfterViewInit() {
 		console.debug('ngAfterViewInit');
-		this.initPixi();
+		this.pixi.ready$.subscribe(this.initPixi.bind(this));
 	}
 
 	ngOnDestroy() {

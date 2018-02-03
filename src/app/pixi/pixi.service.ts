@@ -8,6 +8,8 @@ export class PixiService {
 	private assets: string[] = [];
 	private loadPromise = null;
 
+	public ready$ = this.renderer.ready$;
+
 	constructor(public renderer: RendererService) {
 		console.debug('PixiService:new');
 	}

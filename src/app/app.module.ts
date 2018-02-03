@@ -61,4 +61,8 @@ export function localStorageSyncReducer(rootReducer: any) {
 	],
 	bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+	constructor(app: ApplicationRef) {
+		app.isStable.subscribe(stable => console.log('APP:isStable', stable));
+	}
+}
