@@ -1,13 +1,13 @@
 import { Injectable, ApplicationRef } from '@angular/core';
 import { filter } from 'rxjs/operators/filter';
 import { first } from 'rxjs/operators/first';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class RendererService {
 	renderer: PIXI.WebGLRenderer | PIXI.CanvasRenderer;
 
-	public ready$ = new Subject();
+	public ready$ = new ReplaySubject();
 
 	constructor(app: ApplicationRef) {
 		app.isStable.pipe(filter(v => v), first()).subscribe(() => {
@@ -19,7 +19,7 @@ export class RendererService {
 			this.renderer.view.style.width = '100%';
 			this.renderer.view.style.height = '100%';
 			this.renderer.resize(window.innerWidth, window.innerHeight);
-			this.ready$.next();
+			this.ready$.next(true);
 		});
 	}
 }
