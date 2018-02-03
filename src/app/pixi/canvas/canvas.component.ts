@@ -1,6 +1,6 @@
 /* tslint:disable:no-console */
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, OnDestroy, NgZone } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { animationFrame } from 'rxjs/scheduler/animationFrame';
 import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
 import { TweenObservable } from 'xes-rx-tween';
@@ -35,7 +35,7 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 	 */
 	private easing = (delta: number) => 0.5 * Math.sin(delta * Math.PI) * (1 - 1 * Math.pow(3 * (delta - 0.5), 4));
 
-	constructor(private host: ElementRef, private pixi: PixiService) {}
+	constructor(private host: ElementRef, private pixi: PixiService, private zone: NgZone) {}
 
 	ngAfterViewInit() {
 		console.debug('ngAfterViewInit');
@@ -59,11 +59,13 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 		// attach canvas to dom
 		this.host.nativeElement.appendChild(this.renderer.view);
 
-		// preload assets
-		this.pixi
-			.addAsset('assets/ui.json')
-			.load()
-			.then(this.initScene.bind(this));
+		this.zone.runOutsideAngular(() => {
+			// preload assets
+			this.pixi
+				.addAsset('assets/ui.json')
+				.load()
+				.then(this.initScene.bind(this));
+		});
 	}
 
 	/**
