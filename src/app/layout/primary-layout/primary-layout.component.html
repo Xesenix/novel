@@ -15,10 +15,19 @@
 <div class="container">
 	<div class="row">
 		<div class="layout-aside">
+			<router-outlet name="aside-tools"></router-outlet>
 			<router-outlet name="aside"></router-outlet>
 		</div>
 		<div class="layout-content">
 			<router-outlet></router-outlet>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="footer-content">
+			<router-outlet name="footer"></router-outlet>
 		</div>
 	</div>
 </div>

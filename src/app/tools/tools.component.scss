@@ -1,0 +1,22 @@
+$color: #d03000;
+
+.panel-level-up {
+	border-color: $color;
+
+	.panel-heading {
+		background-color: $color;
+		color: #fff;
+	}
+
+	.list-group {
+		.list-group-item-level-up {
+			background-color: $color;
+			color: #fff;
+			cursor: pointer;
+
+			&:hover {
+				background-color: darken($color, 5%);
+			}
+		}
+	}
+}
