@@ -17,6 +17,7 @@ import { STORY_MODULE_CONFIG, storyModuleDefaultConfig } from 'story/story.confi
 import { StorageModule } from 'storage/storage.module';
 import { StoryModule } from 'story/story.module';
 import { environment } from 'environments/environment';
+import { ToolsComponent } from './tools/tools.component';
 
 // import { EffectsModule } from '@ngrx/effects';
 
@@ -30,7 +31,7 @@ export function localStorageSyncReducer(rootReducer: any) {
 }
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, ToolsComponent],
 	imports: [
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 		BrowserModule,
@@ -48,7 +49,7 @@ export function localStorageSyncReducer(rootReducer: any) {
 		}),
 		PixiModule.forRoot(),
 		// EffectsModule.forRoot([]),
-		LevelUpModule,
+		LevelUpModule.forRoot(),
 	],
 	providers: [
 		{
