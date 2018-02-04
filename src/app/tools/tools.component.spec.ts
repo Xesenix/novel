@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolsComponent } from './tools.component';
+import { LevelUpManager } from 'app/level-up/level-up.manager';
 
 describe('ToolsComponent', () => {
 	let component: ToolsComponent;
@@ -10,6 +11,14 @@ describe('ToolsComponent', () => {
 		async(() => {
 			TestBed.configureTestingModule({
 				declarations: [ToolsComponent],
+				providers: [
+					{
+						provide: LevelUpManager,
+						useValue: {
+							show: () => {},
+						},
+					},
+				],
 			}).compileComponents();
 		}),
 	);
