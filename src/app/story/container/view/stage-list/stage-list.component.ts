@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild
 import { Store } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { IndexedListItem } from 'app/reducers/list';
@@ -47,7 +47,7 @@ export class StageListComponent implements OnInit, OnDestroy {
 		private store: Store<StoryModuleState>,
 		private dragulaService: DragulaService,
 		public stagesService: StagesService,
-		@Inject(STORY_MODULE_CONFIG) public config: StoryModuleConfig = storyModuleDefaultConfig
+		@Inject(STORY_MODULE_CONFIG) public config: StoryModuleConfig = storyModuleDefaultConfig,
 	) {}
 
 	ngOnInit() {

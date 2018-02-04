@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from '@angul
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { IndexedListItem } from 'app/reducers/list';

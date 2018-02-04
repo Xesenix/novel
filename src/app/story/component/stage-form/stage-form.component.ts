@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable } from 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 
 import { StoryChapter } from 'story/model/story-chapter';
 import { StoryStage } from 'story/model/story-stage';
@@ -36,7 +37,7 @@ export class StageFormComponent implements OnChanges {
 			this.title.valueChanges.startWith(''),
 			this.content.valueChanges.startWith(''),
 			this.chapter.valueChanges.startWith(''),
-			(title, content, chapter) => ({ id: this.id, title, content, chapter })
+			(title, content, chapter) => ({ id: this.id, title, content, chapter }),
 		).subscribe((stage: StageFormType) => this.valueChange.next(stage));
 	}
 

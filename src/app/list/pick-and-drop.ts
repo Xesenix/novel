@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { filter } from 'rxjs/operators/filter';
 import { map } from 'rxjs/operators/map';
 import { mapTo } from 'rxjs/operators/mapTo';
@@ -8,7 +8,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 export function pickAndDropObservable(
 	dragulaService: DragulaService,
-	selector: string
+	selector: string,
 ): Observable<{
 	pick: { index: number; length: number; itemId: string; containerId: string };
 	drop: { index: number; length: number; beforeItemId: string; afterItemId: string; containerId: string };
@@ -22,13 +22,13 @@ export function pickAndDropObservable(
 			length: source.children.length,
 			itemId: dragElement.getAttribute('data-item-id'),
 			containerId: source.getAttribute('data-container-id'),
-		})) // get index of picked up element
+		})), // get index of picked up element
 		// tap(v => console.log('pick item', v))
 	);
 
 	const dragCancel = dragulaService.cancel.pipe(
 		filter(([container]) => container === selector),
-		mapTo(null)
+		mapTo(null),
 		// tap(v => console.log('cancel drag'))
 	);
 
@@ -45,7 +45,7 @@ export function pickAndDropObservable(
 				afterItemId: after ? after.getAttribute('data-item-id') : null,
 				containerId: target.getAttribute('data-container-id'),
 			};
-		}) // get index of drop
+		}), // get index of drop
 		// tap(v => console.log('drop item', v))
 	);
 
@@ -54,20 +54,16 @@ export function pickAndDropObservable(
 	return dragStart.pipe(
 		zip(dragEnd),
 		filter(
-			(
-				[pick, drop]: [
-					{ index: number; itemId: string; containerId: string },
-					null | { index: number; beforeItemId: string; afterItemId: string; containerId: string }
-				]
-			) => drop !== null
+			([pick, drop]: [
+				{ index: number; itemId: string; containerId: string },
+				null | { index: number; beforeItemId: string; afterItemId: string; containerId: string }
+			]) => drop !== null,
 		),
 		map(
-			(
-				[pick, drop]: [
-					{ index: number; length: number; itemId: string; containerId: string },
-					{ index: number; length: number; beforeItemId: string; afterItemId: string; containerId: string }
-				]
-			) => ({ pick, drop })
+			([pick, drop]: [
+				{ index: number; length: number; itemId: string; containerId: string },
+				{ index: number; length: number; beforeItemId: string; afterItemId: string; containerId: string }
+			]) => ({ pick, drop }),
 		),
 		map(
 			({
@@ -81,7 +77,7 @@ export function pickAndDropObservable(
 				drop,
 				from: pick.itemId,
 				to: pick.containerId === drop.containerId ? drop.beforeItemId : drop.afterItemId,
-			})
-		)
+			}),
+		),
 	);
 }

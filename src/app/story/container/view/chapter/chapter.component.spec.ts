@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { undoBehavior } from 'xes-ngrx-undo';
 
 import { reducer as rootReducer } from 'app/reducers';
@@ -41,7 +41,7 @@ describe('story:ChapterComponent', () => {
 					},
 				],
 			}).compileComponents();
-		})
+		}),
 	);
 
 	beforeEach(() => {

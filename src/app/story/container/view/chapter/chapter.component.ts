@@ -7,7 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { of } from 'rxjs/observable/of';
 import { map } from 'rxjs/operators/map';
-import { ReplaySubject, Subscription } from 'rxjs/Rx';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Subscription } from 'rxjs/Subscription';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { IndexedListItem } from 'app/reducers/list';
@@ -45,7 +46,7 @@ export class ChapterComponent implements OnInit, OnDestroy {
 		});
 
 		this.subscriptionDragAndDrop = pickAndDropObservable(this.dragulaService, 'stages').subscribe(({ from, to, pick }) =>
-			this.store.dispatch(new MoveStoryStageAction(+from, +to))
+			this.store.dispatch(new MoveStoryStageAction(+from, +to)),
 		);
 
 		this.templateStage = new ReplaySubject<StageFormType>();
@@ -54,11 +55,11 @@ export class ChapterComponent implements OnInit, OnDestroy {
 		const chapterId$ = this.route.paramMap.pipe(map(params => params.get('id')));
 
 		const chapterChange$ = combineLatest(this.chapters, chapterId$, (chapters: StoryChapter[], chapterId: string) =>
-			chapters.find((chapter: StoryChapter) => chapter.id === chapterId)
+			chapters.find((chapter: StoryChapter) => chapter.id === chapterId),
 		);
 
 		this.list = combineLatest(this.store.select(selectFeatureStagesSortableList), chapterId$, (stages: IndexedListItem<StoryStage>[], chapterId: string) =>
-			stages.filter((item: IndexedListItem<StoryStage>) => item.data.chapter === chapterId)
+			stages.filter((item: IndexedListItem<StoryStage>) => item.data.chapter === chapterId),
 		);
 
 		this.subscriptionChapterChange = chapterChange$.subscribe(chapter => {

@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators/map';
 import { shareReplay } from 'rxjs/operators/shareReplay';
 import { take } from 'rxjs/operators/take';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 
 import { pickAndDropObservable } from 'app/list/pick-and-drop';
 import { IndexedListItem } from 'app/reducers/list';
@@ -44,9 +44,9 @@ export class ChapterListItemComponent implements OnInit, OnDestroy {
 			.select(selectFeatureStagesSortableList)
 			.pipe(
 				map((items: IndexedListItem<StoryStage>[]) =>
-					items.filter((item: IndexedListItem<StoryStage>) => this.chapter !== null && item.data.chapter === this.chapter.id)
+					items.filter((item: IndexedListItem<StoryStage>) => this.chapter !== null && item.data.chapter === this.chapter.id),
 				),
-				shareReplay()
+				shareReplay(),
 			);
 
 		this.dragListName = 'chapter-stages';
